@@ -8,7 +8,19 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: { "50": "#f0fdfa", "100": "#ccfbf1", "200": "#99f6e4", "300": "#5eead4", "400": "#2dd4bf", "500": "#14b8a6", "600": "#0d9488", "700": "#0f766e", "800": "#115e59", "900": "#134e4a", "950": "#042f2e" }
+                primary: {
+                    '50': '#fdf2f6',
+                    '100': '#fce7ef',
+                    '200': '#fad0e0',
+                    '300': '#f8a9c5',
+                    '400': '#f06292',
+                    '500': '#e94b7c',
+                    '600': '#d82a57',
+                    '700': '#bb1b3f',
+                    '800': '#9b1935',
+                    '900': '#811a30',
+                    '950': '#4f0817',
+                }
             },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -17,9 +29,9 @@ module.exports = {
             },
         },
         fontFamily: {
-            'tilt':['"Tilt Neon"'],
+            'tilt': ['"Tilt Neon"'],
             'dosis': ['"Dosis"'],
-            'dancing-script': ['"Dancing Script"'],
+            'dancing-script': ['"Dancing Script", "cursive"'],
         }
     },
     plugins: [],

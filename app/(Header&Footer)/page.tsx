@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { Breadcrumb, Layout } from 'antd'
 
+
 const { Content } = Layout
 
 export default function Home() {

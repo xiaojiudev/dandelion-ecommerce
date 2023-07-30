@@ -2,3 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
+
+/* Navbar custom color */
+.ant-menu-item:hover::after,
+.ant-menu-submenu:hover::after,
+.ant-menu-item-selected::after,
+.ant-menu-submenu-selected::after,
+.ant-menu-submenu-open::after {
+    @apply !border-b-primary-500;
+}
+
+.ant-menu-item-selected a,
+.ant-menu-item-selected span {
+    @apply !text-primary-500;
+}
+
+.ant-menu-submenu-selected .ant-menu-submenu-title {
+    @apply !text-primary-500;
+}
+
+.ant-menu-light>.ant-menu .ant-menu-item-selected,
+.ant-menu-submenu-title:active,
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item:not(.ant-menu-item-selected):active {
+    @apply !bg-primary-50;
+}

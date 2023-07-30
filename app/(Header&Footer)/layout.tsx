@@ -1,11 +1,10 @@
 import type { Metadata } from 'next'
-import { Layout, Space, theme } from 'antd'
+import { Layout, Space } from 'antd'
 
 import '@/app/globals.css'
 import HeaderCustom from '@/components/HeaderCustom'
 import FooterCustom from '@/components/FooterCustom'
 import StyledComponentsRegistry from '@/lib/AntdRegistry'
-
 
 export const metadata: Metadata = {
     title: 'Dandelion',
