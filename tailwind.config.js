@@ -4,6 +4,7 @@ module.exports = {
         './pages/**/*.{js,ts,jsx,tsx,mdx}',
         './components/**/*.{js,ts,jsx,tsx,mdx}',
         './app/**/*.{js,ts,jsx,tsx,mdx}',
+        './constants/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
         extend: {
@@ -20,7 +21,7 @@ module.exports = {
                     '800': '#9b1935',
                     '900': '#811a30',
                     '950': '#4f0817',
-                }
+                },
             },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -112,14 +112,14 @@ export default function HeaderCustom() {
             <div className="flex items-center text-black">
                 {/* Cart */}
                 <Popover content={content} placement='bottomRight' title={<div className='text-center'>Your cart</div>} className='mr-6 text-center'>
-                    <Badge count={5}>
+                    <Badge count={5} className='flex items-center justify-center'>
                         <Button type="link" href='' className='bg-transparent' icon={<ShoppingCart size={24} strokeWidth={2} color='#9ca3af' />} size='small' ></Button>
                     </Badge>
                 </Popover>
 
                 {/* Login */}
                 {isLogin ? (
-                    <Dropdown menu={{ items: avatarDropdownItems }} placement='bottomRight' >
+                    <Dropdown open menu={{ items: avatarDropdownItems }} placement='bottomRight' className='flex justify-center items-center' >
                         <a onClick={(e) => e.preventDefault()}>
                             <Avatar src="/avatar.jpg" />
                         </a>
