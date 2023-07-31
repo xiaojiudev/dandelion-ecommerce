@@ -6,6 +6,6 @@ const { Footer } = Layout
 
 export default function FooterCustom() {
   return (
-    <Footer className='bg-[#7dbcea] text-white text-center'>Footer</Footer>
+    <Footer className='bg-primary-400 text-white text-center'>Footer</Footer>
   )
 }

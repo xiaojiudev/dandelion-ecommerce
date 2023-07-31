@@ -17,7 +17,9 @@ export const navbarItems: MenuProps['items'] = [
         icon: '',
     },
     {
-        label: 'Products',
+        label: (
+            <Link href="/product">Product</Link>
+        ),
         key: 'product',
         icon: '',
     },

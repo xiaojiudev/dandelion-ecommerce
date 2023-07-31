@@ -65,7 +65,7 @@ const dataCart = [
 export default function HeaderCustom() {
 
     //isLogin
-    const isLogin = true
+    const isLogin = false
 
     //get data and return product items in cart
     const content = (
@@ -77,10 +77,10 @@ export default function HeaderCustom() {
                 renderItem={(item, index) => (
                     <List.Item actions={
                         [
-                            <div className='text-dark font-bold text-primary-400'>
+                            <div className='text-dark font-bold text-primary-400' key={item.key}>
                                 <span className='text-base  font-medium'>{item.price}</span>
                                 <sup className='text-xs '>$</sup>
-                            </div>, <Button type="link" href='' className='bg-transparent' icon={<Trash2 size={16} strokeWidth={2} color='' className='stroke-slate-600' />} size='small' ></Button>
+                            </div>, <Button type="link" href='' className='bg-transparent' key={item.key} icon={<Trash2 size={16} strokeWidth={2} color='' className='stroke-slate-600' />} size='small' ></Button>
                         ]}>
                         <List.Item.Meta
                             avatar={<Avatar src={`${item.img}${index}`} />}
@@ -119,7 +119,7 @@ export default function HeaderCustom() {
 
                 {/* Login */}
                 {isLogin ? (
-                    <Dropdown open menu={{ items: avatarDropdownItems }} placement='bottomRight' className='flex justify-center items-center' >
+                    <Dropdown menu={{ items: avatarDropdownItems }} placement='bottomRight' className='flex justify-center items-center' >
                         <a onClick={(e) => e.preventDefault()}>
                             <Avatar src="/avatar.jpg" />
                         </a>
