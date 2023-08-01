@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import { Layout, Space } from 'antd'
 
 import '@/app/globals.css'
-import HeaderCustom from '@/components/HeaderCustom'
+import HeaderCustom from '@/components/Header/HeaderCustom'
 import FooterCustom from '@/components/FooterCustom'
 import StyledComponentsRegistry from '@/lib/AntdRegistry'
+import Container from '@/components/Container'
 
 
 export const metadata: Metadata = {
@@ -22,11 +23,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className="">
-                <StyledComponentsRegistry>
+                <StyledComponentsRegistry >
                     <Space direction="vertical" style={{ width: '100%' }} size={[0, 48]}>
                         <Layout className='bg-primary-50'>
                             <HeaderCustom />
-                            {children}
+                            <Container>
+                                {children}
+                            </Container>
                             <FooterCustom />
                         </Layout>
                     </Space>
