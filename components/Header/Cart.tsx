@@ -92,7 +92,7 @@ export default function Cart() {
 
     return (
         <>
-            <Popover content={content} placement='bottomRight' title={<div className='text-center'>Your cart</div>} className='mr-6 text-center'>
+            <Popover content={content} placement='bottomRight' title={<div className='text-center select-none'>Your cart</div>} className='mr-6 text-center'>
                 <Badge count={5} className='flex items-center justify-center'>
                     <Button type="link" href='' className='bg-transparent' icon={<ShoppingCart size={24} strokeWidth={2} color='#9ca3af' />} size='small' ></Button>
                 </Badge>
