@@ -33,6 +33,7 @@ module.exports = {
             'tilt': ['"Tilt Neon"'],
             'dosis': ['"Dosis"'],
             'dancing-script': ['"Dancing Script", "cursive"'],
+            'wendy-std-bold': ['"wendy-lp-std-bold", "sans-serif"'],
         }
     },
     plugins: [],

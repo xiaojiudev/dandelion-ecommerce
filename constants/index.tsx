@@ -126,3 +126,44 @@ export const avatarDropdownItems: MenuProps['items'] = [
         icon: <span className='text-gray-700'><LogOut size={16} color='currentColor' /></span>
     },
 ];
+
+export const footerLinks = [
+    {
+        label: 'Company',
+        links: [
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>About</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Meet the Team</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>History</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Careers</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>API</Link>) },
+        ],
+    },
+    {
+        label: 'Customer Service',
+        links: [
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Help Centre</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Payment</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Return & Refund</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>How To Buy</Link>) },
+        ],
+    },
+    {
+        label: 'Helpful Links',
+        links: [
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Advertise with us</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Contact</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>FAQs</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Live chat</Link>) },
+        ],
+    },
+    {
+        label: 'Legal',
+        links: [
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Privacy Policy</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Terms & Conditions</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Returns Policy</Link>) },
+            { label: (<Link href="/" className='text-gray-700 transition hover:opacity-75'>Accessibility</Link>) },
+        ],
+    },
+
+]

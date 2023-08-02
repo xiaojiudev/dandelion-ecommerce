@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 
-
+a {
+    color: #000000 !important;
+}
 
 
 /* Navbar custom color */
