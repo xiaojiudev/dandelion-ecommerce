@@ -32,7 +32,7 @@ export default function Notify() {
         }
 
         setLoading(true)
-        fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
+        fetch('https://randomuser.me/api/?results=100&inc=name,gender,email,nat,picture&noinfo')
             .then((res) => res.json())
             .then((body) => {
                 setData([...data, ...body.results])
@@ -50,40 +50,26 @@ export default function Notify() {
 
     //get data and return product items in cart
     const content = (
-        <div id="scrollableDiv" className='h-[60vh] w-[350px] overflow-y-scroll px-4'>
-            {/* <List
-                className='h-[223px] w-[400px] overflow-y-scroll'
-                itemLayout="horizontal"
-                dataSource={dataCart}
-                renderItem={(item, index) => (
-                    <List.Item >
-                        <List.Item.Meta
-                            avatar={<Avatar src={`${item.img}${index}`} />}
-                            title={<a href="https://ant.design">{item.title}</a>}
-                            description={item.desc}
-                            className='items-center'
-                        />
-                        <div>{item.quantity}</div>
-                    </List.Item>
-                )}
-            >
-            </List> */}
+        <div id="scrollableDiv" className='h-[60vh] w-[350px] overflow-y-scroll'>
+
             <InfiniteScroll
                 dataLength={data.length}
                 next={loadMoreData}
-                hasMore={data.length < 50}
-                loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+                hasMore={loading}
+                loader={<Skeleton avatar paragraph={{ rows: 1 }} active className='flex items-center px-4' />}
                 endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
                 scrollableTarget="scrollableDiv"
+                className='123'
             >
                 <List
-                    bordered
+
                     className='overflow-hidden'
                     dataSource={data}
                     renderItem={(item) => (
-                        <List.Item key={item.email} className='bg-primary-50/50 hover:bg-white/60 cursor-pointer '>
+                        <List.Item key={item.email} className='bg-primary-50/50 hover:bg-[#f8f8f8] cursor-pointer border-none py-3 px-4'>
                             <List.Item.Meta
-                                avatar={<Avatar src={item.picture.large} />}
+                                className='flex items-center'
+                                avatar={<img src={item.picture.large} width={40} height={40} className='object-cover rounded-sm' />}
                                 title={<a href="https://ant.design">{item.name.last}</a>}
                                 description={item.email}
 
@@ -98,7 +84,7 @@ export default function Notify() {
 
     return (
         <>
-            <Popover open content={content} placement='bottomRight' title={<div className='text-center select-none'>Recently Received Notifications</div>} className='mr-6 text-center'>
+            <Popover id='notify'  content={content} placement='bottomRight' title={<div className='text-center select-none mb-4'>Recently Received Notifications</div> } className='mr-6 text-center'>
                 <Badge count={5} className='flex items-center justify-center'>
                     <Button type="link" href='' className='bg-transparent' icon={<Bell size={24} strokeWidth={2} color='#9ca3af' />} size='small' ></Button>
                 </Badge>

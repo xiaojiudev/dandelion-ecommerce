@@ -4,6 +4,7 @@ import UserDropdown from './UserDropdown'
 import LoginButton from './LoginButton'
 import NavbarMenu from './NavbarMenu'
 import LogoSVG from '../LogoSVG'
+import SearchInput from './SearchInput'
 import Notify from './Notify'
 import Cart from './Cart'
 
@@ -30,6 +31,9 @@ export default function HeaderCustom() {
                     </div>
 
                     <div className="flex items-center">
+                        {/* Search Input */}
+                        <SearchInput />
+
                         {/* Notify */}
                         <Notify />
 
