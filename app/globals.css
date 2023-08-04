@@ -19,6 +19,10 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
+body {
+    text-rendering: optimizeSpeed;
+}
+
 a {
     color: #000000 !important;
 }
@@ -60,7 +64,18 @@ ul.ant-skeleton-paragraph {
 }
 
 /* Search Input custom CSS */
-.css-dev-only-do-not-override-19gw05y.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover,
-.css-dev-only-do-not-override-19gw05y.ant-wave {
+.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover,
+.ant-wave {
     @apply !text-primary-400;
+}
+
+.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
+    @apply !border-primary-200;
+    
+}
+
+.ant-select-focused.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector {
+
+    @apply !border-primary-200 !shadow-[0_0px_0px_2px_rgba(0,0,0,0.3)] !shadow-primary-50;
+
 }

@@ -3,7 +3,11 @@ import { Avatar, Badge, Button, List, Popover } from 'antd'
 import { ShoppingCart, Trash2 } from 'lucide-react'
 import React from 'react'
 
-export default function Cart() {
+interface CartType {
+    className?: string
+}
+
+export default function Cart({ className }: CartType) {
 
     //fetch and return data here!
     const dataCart = [
@@ -92,7 +96,7 @@ export default function Cart() {
 
     return (
         <>
-            <Popover content={content} placement='bottomRight' title={<div className='text-center select-none'>Your cart</div>} className='mr-6 text-center'>
+            <Popover content={content} placement='bottomRight' title={<div className='text-center select-none'>Your cart</div>} className={`text-center ${className}`}>
                 <Badge count={5} className='flex items-center justify-center'>
                     <Button type="link" href='' className='bg-transparent' icon={<ShoppingCart size={24} strokeWidth={2} color='#9ca3af' />} size='small' ></Button>
                 </Badge>

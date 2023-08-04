@@ -20,7 +20,7 @@ export default function HeaderCustom() {
 
     return (
         <header className='sticky top-0 z-50'>
-            <nav className='bg-white border-gray-200 px-4 sm:px-6 lg:px-12 py-2 leading-[64px] shadow '>
+            <nav className='bg-white border-gray-200 px-4 sm:px-6 lg:px-12 py-2 shadow '>
                 <div className='flex flex-wrap justify-between items-center mx-auto container'>
                     {/* Logo */}
                     <LogoSVG />
@@ -30,15 +30,15 @@ export default function HeaderCustom() {
                         <NavbarMenu />
                     </div>
 
-                    <div className="flex items-center">
+                    <div className="flex items-center justify-between h-12">
                         {/* Search Input */}
-                        <SearchInput />
+                        <SearchInput className='mr-6' />
 
                         {/* Notify */}
-                        <Notify />
+                        <Notify className='mr-6'/>
 
                         {/* Cart */}
-                        <Cart />
+                        <Cart className='mr-6'/>
 
                         {/* Login */}
                         {isLogin ? <UserDropdown /> : <LoginButton />}

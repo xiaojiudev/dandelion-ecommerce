@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { Avatar, Badge, Button, Divider, List, Popover, Skeleton } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { Bell } from 'lucide-react'
@@ -21,7 +22,11 @@ interface DataType {
     nat: string;
 }
 
-export default function Notify() {
+interface NotifyType {
+    className?: string
+}
+
+export default function Notify({ className }: NotifyType) {
 
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState<DataType[]>([])
@@ -69,7 +74,7 @@ export default function Notify() {
                         <List.Item key={item.email} className='bg-primary-50/50 hover:bg-[#f8f8f8] cursor-pointer border-none py-3 px-4'>
                             <List.Item.Meta
                                 className='flex items-center'
-                                avatar={<img src={item.picture.large} width={40} height={40} className='object-cover rounded-sm' />}
+                                avatar={<Image src={item.picture.large} width={40} height={40} alt={item.name.first} className='object-cover rounded-sm' />}
                                 title={<a href="https://ant.design">{item.name.last}</a>}
                                 description={item.email}
 
@@ -84,7 +89,7 @@ export default function Notify() {
 
     return (
         <>
-            <Popover id='notify'  content={content} placement='bottomRight' title={<div className='text-center select-none mb-4'>Recently Received Notifications</div> } className='mr-6 text-center'>
+            <Popover id='notify' content={content} placement='bottomRight' title={<div className='text-center select-none mb-4'>Recently Received Notifications</div>} className={`text-center ${className}`}>
                 <Badge count={5} className='flex items-center justify-center'>
                     <Button type="link" href='' className='bg-transparent' icon={<Bell size={24} strokeWidth={2} color='#9ca3af' />} size='small' ></Button>
                 </Badge>

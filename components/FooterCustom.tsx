@@ -145,8 +145,8 @@ export default function FooterCustom() {
                             <div key={item.label}>
                                 <p className="font-medium text-gray-900">{item.label}</p>
                                 <ul className="mt-6 space-y-4 text-sm">
-                                    {item.links.map((link) => (
-                                        <li>
+                                    {item.links.map((link,index) => (
+                                        <li key={index}>
                                             {link.label}
                                         </li>
                                     ))}
