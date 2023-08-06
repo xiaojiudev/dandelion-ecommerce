@@ -88,7 +88,7 @@ export default function Cart({ className }: CartType) {
             >
             </List>
             <div className='flex items-center justify-center py-3'>
-                <Button type="primary" className='w-4/5 bg-primary-500 ' size='large'>Checkout</Button>
+                <Button type="primary" className='w-4/5' size='large'>Checkout</Button>
             </div>
         </>
 

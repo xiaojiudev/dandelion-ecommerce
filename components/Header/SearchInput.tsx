@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { AutoComplete, Input } from 'antd'
-import { X, XCircle } from 'lucide-react'
+import { AutoComplete, ConfigProvider, Input } from 'antd'
 import type { SelectProps } from 'antd/es/select';
 
 
@@ -60,15 +59,30 @@ export default function SearchInput({ className }: SearchInputType) {
 
     return (
         <div className={` ${className}`}>
-            <AutoComplete
-                popupMatchSelectWidth={252}
-                style={{ width: 300 }}
-                options={options}
-                onSelect={onSelect}
-                onSearch={handleSearch}
-            >
-                <Input.Search size="large" placeholder="input here" enterButton />
-            </AutoComplete>
+            <ConfigProvider theme={{
+                token: {
+                    borderRadius: 9999,
+                    colorPrimaryBg: '#fff'
+                },
+            }}>
+                <AutoComplete
+                    popupMatchSelectWidth={200}
+                    style={{ width: 200 }}
+                    options={options}
+                    onSelect={onSelect}
+                    onSearch={handleSearch}
+
+                >
+                    <Input.Search
+                        size="middle"
+                        placeholder="Search"
+                        enterButton
+                        allowClear
+                        loading={false}
+                        
+                    />
+                </AutoComplete>
+            </ConfigProvider>
         </div >
     )
 }

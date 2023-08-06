@@ -6,7 +6,7 @@ export default function LoginButton() {
     return (
         <>
             <Link href="/product">
-                <Button type="primary" size="large" className='bg-primary-500'>
+                <Button type="primary" size="large" className=''>
                     Get started
                 </Button>
             </Link>
