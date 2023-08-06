@@ -2,46 +2,72 @@
 import React, { useState } from 'react'
 import { AutoComplete, Input } from 'antd'
 import { X, XCircle } from 'lucide-react'
+import type { SelectProps } from 'antd/es/select';
+
 
 
 interface SearchInputType {
     className?: string
 }
 
+const getRandomInt = (max: number, min = 0) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-const mockVal = (str: string, repeat = 1) => ({
-    value: str.repeat(repeat),
-});
+const searchResult = (query: string) =>
+    new Array(getRandomInt(5))
+        .join('.')
+        .split('.')
+        .map((_, idx) => {
+            const category = `${query}${idx}`;
+            return {
+                value: category,
+                label: (
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                        }}
+                    >
+                        <span>
+                            Found {query} on{' '}
+                            <a
+                                href={`https://s.taobao.com/search?q=${query}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {category}
+                            </a>
+                        </span>
+                        <span>{getRandomInt(200, 100)} results</span>
+                    </div>
+                ),
+            };
+        });
+
+
 
 export default function SearchInput({ className }: SearchInputType) {
 
-    const [value, setValue] = useState('')
-    const [options, setOptions] = useState<{ value: string }[]>([]);
-    const [anotherOptions, setAnotherOptions] = useState<{ value: string }[]>([]);
 
-    const getPanelValue = (searchText: string) =>
-        !searchText ? [] : [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)];
+    const [options, setOptions] = useState<SelectProps<object>['options']>([]);
 
-    const onSelect = (data: string) => {
-        console.log('onSelect', data);
+    const handleSearch = (value: string) => {
+        setOptions(value ? searchResult(value) : []);
     };
 
-    const onChange = (data: string) => {
-        setValue(data);
+    const onSelect = (value: string) => {
+        console.log('onSelect', value);
     };
 
     return (
         <div className={` ${className}`}>
             <AutoComplete
-                value={value}
-                options={anotherOptions}
-                style={{ width: 200 }}
+                popupMatchSelectWidth={252}
+                style={{ width: 300 }}
+                options={options}
                 onSelect={onSelect}
-                onSearch={(text) => setAnotherOptions(getPanelValue(text))}
-                onChange={onChange}
-                className='[&>.ant-select-selector]:rounded-full'
-                allowClear={{ clearIcon: <X width={14} height={14} /> }}
+                onSearch={handleSearch}
             >
+                <Input.Search size="large" placeholder="input here" enterButton />
             </AutoComplete>
         </div >
     )

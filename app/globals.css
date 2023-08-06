@@ -27,6 +27,10 @@ a {
     color: #000000 !important;
 }
 
+button {
+    
+}
+
 
 /* Navbar custom color */
 .ant-menu-item:hover::after,
