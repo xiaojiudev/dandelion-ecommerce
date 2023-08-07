@@ -9,9 +9,6 @@ import Notify from './Notify'
 import Cart from './Cart'
 
 
-
-
-
 export default function HeaderCustom() {
 
     //isLogin
@@ -32,7 +29,7 @@ export default function HeaderCustom() {
 
                     <div className="flex items-center justify-between h-12">
                         {/* Search Input */}
-                        <SearchInput className='mr-6' />
+                        {/* <SearchInput className='mr-6' /> */}
 
                         {/* Notify */}
                         <Notify className='mr-6'/>

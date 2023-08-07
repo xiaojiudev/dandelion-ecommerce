@@ -62,7 +62,8 @@ export default function SearchInput({ className }: SearchInputType) {
             <ConfigProvider theme={{
                 token: {
                     borderRadius: 9999,
-                    colorPrimaryBg: '#fff'
+                    colorBorder:'#fad0e0',
+                    
                 },
             }}>
                 <AutoComplete

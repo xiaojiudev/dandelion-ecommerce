@@ -1,8 +1,10 @@
-
 import React from 'react'
 
-import { footerLinks, socialItems } from '@/constants'
-import LogoSVG from './LogoSVG'
+import { footerDescription, footerLinks, socialItems } from '@/constants'
+import LogoSVG from '../LogoSVG'
+import FloatButtonGroup from './FloatButtonGroup'
+
+
 
 export default function FooterCustom() {
     return (
@@ -12,15 +14,12 @@ export default function FooterCustom() {
                     <div>
                         <LogoSVG imageShow={false} textClass='text-3xl' />
 
-                        <p className="mt-4 max-w-xs text-gray-500 text-justify">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse non
-                            cupiditate quae nam molestias.
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                            Delectus, exercitationem placeat!
+                        <p className="mt-4 max-w-xs text-gray-500 text-justify select-none">
+                            {footerDescription.map((item, index) => (item.desc))}
                         </p>
 
-                        <ul className="mt-8 flex justify-center items-center gap-6">  
-                            {socialItems.map((item,index)=> (
+                        <ul className="mt-8 flex justify-center items-center gap-6">
+                            {socialItems.map((item, index) => (
                                 <li key={index}>
                                     {item.link}
                                 </li>
@@ -33,7 +32,7 @@ export default function FooterCustom() {
                             <div key={item.label}>
                                 <p className="font-medium text-gray-900">{item.label}</p>
                                 <ul className="mt-6 space-y-4 text-sm">
-                                    {item.links.map((link,index) => (
+                                    {item.links.map((link, index) => (
                                         <li key={index}>
                                             {link.label}
                                         </li>
@@ -49,6 +48,7 @@ export default function FooterCustom() {
                 </p>
             </div>
 
+            <FloatButtonGroup  />
         </footer>
     )
 }
