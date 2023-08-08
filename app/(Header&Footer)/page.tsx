@@ -11,13 +11,13 @@ export default function Home() {
         <div className="my-8" >
             <div className=''>
                 <div className='grid grid-cols-3 grid-rows-2 gap-1 mb-4 max-h-60 w-full'>
-                    <div className='col-span-2 row-span-2 rounded overflow-hidden'>
+                    <div className='col-span-2 row-span-2 rounded-sm overflow-hidden'>
                         <CarouselWrapper />
                     </div>
-                    <div className='col-span-1 row-span-1 rounded overflow-hidden'>
+                    <div className='col-span-1 row-span-1 rounded-sm overflow-hidden'>
                         <img src="/avatar.jpg" alt="avatar" className='object-cover h-full w-full' />
                     </div>
-                    <div className='col-span-1 row-span-1 rounded overflow-hidden'>
+                    <div className='col-span-1 row-span-1 rounded-sm overflow-hidden'>
                         <img src="/avatar.jpg" alt="avatar" className='object-cover h-full w-full' />
                     </div>
                 </div>

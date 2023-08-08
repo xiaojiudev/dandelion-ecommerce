@@ -41,7 +41,7 @@ ul.ant-skeleton-paragraph {
     font-size: inherit !important;
     left: 10px !important;
     z-index: 2 !important;
-    color: blueviolet !important;
+    color: #fff !important;
 }
 
 .ant-carousel .slick-next,
@@ -50,5 +50,12 @@ ul.ant-skeleton-paragraph {
     font-size: inherit !important;
     right: 10px !important;
     z-index: 2 !important;
-    color: blueviolet !important;
+    color: #fff !important;
 }
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next {
+    width: 24px !important;
+    height: 24px !important;
+}
+
