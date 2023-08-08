@@ -25,6 +25,22 @@ export default function Home() {
 
                 <div className='bg-white min-h-screen p-4 shadow-sm rounded mb-4'>
                     <CardCustom />
+                    
+                </div>
+                <div className='bg-white min-h-screen p-4 shadow-sm rounded mb-4 grid grid-cols-6 gap-2 justify-items-center'>
+                    <CardCustom />
+                    <CardCustom />
+                    <CardCustom />
+                    <CardCustom />
+                    <CardCustom />
+                    <CardCustom />
+                    <CardCustom />
+                    <CardCustom />
+                    <CardCustom />
+                    <CardCustom />
+                    <CardCustom />
+                    <CardCustom />
+
                 </div>
 
                 <div className='bg-white min-h-screen p-4 shadow-sm rounded mb-4'>

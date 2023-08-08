@@ -24,12 +24,13 @@ export default function CardCustom() {
 
     return (
         <>
-            <a href='https://translate.google.com/' target='_blank' className="relative w-[200px] h-[265px] block bg-white shadow-md rounded-3xl p-2 cursor-pointer hover:-translate-y-1 transition-all">
+            <a href='https://translate.google.com/' target='_blank' className="relative max-w-[200px] h-[265px] block bg-white shadow-md rounded-3xl p-2 cursor-pointer hover:-translate-y-1 transition-all">
                 <div className="rounded-2xl relative overflow-hidden">
                     <img className="h-44 rounded-2xl w-full object-cover hover:scale-105 transition duration-500" src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg" />
                     <p className="absolute right-2 top-2 p-2 cursor-pointer " onClick={heartClick}>
                         <svg
-                            {...color}
+                            fill={color.fill}
+                            stroke={color.stroke}
                             className="h-6 w-6"
                             style={{
                                 transition: "all .2s ease",
