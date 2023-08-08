@@ -34,3 +34,21 @@ ul.ant-skeleton-paragraph {
     margin-top: 12px !important;
 }
 
+/* Carousel custom for show Arrow */
+.ant-carousel .slick-prev,
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-prev:focus {
+    font-size: inherit !important;
+    left: 10px !important;
+    z-index: 2 !important;
+    color: blueviolet !important;
+}
+
+.ant-carousel .slick-next,
+.ant-carousel .slick-next:hover,
+.ant-carousel .slick-next:focus {
+    font-size: inherit !important;
+    right: 10px !important;
+    z-index: 2 !important;
+    color: blueviolet !important;
+}
