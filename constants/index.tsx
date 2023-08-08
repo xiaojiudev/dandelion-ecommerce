@@ -303,3 +303,25 @@ export const footerLinks = [
 
 ]
 
+export const carouselItems = [
+    {   
+        href: '#1',
+        img: '/avatar.jpg',
+        alt: 'avatar',
+    },
+    {   
+        href: '#2',
+        img: '/avatar.jpg',
+        alt: 'avatar',
+    },
+    {   
+        href: '#3',
+        img: '/avatar.jpg',
+        alt: 'avatar',
+    },
+    {   
+        href: '#4',
+        img: '/avatar.jpg',
+        alt: 'avatar',
+    },
+]

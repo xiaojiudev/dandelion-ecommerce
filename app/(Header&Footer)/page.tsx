@@ -2,7 +2,8 @@
 import Image from 'next/image'
 
 
-import CarouselWrapper from '@/components/CarouselWrapper'
+import CarouselWrapper from '@/components/global/CarouselWrapper'
+import CardCustom from '@/components/global/CardCustom'
 
 
 export default function Home() {
@@ -23,7 +24,7 @@ export default function Home() {
                 </div>
 
                 <div className='bg-white min-h-screen p-4 shadow-sm rounded mb-4'>
-                    content 2
+                    <CardCustom />
                 </div>
 
                 <div className='bg-white min-h-screen p-4 shadow-sm rounded mb-4'>

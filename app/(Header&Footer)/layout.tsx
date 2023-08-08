@@ -3,10 +3,10 @@ import type { Metadata } from 'next'
 import { Layout, Space, ConfigProvider } from 'antd'
 
 import '@/app/globals.css'
-import HeaderCustom from '@/components/Header/HeaderCustom'
-import FooterCustom from '@/components/Footer/FooterCustom'
+import HeaderCustom from '@/components/header/HeaderCustom'
+import FooterCustom from '@/components/footer/FooterCustom'
 import StyledComponentsRegistry from '@/lib/AntdRegistry'
-import Container from '@/components/Container'
+import Container from '@/components/global/Container'
 import theme from '@/theme/themeConfig'
 
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { footerDescription, footerLinks, socialItems } from '@/constants'
-import LogoSVG from '../LogoSVG'
+import LogoSVG from '../global/LogoSVG'
 import FloatButtonGroup from './FloatButtonGroup'
 
 

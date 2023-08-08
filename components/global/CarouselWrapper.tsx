@@ -3,6 +3,8 @@ import React from 'react'
 import { Carousel } from 'antd'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
+import { carouselItems } from '@/constants'
+
 interface AntdArrowProps {
     currentSlide?: number
     slideCount?: number
@@ -28,18 +30,11 @@ export default function CarouselWrapper() {
     return (
         <div className='relative'>
             <Carousel {...settings}>
-                <a>
-                    <img src="/avatar.jpg" alt="avatar" className='object-cover max-h-60 w-full' />
-                </a>
-                <a>
-                    <img src="/avatar.jpg" alt="avatar" className='object-cover max-h-60 w-full' />
-                </a>
-                <a>
-                    <img src="/avatar.jpg" alt="avatar" className='object-cover max-h-60 w-full' />
-                </a>
-                <a>
-                    <img src="/avatar.jpg" alt="avatar" className='object-cover max-h-60 w-full' />
-                </a>
+                {carouselItems?.map((item, index) => (
+                    <a href={item?.href} key={index}>
+                        <img src={item?.img} alt={item?.alt} className='object-cover max-h-60 w-full' />
+                    </a>
+                ))}
             </Carousel>
         </div>
     )
