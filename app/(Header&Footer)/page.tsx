@@ -5,6 +5,8 @@ import Image from 'next/image'
 import CarouselWrapper from '@/components/global/CarouselWrapper'
 import CardCustom from '@/components/global/CardCustom'
 import GridCustom from '@/components/global/GridCustom'
+import SliderCustom from '@/components/global/SliderCustom'
+
 
 
 export default function Home() {
@@ -25,7 +27,8 @@ export default function Home() {
                 </div>
 
                 <div className='bg-white min-h-screen p-4 shadow-sm rounded mb-4'>
-                    <CardCustom />
+                    {/* <CardCustom /> */}
+                    <SliderCustom />
 
                 </div>
                 {/* <div className='bg-white p-4 shadow-sm rounded mb-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 sm:gap-y-8 md:gap-7 lg:gap-8 xl:gap-x-4 xl:gap-y-8 justify-items-center'>

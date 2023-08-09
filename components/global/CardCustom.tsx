@@ -34,7 +34,7 @@ export default function CardCustom({ href, sale, imgSrc, cardTitle, cardPrice, p
         <>
             <a href='https://translate.google.com/' target='_blank' className="relative max-w-[200px] h-[285px] block bg-white text-gray-900 shadow-md rounded-3xl p-2 cursor-pointer hover:-translate-y-1 transition-all">
                 <div className="rounded-2xl relative overflow-hidden">
-                    <span className="absolute left-2 top-2 mt-2 px-2 z-10 rounded-full bg-black px-2 text-center text-sm font-medium text-primary-50">-39%</span>
+                    <span className="absolute left-2 top-2 mt-2 z-10 rounded-full bg-black px-2 text-center text-sm font-medium text-primary-50">-39%</span>
                     <img className="h-44 rounded-2xl w-full object-cover hover:scale-105 transition duration-500" src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg" />
                     <p className="absolute right-2 top-2 p-2 cursor-pointer " onClick={heartClick}>
                         <svg
@@ -68,7 +68,6 @@ export default function CardCustom({ href, sale, imgSrc, cardTitle, cardPrice, p
                 <ConfigProvider theme={{
                     token: {
                         colorPrimary: '#e8dfda'
-
                     },
                 }}>
                     <Button
