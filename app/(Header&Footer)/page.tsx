@@ -35,7 +35,7 @@ export default function Home() {
                 </div>
 
                 <div className='bg-white min-h-screen w-full p-4 shadow-sm rounded mb-4'>
-                    <GridCustom lgCol={4} xlCol={5}>
+                    <GridCustom >
                         <CardCustom />
                         <CardCustom />
                         <CardCustom />
