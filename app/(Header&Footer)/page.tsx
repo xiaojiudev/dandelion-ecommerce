@@ -9,6 +9,7 @@ import SliderCustom from '@/components/global/SliderCustom'
 
 
 
+
 export default function Home() {
 
     return (
@@ -30,28 +31,11 @@ export default function Home() {
                     {/* <CardCustom /> */}
                     <SliderCustom />
 
+
                 </div>
-                {/* <div className='bg-white p-4 shadow-sm rounded mb-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 sm:gap-y-8 md:gap-7 lg:gap-8 xl:gap-x-4 xl:gap-y-8 justify-items-center'>
-                    <CardCustom />
-                    <CardCustom />
-                    <CardCustom />
-                    <CardCustom />
-                    <CardCustom />
-                    <CardCustom />
-                    <CardCustom />
-                    <CardCustom />
-                    <CardCustom />
-                    <CardCustom />
-                    <CardCustom />
-                    <CardCustom />
-                </div> */}
 
                 <div className='bg-white min-h-screen w-full p-4 shadow-sm rounded mb-4'>
-                    <GridCustom lgCol={4} xlCol={6}>
-                        <CardCustom />
-                        <CardCustom />
-                        <CardCustom />
-                        <CardCustom />
+                    <GridCustom lgCol={4} xlCol={5}>
                         <CardCustom />
                         <CardCustom />
                         <CardCustom />

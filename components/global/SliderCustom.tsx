@@ -1,6 +1,7 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useKeenSlider } from "keen-slider/react"
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import "keen-slider/keen-slider.min.css"
 import CardCustom from './CardCustom'
@@ -22,47 +23,62 @@ export default function SliderCustom() {
             perView: 5,
             spacing: 10,
         },
-        drag: false
+        breakpoints: {
+            "(min-width: 280px)": {
+                slides: { perView: 1, spacing: 5 },
+            },
+            "(min-width: 540px)": {
+                slides: { perView: 2, spacing: 5 },
+            },
+            "(min-width: 768px)": {
+                slides: { perView: 3, spacing: 5 },
+            },
+            "(min-width: 1024px)": {
+                slides: { perView: 4, spacing: 10 },
+            },
+            "(min-width: 1280px)": {
+                slides: { perView: 5, spacing: 10 },
+            },
+        },
+        drag: false,
+        renderMode: 'performance'
     })
 
-    console.log(currentSlide, instanceRef.current);
+
 
 
     return (
         <>
             <div className="navigation-wrapper relative ml-3">
                 <div ref={sliderRef} className="keen-slider ">
-                    <div className="keen-slider__slide number-slide1 h-[300px] "><CardCustom /></div>
-                    <div className="keen-slider__slide number-slide2 h-[300px]"><CardCustom /></div>
-                    <div className="keen-slider__slide number-slide3 h-[300px]"><CardCustom /></div>
-                    <div className="keen-slider__slide number-slide4 h-[300px]"><CardCustom /></div>
-                    <div className="keen-slider__slide number-slide5 h-[300px]"><CardCustom /></div>
-                    <div className="keen-slider__slide number-slide6 h-[300px]"><CardCustom /></div>
-                    <div className="keen-slider__slide number-slide7 h-[300px]"><CardCustom /></div>
-                    <div className="keen-slider__slide number-slide8 h-[300px]"><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
                 </div>
 
                 {loaded && instanceRef.current && (
                     <>
-                        <Arrow
-                            left
+                        <div
+                            className={`bg-white border border-slate-100 w-10 h-10 rounded-full shadow absolute top-1/2 -translate-y-[31px] -left-12 flex items-center justify-center cursor-pointer ${currentSlide === 0 ? 'opacity-70 transition-opacity' : 'opacity-100'} `}
                             onClick={(e: any) =>
                                 e.stopPropagation() || instanceRef.current?.prev()
                             }
-                            disabled={currentSlide === 0}
-                            myClass='absolute top-1/2 -translate-y-[30px] -left-6'
-                        />
-
-                        <Arrow
+                        >
+                            <ChevronLeft strokeWidth={1.5} size={22} className='text-primary-500' />
+                        </div>
+                        <div
+                            className={`bg-white border border-slate-100 w-10 h-10 rounded-full shadow absolute top-1/2 -translate-y-[31px] -right-9 flex items-center justify-center cursor-pointer ${currentSlide === instanceRef.current.track.details.maxIdx ? 'opacity-70 transition-opacity' : 'opacity-100'} `}
                             onClick={(e: any) =>
                                 e.stopPropagation() || instanceRef.current?.next()
                             }
-                            disabled={
-                                currentSlide ===
-                                instanceRef.current.track.details.maxIdx
-                            }
-                            myClass='absolute top-1/2 -translate-y-[30px] -right-2'
-                        />
+                        >
+                            <ChevronRight strokeWidth={1.5} size={22} className='text-primary-500' />
+                        </div>
                     </>
                 )}
             </div>
@@ -70,32 +86,4 @@ export default function SliderCustom() {
     )
 }
 
-interface ArrowProps {
-    disabled: boolean
-    left?: boolean
-    onClick: (e: any) => void
-    myClass?: string
-}
-
-function Arrow({ disabled, left, onClick, myClass }: ArrowProps) {
-
-
-    return (
-        <svg
-            onClick={onClick}
-            className={`arrow ${left ? "arrow--left" : "arrow--right"
-                } ${disabled ? "fill-red-500" : ""} ${myClass}`}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width={20}
-        >
-            {left && (
-                <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
-            )}
-            {!left && (
-                <path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z" />
-            )}
-        </svg>
-    )
-}
 
