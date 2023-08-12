@@ -16,7 +16,7 @@ export default function CategoryGroupCustom() {
 
     return (
         <div className="max-w-xs flex flex-col rounded-lg bg-white shadow">
-            <div className="inline-flex items-center border-b gap-x-3.5 py-3 px-4 text-sm font-medium text-primary-600 -mt-px  first:mt-0  focus:z-10 focus:outline-none select-none">
+            <div className="inline-flex items-center border-b gap-x-3.5 py-3 px-4 text-base font-semibold text-primary-600 -mt-px  first:mt-0  focus:z-10 focus:outline-none select-none">
                 <List size={16} />
                 Category
             </div>

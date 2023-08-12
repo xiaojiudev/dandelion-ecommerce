@@ -61,21 +61,20 @@ export default function SearchInput({ className = '' }: SearchInputType) {
         <div className={` ${className}`}>
             <ConfigProvider theme={{
                 token: {
-                    borderRadius: 9999,
                     colorBorder: '#fad0e0',
 
                 },
             }}>
                 <AutoComplete
-                    popupMatchSelectWidth={200}
-                    style={{ width: 400 }}
+                    popupMatchSelectWidth={180}
+                    style={{ width: 220 }}
                     options={options}
                     onSelect={onSelect}
                     onSearch={handleSearch}
 
                 >
                     <Input.Search
-                        size="large"
+                        size="middle"
                         placeholder="Search"
                         enterButton
                         allowClear
