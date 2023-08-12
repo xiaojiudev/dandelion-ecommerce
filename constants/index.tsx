@@ -325,3 +325,36 @@ export const carouselItems = [
         alt: 'avatar',
     },
 ]
+
+export const categoryItems = [
+    {
+        key: 1,
+        label: 'All Products',
+        value: '',
+    },
+    {
+        key: 2,
+        label: 'Fruits',
+        value: '',
+    },
+    {
+        key: 3,
+        label: 'Vegetables',
+        value: '',
+    },
+    {
+        key: 4,
+        label: 'Meats',
+        value: '',
+    },
+    {
+        key: 5,
+        label: 'Dairy',
+        value: '',
+    },
+    {
+        key: 6,
+        label: 'Drink',
+        value: '',
+    },
+]

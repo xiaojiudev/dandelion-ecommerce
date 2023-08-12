@@ -44,7 +44,7 @@ const searchResult = (query: string) =>
 
 
 
-export default function SearchInput({ className }: SearchInputType) {
+export default function SearchInput({ className = '' }: SearchInputType) {
 
 
     const [options, setOptions] = useState<SelectProps<object>['options']>([]);
@@ -62,25 +62,25 @@ export default function SearchInput({ className }: SearchInputType) {
             <ConfigProvider theme={{
                 token: {
                     borderRadius: 9999,
-                    colorBorder:'#fad0e0',
-                    
+                    colorBorder: '#fad0e0',
+
                 },
             }}>
                 <AutoComplete
                     popupMatchSelectWidth={200}
-                    style={{ width: 200 }}
+                    style={{ width: 400 }}
                     options={options}
                     onSelect={onSelect}
                     onSearch={handleSearch}
 
                 >
                     <Input.Search
-                        size="middle"
+                        size="large"
                         placeholder="Search"
                         enterButton
                         allowClear
                         loading={false}
-                        
+
                     />
                 </AutoComplete>
             </ConfigProvider>
