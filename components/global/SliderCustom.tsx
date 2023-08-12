@@ -64,7 +64,7 @@ export default function SliderCustom() {
                 {loaded && instanceRef.current && (
                     <>
                         <div
-                            className={`bg-white border border-slate-100 w-10 h-10 rounded-full shadow absolute top-1/2 -translate-y-[31px] -left-12 flex items-center justify-center cursor-pointer ${currentSlide === 0 ? 'opacity-70 transition-opacity' : 'opacity-100'} `}
+                            className={`bg-white border border-slate-100 w-10 h-10 rounded-full shadow absolute top-1/2 -translate-y-[31px] -left-12 flex items-center justify-center cursor-pointer select-none ${currentSlide === 0 ? 'opacity-70 transition-opacity' : 'opacity-100'} `}
                             onClick={(e: any) =>
                                 e.stopPropagation() || instanceRef.current?.prev()
                             }
@@ -72,7 +72,7 @@ export default function SliderCustom() {
                             <ChevronLeft strokeWidth={1.5} size={22} className='text-primary-500' />
                         </div>
                         <div
-                            className={`bg-white border border-slate-100 w-10 h-10 rounded-full shadow absolute top-1/2 -translate-y-[31px] -right-9 flex items-center justify-center cursor-pointer ${currentSlide === instanceRef.current.track.details.maxIdx ? 'opacity-70 transition-opacity' : 'opacity-100'} `}
+                            className={`bg-white border border-slate-100 w-10 h-10 rounded-full shadow absolute top-1/2 -translate-y-[31px] -right-9 flex items-center justify-center cursor-pointer select-none ${currentSlide === instanceRef.current.track.details.maxIdx ? 'opacity-70 transition-opacity' : 'opacity-100'} `}
                             onClick={(e: any) =>
                                 e.stopPropagation() || instanceRef.current?.next()
                             }
