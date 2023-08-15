@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { MenuProps } from 'antd'
 import { GalleryVerticalEnd, Heart, LogOut, Settings, User, } from 'lucide-react';
+import { getProvinces } from '@/lib/getProvince';
 
 
 export const navbarItems: MenuProps['items'] = [
@@ -304,22 +305,22 @@ export const footerLinks = [
 ]
 
 export const carouselItems = [
-    {   
+    {
         href: '#1',
         img: '/avatar.jpg',
         alt: 'avatar',
     },
-    {   
+    {
         href: '#2',
         img: '/avatar.jpg',
         alt: 'avatar',
     },
-    {   
+    {
         href: '#3',
         img: '/avatar.jpg',
         alt: 'avatar',
     },
-    {   
+    {
         href: '#4',
         img: '/avatar.jpg',
         alt: 'avatar',

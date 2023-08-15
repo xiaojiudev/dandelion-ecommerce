@@ -1,7 +1,7 @@
 
 
 import UserDropdown from './UserDropdown'
-import LoginButton from './LoginButton'
+import ButtonCustom from './ButtonCustom'
 import NavbarMenu from './NavbarMenu'
 import LogoSVG from '../global/LogoSVG'
 import SearchInput from './SearchInput'
@@ -38,7 +38,7 @@ export default function HeaderCustom() {
                         <Cart className='mr-6'/>
 
                         {/* Login */}
-                        {isLogin ? <UserDropdown /> : <LoginButton />}
+                        {isLogin ? <UserDropdown /> : <ButtonCustom href='/' text='Get started' />}
                     </div>
                 </div>
             </nav>
