@@ -24,12 +24,12 @@ export default function CategoryGroupCustom() {
             {categoryItems && (
                 categoryItems.map((category) => (
                     <a
-                        className={`inline-flex items-center gap-x-3.5 py-3 px-4 text-sm font-medium -mt-px ${activeId === category.key ? 'text-primary-500' : 'text-gray-800'} first:mt-0 focus:z-10 focus:outline-none`}
+                        className={`inline-flex items-center gap-x-3.5 py-3 px-4 text-sm font-normal -mt-px ${activeId === category.key ? 'text-primary-500' : 'text-gray-800'} first:mt-0 focus:z-10 focus:outline-none`}
                         href="#"
                         onClick={(e) => handleClick(e, category.key)}
                         key={category.key}
                     >
-                        <ChevronRight size={16} strokeWidth={2.5} className={`${activeId === category.key ? 'opacity-100' : 'opacity-0'} `} />
+                        <ChevronRight size={16} strokeWidth={2.5} color='#e94b7c' className={`${activeId === category.key ? 'opacity-100' : 'opacity-0'} transition-opacity`} />
                         {category.label}
                     </a>
                 ))

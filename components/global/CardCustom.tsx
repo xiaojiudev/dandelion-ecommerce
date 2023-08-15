@@ -34,7 +34,7 @@ export default function CardCustom({ href, sale, imgSrc, cardTitle, cardPrice, p
 
     return (
         <>
-            <a href='https://translate.google.com/' target='_blank' className="relative min-w-[180px] max-w-[200px] h-[285px] block bg-white text-gray-900 shadow-md rounded-3xl p-2 cursor-pointer hover:-translate-y-1 transition-all select-none">
+            <a href='/product/1' target='_blank' className="relative min-w-[180px] max-w-[200px] h-[285px] block bg-white text-gray-900 shadow-md rounded-3xl p-2 cursor-pointer hover:-translate-y-1 transition-all select-none">
                 {loading ? (
                     <>
                         <div className="rounded-2xl relative overflow-hidden">
