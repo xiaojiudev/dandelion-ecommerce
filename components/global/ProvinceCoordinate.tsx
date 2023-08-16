@@ -1,47 +1,64 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Select, Space } from 'antd'
+import { getProvincesAPI } from '@/lib/getProvince'
 
-
-const provinceData = ['Zhejiang', 'Jiangsu']
-
-const cityData = {
-    Zhejiang: ['Hangzhou', 'Ningbo', 'Wenzhou'],
-    Jiangsu: ['Nanjing', 'Suzhou', 'Zhenjiang', 'abc'],
-}
-
-type CityName = keyof typeof cityData;
 
 export default function ProvinceCoordinate() {
 
-    const [cities, setCities] = useState(cityData[provinceData[0] as CityName])
-    const [secondCity, setSecondCity] = useState(cityData[provinceData[0] as CityName][0])
+    const [provinces, setProvinces] = useState([])
+    const [province, setProvince] = useState()
+    const [district, setDistrict] = useState()
+    const [ward, setWard] = useState()
 
-    const handleProvinceChange = (value: CityName) => {
-        setCities(cityData[value])
-        setSecondCity(cityData[value][0])
+
+    useEffect(() => {
+        const getProvinceList = async () => {
+            const res = await getProvincesAPI()
+            setProvinces(res)
+        }
+        getProvinceList()
+    }, [])
+
+
+    const handleProvinceChange = (value) => {
+        setProvince(value)
+        setDistrict(provinces.find((item) => item.code === value))
     }
 
-    const onSecondCityChange = (value: CityName) => {
-        setSecondCity(value)
+    const handleDistrictChange = (value) => {
+        console.log(value);
+        setWard(district?.districts?.find((item) => item.code === value))
+    }
+
+    const handleWardChange = (value) => {
+
     }
 
     return (
         <>
-            <Space wrap>
+            <div>
                 <Select
-                    defaultValue={provinceData[0] as CityName}
-                    style={{ width: 120 }}
+                    defaultValue={'Select province'}
+                    style={{ width: 180 }}
                     onChange={handleProvinceChange}
-                    options={provinceData.map((province) => ({ label: province, value: province }))}
+                    options={provinces.map((province) => ({ label: province.name, value: province.code }))}
                 />
                 <Select
-                    style={{ width: 120 }}
-                    value={secondCity as CityName}
-                    onChange={onSecondCityChange}
-                    options={cities.map((city) => ({ label: city, value: city }))}
+                    defaultValue={'Select district'}
+                    style={{ width: 180 }}
+                    onChange={handleDistrictChange}
+                    options={district?.districts?.map((district) => ({ label: district.name, value: district.code }))}
+                    disabled={!province}
                 />
-            </Space>
+                <Select
+                    defaultValue={'Select ward'}
+                    style={{ width: 180 }}
+                    onChange={handleWardChange}
+                    options={ward?.wards?.map((ward) => ({ label: ward.name, value: ward.code }))}
+                    disabled={!district}
+                />
+            </div>
         </>
     )
 }

@@ -4,8 +4,6 @@ import ProductDetailInfo from '@/components/global/ProductDetailInfo'
 import ProductDetailSlider from '@/components/global/ProductDetailSlider'
 
 
-import { getProvinces } from '@/lib/getProvince'
-
 
 interface ProductPropps {
     params: { id: string }
@@ -18,18 +16,9 @@ export async function generateMetadata({ params }: ProductPropps) {
 }
 
 
+
+
 export default async function Page({ params }: { params: { id: string } }) {
-
-    const provincesData: Promise<Provinces[]> = getProvinces();
-
-    const data = await provincesData
-
-    console.log(data);
-
-    const provinceData = data?.map((item) => item.name)
-    
-
-    console.log(provinceData);
 
 
     return (
@@ -40,11 +29,11 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <ProductDetailSlider />
                     </div>
                     <div className='col-span-7'>
-                        <ProductDetailInfo />
+                        <ProductDetailInfo  />
                     </div>
                 </div>
                 <ul>
-                    {provinceData}
+                    {/* {JSON.stringify(data)} */}
                 </ul>
             </div>
         </div>
