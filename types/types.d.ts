@@ -1,4 +1,4 @@
-type Wards = {
+interface Wards {
     name: string;
     code: number;
     codename: string;
@@ -6,7 +6,7 @@ type Wards = {
     short_codename: string;
 }
 
-type Districts = {
+interface Districts {
     name: string;
     code: number;
     codename: string;
@@ -15,7 +15,7 @@ type Districts = {
     wards: Wards[];
 }
 
-type Provinces = {
+interface Provinces {
     name: string;
     code: number;
     division_type: string;
@@ -23,3 +23,5 @@ type Provinces = {
     phone_code: number;
     districts: Districts[];
 };
+
+
