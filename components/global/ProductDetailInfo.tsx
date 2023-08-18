@@ -27,9 +27,12 @@ export default function ProductDetailInfo() {
             </div>
             <div className='flex items-center gap-3'>
                 <h4 className='font-semibold text-base text-slate-700'>Shipping:</h4>
-                <ProvinceCoordinate  />
+                <ProvinceCoordinate />
             </div>
-            <div>Quantity</div>
+            <div className='flex items-center gap-3'>
+                <h4 className='font-semibold text-base text-slate-700'>Quantity:</h4>
+                <span>152</span>
+            </div>
             <div className='flex'>
                 <ButtonCustom href='' type='default' text='Add to cart' icon={<ShoppingCart />} className='bg-primary-50 text-primary-400' />
                 <ButtonCustom href='' text='Buy Now' />

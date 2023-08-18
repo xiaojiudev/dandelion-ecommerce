@@ -79,29 +79,35 @@ export default function ProvinceCoordinate() {
 
     return (
         <>
-            <Space wrap>
-                <Select
-                    // defaultValue={firstProvince}
-                    value={firstProvince}
-                    style={{ width: 180 }}
-                    onChange={handleProvinceChange}
-                    options={provinceData?.map((province) => ({ label: province, value: province }))}
-                />
-                <Select
-                    value={district}
-                    style={{ width: 170 }}
-                    onChange={handleDistrictChange}
-                    options={province?.map((province) => ({ label: province, value: province }))}
-                />
+            {provinces && provinceData && districtData && wardData && firstProvince ? (
+                <Space wrap>
+                    <Select
+                        value={firstProvince}
+                        style={{ width: 180 }}
+                        onChange={handleProvinceChange}
+                        options={provinceData?.map((province) => ({ label: province, value: province }))}
+                    />
+                    <Select
+                        value={district}
+                        style={{ width: 180 }}
+                        onChange={handleDistrictChange}
+                        options={province?.map((province) => ({ label: province, value: province }))}
+                    />
 
-                <Select
-                    value={ward}
-                    style={{ width: 180 }}
-                    onChange={handleWardChange}
-                    options={wards?.map((ward) => ({ label: ward, value: ward }))}
-                />
-
-            </Space >
+                    <Select
+                        value={ward}
+                        style={{ width: 180 }}
+                        onChange={handleWardChange}
+                        options={wards?.map((ward) => ({ label: ward, value: ward }))}
+                    />
+                </Space >
+            ) : (
+                <>
+                    <Select loading style={{ width: 180 }} disabled />
+                    <Select loading style={{ width: 180 }} disabled />
+                    <Select loading style={{ width: 180 }} disabled />
+                </>
+            )}
         </>
     )
 }
