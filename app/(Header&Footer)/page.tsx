@@ -1,11 +1,11 @@
 
 
 import SliderCustom from '@/components/global/SliderCustom'
-import CarouselWrapper from '@/components/global/CarouselWrapper'
+import CarouselWrapper from '@/components/home/CarouselWrapper'
 import TitleTypography from '@/components/global/TitleTypography'
 import SelectGroupCustom from '@/components/global/SelectGroupCustom'
-import CategoryGroupCustom from '@/components/global/CategoryGroupCustom'
-import ProductsPagination from '@/components/global/ProductsPagination'
+import CategoryGroupCustom from '@/components/home/CategoryGroupCustom'
+import ProductsPagination from '@/components/home/ProductsPagination'
 
 
 
