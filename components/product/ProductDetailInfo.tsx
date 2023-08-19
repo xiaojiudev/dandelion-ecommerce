@@ -30,7 +30,9 @@ export default function ProductDetailInfo() {
             </div>
             <div className='flex items-start gap-3'>
                 <h2 className='font-semibold text-base'>Describe:</h2>
-                <p className='text-justify text-base text-gray-800'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae aut suscipit possimus maiores pariatur veritatis, laboriosam, perspiciatis culpa quae sint tempora atque asperiores dolorem rem quasi, voluptas officia delectus reprehenderit?</p>
+                <p className='text-justify text-base text-gray-800'>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae aut suscipit possimus maiores pariatur veritatis, laboriosam, perspiciatis culpa quae sint tempora atque asperiores dolorem rem quasi, voluptas officia delectus reprehenderit?
+                </p>
             </div>
             <div className='flex items-center gap-9'>
                 <h2 className='font-semibold text-base'>Price:</h2>
