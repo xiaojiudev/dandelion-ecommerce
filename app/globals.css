@@ -59,5 +59,11 @@ ul.ant-skeleton-paragraph {
     height: 24px !important;
 }
 
-
-
+/* Zigzag */
+.border-zigzag {
+    background: linear-gradient(-137deg, #fdf2f6 6px, transparent 0) 0 5px, linear-gradient(320deg, #fdf2f6 6px, #fff 0) 0 5px;
+    background-color: #fdf2f6;
+    background-position: left bottom;
+    background-repeat: repeat-y;
+    background-size: 10px 10px;
+}
