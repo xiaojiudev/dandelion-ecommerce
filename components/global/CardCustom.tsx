@@ -4,7 +4,7 @@ import { Button, ConfigProvider, Skeleton } from 'antd';
 import HeartActive from './HeartActive';
 
 
-interface CardProps {
+type CardProps = {
     href?: string,
     sale?: number,
     imgSrc?: string,
@@ -50,7 +50,7 @@ export default function CardCustom({ href, sale, imgSrc, cardTitle, cardPrice, p
                         <div className="rounded-2xl relative overflow-hidden">
                             <span className="absolute left-2 top-2 mt-2 z-10 rounded-full bg-primary-700 px-2 text-center text-sm font-medium text-white select-none">-39%</span>
                             <img className="h-44 rounded-2xl w-full object-cover hover:scale-105 transition duration-500" src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg" />
-                            <HeartActive className='absolute right-2 top-2'/>
+                            <HeartActive className='absolute right-2 top-2' />
                         </div>
                         <div className="my-4 pl-2 mb-2 flex flex-col justify-between items-stretch">
                             <div className=''>
