@@ -6,16 +6,19 @@ const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful']
 
 interface RatingProps {
     className?: string,
+    allowHalf?: boolean,
+    disabled?: boolean,
+    value: number,
 }
 
-export default function RatingCustom({ className }: RatingProps) {
+export default function RatingCustom({ value, className, allowHalf, disabled }: RatingProps) {
 
-    const [value, setValue] = useState(3)
+    const [initValue, setInitValue] = useState(value)
 
     return (
         <>
             <span>
-                <Rate tooltips={desc} onChange={setValue} value={value} className={` ${className}`} />
+                <Rate tooltips={desc} allowHalf={allowHalf} disabled={disabled} onChange={setInitValue} value={initValue} className={` ${className}`} />
             </span>
         </>
     )
