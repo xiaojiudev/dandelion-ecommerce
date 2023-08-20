@@ -19,10 +19,10 @@ export default function ProductDetailInfo() {
 
     return (
         <div className='flex flex-col px-5 gap-5 text-gray-900 text-base'>
-            <h1 className='text-3xl font-medium '>Apple Watch Series 7</h1>
+            <h1 className='text-3xl font-semibold '>Apple Watch Series 7</h1>
             <div className='flex justify-between items-center text-sm text-slate-800 select-none'>
                 <div className='divide-x'>
-                    <RatingCustom className='text-sm pr-4' />
+                    <RatingCustom value={4.6} disabled allowHalf className='text-sm pr-4' />
                     <span className='px-4 '>145 Reviews</span>
                     <span className='px-4 '>289 Sold</span>
                 </div>
