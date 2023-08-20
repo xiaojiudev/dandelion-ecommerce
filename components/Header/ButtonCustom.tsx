@@ -6,16 +6,30 @@ import { BaseButtonProps } from 'antd/es/button/button'
 
 
 interface ButtonProps {
-    href: string,
+    href?: string,
     type?: BaseButtonProps["type"],
     size?: BaseButtonProps["size"],
     className?: string
     text: string,
     icon?: React.ReactNode
+    onClick?: () => void
+    value?: string | number
 }
 
 
-export default function ButtonCustom({ href = "", type = "primary", size = "large", className = "", text = "Button", icon="" }: ButtonProps) {
+export default function ButtonCustom(
+    {
+        href = "",
+        type = "primary",
+        size = "large",
+        className = "",
+        text = "Button",
+        icon = "",
+        onClick,
+        value
+    }: ButtonProps) {
+
+
     return (
         <>
             <Link href={href}>
