@@ -5,8 +5,10 @@ import ProductDetailInfo from '@/components/product/ProductDetailInfo'
 import ProductDetailSlider from '@/components/product/ProductDetailSlider'
 import TagGroup from '@/components/product/TagGroup'
 import PromoCard from '@/components/product/PromoCard'
-import RatingCustom from '@/components/global/RatingCustom'
 import ProgressRating from '@/components/product/ProgressRating'
+import UserReview from '@/components/product/UserReview'
+import FilterBlock from '@/components/product/FilterBlock'
+import { Pagination } from 'antd'
 
 
 
@@ -71,16 +73,34 @@ export default async function Page({ params }: { params: { id: string } }) {
 
                         {/* Review section */}
                         <div className='bg-white p-4 rounded'>
-                            <div>
-                                <h1 className='bg-slate-100 p-3 rounded-sm text-lg font-medium'>Customer Reviews</h1>
-                                <div className='flex gap-3 p-3'>
-                                    <div className='flex-1 border-r'>Filter group</div>
-                                    <div className='flex flex-col items-center gap-3'>
-                                        <div className='flex gap-3 items-center'>
-                                            <RatingCustom value={4.6} disabled allowHalf className='text-lg' />
-                                            <div className='flex-1 text-base font-medium'>Based on 1624 reviews</div>
+                            <div className='grid grid-cols-12 gap-5'>
+
+                                {/* Customer reviews column left */}
+                                <div className='col-span-8'>
+                                    <div className='flex flex-col gap-3 divide-y'>
+                                        <div className='flex justify-between items-center px-3 py-5'>
+                                            <h1 className='text-lg font-medium'>Customer Reviews</h1>
+                                            <FilterBlock />
                                         </div>
-                                        <div className='flex flex-col justify-center items-start gap-2 bg-slate-50 p-4 w-[370px] rounded'>
+                                        <div className='flex flex-col gap-3 divide-y'>
+                                            <UserReview />
+                                            <UserReview />
+                                            <UserReview />
+                                        </div>
+                                        <div className='flex justify-center items-center pt-3'>
+                                            <Pagination defaultCurrent={1} total={23} size='small' />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Ratings column right */}
+                                <div className='col-span-4'>
+                                    <div className='flex flex-col gap-3'>
+                                        <div className='flex items-center justify-between px-0 py-5'>
+                                            <h1 className='text-lg font-medium'>Ratings*</h1>
+                                            <span className='text-xs font-normal text-gray-600'>*Base on 1213 reviews</span>
+                                        </div>
+                                        <div className='flex flex-col justify-center items-start gap-2 p-4 bg-slate-50 rounded'>
                                             <ProgressRating rating={5} percent={63} />
                                             <ProgressRating rating={4} percent={10} />
                                             <ProgressRating rating={3} percent={6} />
@@ -89,8 +109,8 @@ export default async function Page({ params }: { params: { id: string } }) {
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -115,10 +135,6 @@ export default async function Page({ params }: { params: { id: string } }) {
                     {/* Another section here */}
 
                 </div>
-
-
-
-
 
 
             </div>

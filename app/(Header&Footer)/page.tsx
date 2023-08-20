@@ -3,7 +3,7 @@
 import SliderCustom from '@/components/global/SliderCustom'
 import CarouselWrapper from '@/components/home/CarouselWrapper'
 import TitleTypography from '@/components/global/TitleTypography'
-import SelectGroupCustom from '@/components/global/SelectGroupCustom'
+import FilterSortByGroup from '@/components/home/FilterSortByGroup'
 import CategoryGroupCustom from '@/components/home/CategoryGroupCustom'
 import ProductsPagination from '@/components/home/ProductsPagination'
 
@@ -11,7 +11,6 @@ import ProductsPagination from '@/components/home/ProductsPagination'
 
 
 export default function Home() {
-
 
 
     return (
@@ -38,7 +37,7 @@ export default function Home() {
                 <div className='p-4 py-10 w-full bg-white shadow-none rounded mb-4 flex flex-col justify-center'>
                     <TitleTypography classWrapper='mb-4' headingText='Featured Finds' descText='Curated Selections for Your Shopping Delight' />
                     <div className='flex items-center justify-end mb-8'>
-                        <SelectGroupCustom />
+                        <FilterSortByGroup />
                     </div>
                     <div className='grid grid-cols-6 gap-4'>
                         <div className='col-span-1'><CategoryGroupCustom /></div>
