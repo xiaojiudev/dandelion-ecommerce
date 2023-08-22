@@ -33,7 +33,7 @@ export default function ButtonCustom(
     return (
         <>
             <Link href={href}>
-                <Button type={type} size={size} className={`flex items-center ${className}`} icon={icon}>
+                <Button type={type} size={size} className={`flex items-center rounded-md ${className}`} icon={icon}>
                     {text}
                 </Button>
             </Link>
