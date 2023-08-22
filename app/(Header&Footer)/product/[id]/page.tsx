@@ -122,7 +122,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                     <div className='bg-white p-4 rounded'>
                         <div>
                             <h2 className='text-sm font-medium font-tilt text-primary-500 mb-3'>Shop Vouchers</h2>
-                            <div className='flex flex-col gap-3 max-h-[295px] overflow-y-scroll'>
+                            <div className='flex flex-col gap-3 max-h-80 overflow-y-scroll'>
                                 <PromoCard />
                                 <PromoCard />
                                 <PromoCard />
