@@ -16,7 +16,7 @@ export default function ProductsPagination() {
                 <CardCustom />
             </div>
             <div className='flex items-center justify-center'>
-                <Pagination defaultCurrent={1} total={50} />
+                <Pagination defaultCurrent={1} total={50} size='default' />
             </div>
 
         </div>
