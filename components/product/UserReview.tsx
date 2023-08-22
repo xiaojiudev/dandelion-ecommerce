@@ -1,7 +1,8 @@
-import { Avatar } from 'antd'
+import { Avatar, Image } from 'antd'
 import React from 'react'
 import RatingCustom from '../global/RatingCustom'
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
+import MultiImagePreview from './MultiImagePreview'
 
 export default function UserReview() {
     return (
@@ -24,15 +25,17 @@ export default function UserReview() {
                             <p className='text-sm font-normal text-gray-600'>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ducimus facere qui laborum? Deserunt cumque maxime, est id ipsum obcaecati itaque, beatae aut officiis sapiente nobis adipisci ullam molestiae illum!
                             </p>
-                            <div className='flex flex-row gap-8 justify-items-start items-center'>
+                            <MultiImagePreview />
+
+                            <div className='flex flex-row gap-5 justify-items-start items-center'>
                                 <div className='text-sm font-medium text-gray-700'>Was this helpful?</div>
                                 <div className='flex flex-row gap-3 items-center'>
                                     <div className='flex flex-row items-center gap-1'>
-                                        <ThumbsUp size={12} className='cursor-pointer'/>
+                                        <ThumbsUp size={12} className='cursor-pointer' />
                                         <span>12</span>
                                     </div>
                                     <div className='flex flex-row items-center gap-1'>
-                                        <ThumbsDown size={12} className='cursor-pointer'/>
+                                        <ThumbsDown size={12} className='cursor-pointer' />
                                         <span>1</span>
                                     </div>
                                 </div>
