@@ -32,6 +32,7 @@ export default function SelectGroupCustom() {
                         <Select
                             placeholder={<div className='text-black'>Filter</div>}
                             style={{ width: 120 }}
+                            size='small'
                             onChange={handleChangeFilter}
                             options={[
                                 { value: 'popular', label: 'Popular' },
@@ -45,6 +46,7 @@ export default function SelectGroupCustom() {
                         <Select
                             placeholder={<div className='text-black'>Sort by</div>}
                             style={{ width: 140 }}
+                            size='small'
                             onChange={handleChangeSort}
                             options={[
                                 {
