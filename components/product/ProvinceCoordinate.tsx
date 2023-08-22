@@ -106,9 +106,9 @@ export default function ProvinceCoordinate() {
                 </Space >
             ) : (
                 <>
-                    <Select loading style={{ width: 180 }} disabled />
-                    <Select loading style={{ width: 180 }} disabled />
-                    <Select loading style={{ width: 180 }} disabled />
+                    <Select loading style={{ width: 180 }} disabled size='small' />
+                    <Select loading style={{ width: 180 }} disabled size='small' />
+                    <Select loading style={{ width: 180 }} disabled size='small'/>
                 </>
             )}
         </>
