@@ -71,10 +71,10 @@ export default function SearchInput({ className = '' }: SearchInputType) {
                     options={options}
                     onSelect={onSelect}
                     onSearch={handleSearch}
-
+                    size='small'
                 >
                     <Input.Search
-                        size="middle"
+                        size="small"
                         placeholder="Search"
                         enterButton
                         allowClear
