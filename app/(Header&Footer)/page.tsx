@@ -40,7 +40,9 @@ export default function Home() {
                         <FilterSortByGroup />
                     </div>
                     <div className='grid grid-cols-6 gap-4'>
-                        <div className='col-span-1'><CategoryGroupCustom /></div>
+                        <div className='col-span-1'>
+                            <CategoryGroupCustom />
+                        </div>
                         <div className='col-span-5'>
                             <ProductsPagination />
                         </div>
