@@ -38,7 +38,7 @@ export default function HeaderCustom() {
                         <Cart className='mr-6'/>
 
                         {/* Login */}
-                        {isLogin ? <UserDropdown /> : <ButtonCustom href='/' text='Get started' size='middle' className='text-base font-medium rounded-xl' />}
+                        {isLogin ? <UserDropdown /> : <ButtonCustom href='/' text='Get started' size='middle' className='text-base font-medium' />}
                     </div>
                 </div>
             </nav>
