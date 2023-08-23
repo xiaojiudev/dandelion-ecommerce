@@ -32,7 +32,7 @@ export default function UserReview() {
                             <MultiImagePreview />
                             
                             {/* Like - Dislike */}
-                            <div className='flex flex-row gap-5 justify-items-start items-center'>
+                            <div className='flex flex-row gap-5 justify-items-start items-center mt-5'>
                                 <div className='text-sm font-medium text-gray-700'>Was this helpful?</div>
                                 <div className='flex flex-row gap-3 items-center'>
                                     <div className='flex flex-row items-center gap-1'>
