@@ -50,17 +50,23 @@ export default function SliderCustom() {
     return (
         <>
             <div className="navigation-wrapper relative ml-3">
-                <div ref={sliderRef} className="keen-slider ">
-                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
-                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
-                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
-                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
-                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
-                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
-                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
-                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] ${loaded ? '' : 'hidden'}`}><CardCustom /></div>
+                <div className={`${loaded ? 'hidden' : ''} flex justify-between items-center`}>
+                    <CardCustom loading />
+                    <CardCustom loading />
+                    <CardCustom loading />
+                    <CardCustom loading />
+                    <CardCustom loading />
                 </div>
-
+                <div ref={sliderRef} className={`keen-slider ${loaded ? "" : "invisible h-0"} `}>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
+                </div>
                 {loaded && instanceRef.current && (
                     <>
                         <div
