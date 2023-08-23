@@ -22,11 +22,16 @@ export default function UserReview() {
                                 <RatingCustom value={4} disabled className='text-sm' />
                                 <span className='text-xs font-normal text-gray-600'>June 22, 2023</span>
                             </div>
+
+                            {/* User Comment */}
                             <p className='text-sm font-normal text-gray-600'>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ducimus facere qui laborum? Deserunt cumque maxime, est id ipsum obcaecati itaque, beatae aut officiis sapiente nobis adipisci ullam molestiae illum!
                             </p>
-                            <MultiImagePreview />
 
+                            {/* Reviews: Image & Video */}
+                            <MultiImagePreview />
+                            
+                            {/* Like - Dislike */}
                             <div className='flex flex-row gap-5 justify-items-start items-center'>
                                 <div className='text-sm font-medium text-gray-700'>Was this helpful?</div>
                                 <div className='flex flex-row gap-3 items-center'>
