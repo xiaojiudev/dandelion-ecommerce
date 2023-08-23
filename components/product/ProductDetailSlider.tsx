@@ -44,13 +44,13 @@ export default function ProductDetailSlider() {
     const [loaded, setLoaded] = useState(false)
 
     const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-        initial: 0,
+        initial: 1,
         slides: {
             perView: 1,
             spacing: 0,
         },
         created() {
-            setLoaded(true)
+            setLoaded(true)            
         },
         loop: true,
         renderMode: 'performance',
@@ -86,7 +86,6 @@ export default function ProductDetailSlider() {
         },
     ])
 
-
     const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
         {
             initial: 0,
@@ -95,28 +94,55 @@ export default function ProductDetailSlider() {
                 spacing: 15,
             },
         },
-        [ThumbnailPlugin(instanceRef)]
+        [ThumbnailPlugin(instanceRef)],
+       
     )
 
+        
     return (
-        <>
-            <div ref={sliderRef} className={`keen-slider mb-3 rounded`}>
-                <Skeleton.Image active={loaded ? false : true} className={`${loaded ? 'hidden' : 'block'} w-full aspect-square object-cover rounded`} />
-                <div className="keen-slider__slide "><Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" /></div>
-                <div className="keen-slider__slide "><Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" /></div>
-                <div className="keen-slider__slide "><Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" /></div>
-                <div className="keen-slider__slide "><Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" /></div>
-                <div className="keen-slider__slide "><Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" /></div>
-                <div className="keen-slider__slide "><Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" /></div>
+        <> 
+            <Skeleton.Image active className={`${loaded ? 'hidden' : ''} w-full h-[400px] object-cover rounded`} />                                                                      
+
+            <div ref={sliderRef} className={`${loaded ? "" : "invisible"} keen-slider mb-3 rounded`}>
+                <div className="keen-slider__slide ">
+                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
+                </div>
+                <div className="keen-slider__slide ">
+                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
+                </div>
+                <div className="keen-slider__slide ">
+                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
+                </div>
+                <div className="keen-slider__slide ">
+                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
+                </div>
+                <div className="keen-slider__slide ">
+                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
+                </div>
+                <div className="keen-slider__slide ">
+                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
+                </div>
             </div>
 
             <div ref={thumbnailRef} className="keen-slider thumbnail">
-                <div className="keen-slider__slide"><Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" /></div>
-                <div className="keen-slider__slide"><Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" /></div>
-                <div className="keen-slider__slide"><Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" /></div>
-                <div className="keen-slider__slide"><Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" /></div>
-                <div className="keen-slider__slide"><Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" /></div>
-                <div className="keen-slider__slide"><Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" /></div>
+                <div className="keen-slider__slide">
+                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
+                </div>
+                <div className="keen-slider__slide">
+                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
+                </div>
+                <div className="keen-slider__slide">
+                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
+                </div>
+                <div className="keen-slider__slide">
+                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
+                </div>
+                <div className="keen-slider__slide">
+                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
+                </div>
+                <div className="keen-slider__slide">
+                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
+                </div>
             </div>
 
         </>
