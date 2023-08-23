@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Image } from 'antd'
+import { Image, Space } from 'antd'
+
 
 export default function MultiImagePreview() {
 
@@ -9,21 +10,34 @@ export default function MultiImagePreview() {
         {
             type: 'img',
             src: '/avatar.jpg',
-            sizeSmall: 70,
-            sizeZoom: 500
+            sizeSmall: 80,
+            sizeLg: 500
         },
         {
             type: 'img',
             src: '/avatar1.jpg',
-            sizeSmall: 70,
-            sizeZoom: 500
+            sizeSmall: 80,
+            sizeLg: 500
         },
         {
             type: 'video',
             src: '/1.mp4',
             thumb: '/thumbnail.png',
-            sizeSmall: 70,
-            sizeZoom: 500
+            sizeSmall: 80,
+            sizeLg: 500
+        },
+        {
+            type: 'img',
+            src: '/avatar1.jpg',
+            sizeSmall: 80,
+            sizeLg: 500
+        },
+        {
+            type: 'video',
+            src: '/1.mp4',
+            thumb: '/thumbnail.png',
+            sizeSmall: 80,
+            sizeLg: 500
         },
 
     ]
@@ -31,13 +45,7 @@ export default function MultiImagePreview() {
     const previewList = sourceList.map((item, index) => {
         if (item.type === 'img') {
             return (
-                <Image
-                    width={item.sizeZoom}
-                    height={item.sizeZoom}
-                    src={item.src}
-                    className='object-cover'
-                    preview={false}
-                />
+                <img src={item.src} alt="reviews" width={item.sizeLg} height={item.sizeLg} className='object-cover rounded' />
             )
         }
 
@@ -47,7 +55,7 @@ export default function MultiImagePreview() {
                     controls
                     muted
                     autoPlay
-                    className='w-[560px] h-[315px] object-contain'
+                    className='w-[560px] h-[315px] object-contain rounded'
                 >
                     <source src={item.src} type="video/mp4" />
                 </video>
@@ -63,6 +71,7 @@ export default function MultiImagePreview() {
             height={item.sizeSmall}
             src={item.thumb ?? item.src}
             className='object-cover rounded-sm'
+
         />
     ))
 
@@ -73,11 +82,10 @@ export default function MultiImagePreview() {
                     onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
                     imageRender: (originalNode, info) => {
                         // console.log(info.current)
-
                         return (previewList[info.current])
                     },
+                    toolbarRender: ()=> (null),
                     destroyOnClose: true,
-
                 }}
             >
                 {/* <Image
@@ -99,9 +107,7 @@ export default function MultiImagePreview() {
                     className='object-cover rounded-sm'
                 /> */}
                 {thumbList}
-
             </Image.PreviewGroup>
-
         </div>
     )
 }
