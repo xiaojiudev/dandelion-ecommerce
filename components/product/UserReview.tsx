@@ -1,7 +1,9 @@
-import { Avatar, Image } from 'antd'
 import React from 'react'
-import RatingCustom from '../global/RatingCustom'
+import Image from 'next/image'
+import { Avatar } from 'antd'
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
+
+import RatingCustom from '../global/RatingCustom'
 import MultiImagePreview from './MultiImagePreview'
 
 export default function UserReview() {
@@ -11,7 +13,7 @@ export default function UserReview() {
                 <div className='flex flex-row'>
                     <div className='basis-1/6'>
                         <div className='flex flex-col justify-center items-center gap-3'>
-                            <Avatar src={<img src="/avatar.jpg" alt="avatar" />} size={46} />
+                            <Avatar src={<Image src="/avatar.jpg" alt="avatar" sizes="100vw" priority quality={100} width={50} height={50}/>} size={46} />
                             <div className='font-medium text-gray-800'>Tessa Jacob</div>
                         </div>
                     </div>

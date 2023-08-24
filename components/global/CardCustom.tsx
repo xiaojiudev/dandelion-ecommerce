@@ -1,6 +1,9 @@
 'use client'
 import React, { useState } from 'react'
+import Image from 'next/image';
 import { Button, ConfigProvider, Skeleton } from 'antd';
+
+
 import HeartActive from './HeartActive';
 
 
@@ -49,7 +52,8 @@ export default function CardCustom({ href, sale, imgSrc, cardTitle, cardPrice, p
                     <>
                         <div className="rounded-2xl relative overflow-hidden">
                             <span className="absolute left-2 top-2 mt-2 z-10 rounded-full bg-primary-700 px-2 text-center text-sm font-medium text-white select-none">-39%</span>
-                            <img className="h-44 rounded-2xl w-full object-cover hover:scale-105 transition duration-500" src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg" />
+                            {/* <img className="h-44 rounded-2xl w-full object-cover hover:scale-105 transition duration-500" src="https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg" /> */}
+                            <Image src={`https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg`} alt='Card' priority quality={100} sizes="100vw" width={500} height={300} className='h-44 rounded-2xl w-full object-cover hover:scale-105 transition duration-500'/>
                             <HeartActive className='absolute right-2 top-2' />
                         </div>
                         <div className="my-4 pl-2 mb-2 flex flex-col justify-between items-stretch">
@@ -61,7 +65,7 @@ export default function CardCustom({ href, sale, imgSrc, cardTitle, cardPrice, p
                                 <div className='text-xs text-[#0000008a]'>2.6k sold</div>
                             </div>
                         </div>
-                        
+
                         {/* Button */}
                         <ConfigProvider theme={{
                             token: {

@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Image, Space } from 'antd'
-
+import Image from 'next/image'
+import { Image as ImgAntd } from 'antd'
 
 export default function MultiImagePreview() {
 
@@ -45,7 +45,8 @@ export default function MultiImagePreview() {
     const previewList = sourceList.map((item, index) => {
         if (item.type === 'img') {
             return (
-                <img src={item.src} alt="reviews" width={item.sizeLg} height={item.sizeLg} className='object-cover rounded' />
+                // <img src={item.src} alt="reviews" key={index} width={item.sizeLg} height={item.sizeLg} className='object-cover rounded' />
+                <Image src={item.src} alt="reviews" key={index} width={item.sizeLg} height={item.sizeLg} className='object-cover rounded' />
             )
         }
 
@@ -56,6 +57,7 @@ export default function MultiImagePreview() {
                     muted
                     autoPlay
                     className='w-[560px] h-[315px] object-contain rounded'
+                    key={index}
                 >
                     <source src={item.src} type="video/mp4" />
                 </video>
@@ -65,11 +67,12 @@ export default function MultiImagePreview() {
     })
 
     const thumbList = sourceList.map((item, index) => (
-        <Image
+        <ImgAntd
             key={index}
             width={item.sizeSmall}
             height={item.sizeSmall}
             src={item.thumb ?? item.src}
+            alt={item.type}
             className='object-cover rounded-sm'
 
         />
@@ -77,37 +80,37 @@ export default function MultiImagePreview() {
 
     return (
         <div className='flex items-center gap-3'>
-            <Image.PreviewGroup
+            <ImgAntd.PreviewGroup
                 preview={{
                     onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
                     imageRender: (originalNode, info) => {
                         // console.log(info.current)
                         return (previewList[info.current])
                     },
-                    toolbarRender: ()=> (null),
+                    toolbarRender: () => (null),
                     destroyOnClose: true,
                 }}
             >
-                {/* <Image
+                {/* <ImgAntd
                     width={70}
                     height={70}
                     src="/avatar.jpg"
                     className='object-cover rounded-sm'
                 />
-                <Image
+                <ImgAntd
                     width={70}
                     height={70}
                     src="/avatar1.jpg"
                     className='object-cover rounded-sm'
                 />
-                <Image
+                <ImgAntd
                     width={70}
                     height={70}
                     src="/thumbnail.png"
                     className='object-cover rounded-sm'
                 /> */}
                 {thumbList}
-            </Image.PreviewGroup>
+            </ImgAntd.PreviewGroup>
         </div>
     )
 }
