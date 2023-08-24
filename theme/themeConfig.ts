@@ -12,6 +12,12 @@ const theme: ThemeConfig = {
         controlHeightXS: 24,
         controlHeight: 42,
     },
+    components: {
+        Checkbox: {
+            controlHeight: 32,
+            algorithm: true,
+        }
+    }
 };
 
 export default theme;

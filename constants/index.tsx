@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { Anchor, type MenuProps } from 'antd'
-import { GalleryVerticalEnd, Heart, LogOut, Settings, User, } from 'lucide-react';
-import { getProvincesAPI } from '@/lib/getProvince';
+import { type MenuProps } from 'antd'
+import { GalleryVerticalEnd, Heart, LogOut, Settings, User, } from 'lucide-react'
+
 
 
 export const navbarItems: MenuProps['items'] = [
@@ -14,18 +14,14 @@ export const navbarItems: MenuProps['items'] = [
     },
     {
         label: (
-            <div className='inline-flex items-center'>
-                <Anchor affix={false} replace direction="horizontal" offsetTop={50} items={[{ key: 'popular', href: '#popular', title: 'Popular', target:'' }]} />
-            </div>
+            <Link href="/#popular">Popular</Link>
         ),
         key: 'popular',
         icon: '',
     },
     {
         label: (
-            <div className='inline-flex items-center'>
-                <Anchor affix={false} replace direction="horizontal" offsetTop={50} items={[{ key: 'product', href: '#product', title: 'Product', target:'' }]} />
-            </div>
+            <Link href="/#product">Product</Link>
         ),
         key: 'product',
         icon: '',
@@ -63,7 +59,7 @@ export const navbarItems: MenuProps['items'] = [
     },
     {
         label: (
-            <a href="https://ant.design" target="_blank" rel="noopener noreferrer">Contact</a>
+            <a href="https://www.facebook.com/pugongying999" target="_blank" rel="noopener noreferrer">Contact</a>
         ),
         key: 'alipay',
     },

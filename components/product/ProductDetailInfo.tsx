@@ -52,7 +52,7 @@ export default function ProductDetailInfo() {
             <div className='flex items-center gap-3'>
                 <ButtonCustom href='' type='default' text='Add to cart' icon={<Plus size={18} />} className='bg-white text-primary-400' />
                 <ButtonCustom href='' type='dashed' text='Pay as Guest*' icon={<ShoppingCart size={18} />} className='bg-primary-50 text-primary-400' />
-                <ButtonCustom href='' text='Buy Now' />
+                <ButtonCustom href='/checkout/cart' text='Buy Now' />
             </div>
         </div>
     )
