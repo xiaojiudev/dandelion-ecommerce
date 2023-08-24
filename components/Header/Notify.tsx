@@ -50,7 +50,7 @@ export default function Notify({ className }: NotifyType) {
 
     useEffect(() => {
         loadMoreData()
-    }, [])
+    },[])
 
 
     //get data and return product items in cart

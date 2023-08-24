@@ -1,4 +1,5 @@
 
+import Image from 'next/image'
 
 import SliderCustom from '@/components/global/SliderCustom'
 import CarouselWrapper from '@/components/home/CarouselWrapper'
@@ -21,20 +22,25 @@ export default function Home() {
                         <CarouselWrapper />
                     </div>
                     <div className='col-span-1 row-span-1 rounded-sm overflow-hidden'>
-                        <img src="/avatar.jpg" alt="avatar" className='object-cover h-full w-full' />
+                        {/* <img src="/avatar.jpg" alt="avatar" className='object-cover h-full w-full' /> */}
+                        <Image src={"/avatar.jpg"} alt="avatar" sizes="100vw" priority quality={100} width={500} height={300} className='object-cover h-full w-full' />
                     </div>
                     <div className='col-span-1 row-span-1 rounded-sm overflow-hidden'>
-                        <img src="/avatar.jpg" alt="avatar" className='object-cover h-full w-full' />
+                        {/* <img src="/avatar.jpg" alt="avatar" className='object-cover h-full w-full' /> */}
+                        <Image src={"/avatar.jpg"} alt="avatar" sizes="100vw" priority quality={100} width={500} height={300} className='object-cover h-full w-full' />
                     </div>
                 </div>
 
-                {/* Slider */}
-                <div className='p-4 py-10 shadow-none mb-4 flex flex-col justify-center'>
-                    <TitleTypography headingText='Seller Spotlight' descText='Unveiling Premier Selections from Trusted Partners' />
-                    <SliderCustom />
+                {/* Slider Popular Product */}
+                <div id='popular'>
+                    <div className='p-4 py-10 shadow-none mb-4 flex flex-col justify-center'>
+                        <TitleTypography headingText='Seller Spotlight' descText='Unveiling Premier Selections from Trusted Partners' />
+                        <SliderCustom />
+                    </div>
                 </div>
 
-                <div className='p-4 py-10 w-full bg-white shadow-none rounded mb-4 flex flex-col justify-center'>
+                {/* Main product */}
+                <div id='product' className='p-4 py-10 w-full bg-white shadow-none rounded mb-4 flex flex-col justify-center'>
                     <TitleTypography classWrapper='mb-4' headingText='Featured Finds' descText='Curated Selections for Your Shopping Delight' />
                     <div className='flex items-center justify-end mb-8'>
                         <FilterSortByGroup />

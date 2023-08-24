@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import type { MenuProps } from 'antd'
+import { Anchor, type MenuProps } from 'antd'
 import { GalleryVerticalEnd, Heart, LogOut, Settings, User, } from 'lucide-react';
-import { getProvinces } from '@/lib/getProvince';
+import { getProvincesAPI } from '@/lib/getProvince';
 
 
 export const navbarItems: MenuProps['items'] = [
@@ -13,13 +13,19 @@ export const navbarItems: MenuProps['items'] = [
         icon: '',
     },
     {
-        label: 'Popular',
+        label: (
+            <div className='inline-flex items-center'>
+                <Anchor affix={false} replace direction="horizontal" offsetTop={50} items={[{ key: 'popular', href: '#popular', title: 'Popular', target:'' }]} />
+            </div>
+        ),
         key: 'popular',
         icon: '',
     },
     {
         label: (
-            <Link href="/product">Product</Link>
+            <div className='inline-flex items-center'>
+                <Anchor affix={false} replace direction="horizontal" offsetTop={50} items={[{ key: 'product', href: '#product', title: 'Product', target:'' }]} />
+            </div>
         ),
         key: 'product',
         icon: '',

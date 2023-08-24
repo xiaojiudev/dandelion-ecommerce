@@ -67,3 +67,21 @@ ul.ant-skeleton-paragraph {
     background-repeat: repeat-y;
     background-size: 10px 10px;
 }
+
+/* Navbar */
+ul.ant-menu li.ant-menu-item a,
+ul.ant-menu li span {
+    font-size: 1rem;
+    line-height: 1.5rem;
+
+}
+
+.ant-anchor-wrapper-horizontal::before {
+    display: none;
+}
+
+.ant-anchor-ink {
+    left: 0;
+    width: 0;
+    display: none;
+}
