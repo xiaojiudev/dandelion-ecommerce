@@ -15,11 +15,9 @@ type CartItemProps = {
 }
 
 
-import { useStoreCheckbox } from '@/hooks/use-store-checkbox';
 
 export default function CartItem({ id, image, name, type, unitPrice, maxQuantity, totalPrice }: CartItemProps) {
 
-    const isCheckedAll = useStoreCheckbox((state) => state.isCheckedAll)
 
     const [checked, setChecked] = useState(false)
 
