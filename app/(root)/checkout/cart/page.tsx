@@ -1,9 +1,10 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Button, Checkbox, ConfigProvider, Empty, InputNumber, Modal, Skeleton, Spin, message } from 'antd'
+import Link from 'next/link'
+import { Button, Checkbox, Empty, Input, InputNumber, Modal, Spin, Tag, message } from 'antd'
 import { CheckboxChangeEvent } from 'antd/es/checkbox'
-import { Loader2, Trash2 } from 'lucide-react'
+import { Trash2 } from 'lucide-react'
 
 
 type userCartDataProps = {
@@ -54,6 +55,7 @@ export default function Checkout() {
     const [loading, setLoading] = useState(true)
     const [openModal, setOpenModal] = useState(false)
     const [messageApi, contextHolder] = message.useMessage()
+
 
     useEffect(() => {
         setCarts(userCartData)
@@ -131,14 +133,16 @@ export default function Checkout() {
         <div className='my-10'>
             <div className=''>
                 <div className='grid grid-cols-12 gap-5'>
+
+                    {/* Left bar */}
                     <div className="col-span-9">
                         <div className='flex flex-col flex-1 justify-center gap-3'>
-                            <div className='bg-white p-4 rounded shadow-sm'>
-                                <div className='grid grid-cols-12 select-none'>
+                            <div className='bg-white p-4 rounded shadow-sm' >
+                                <div className='grid grid-cols-12 select-none text-sm text-gray-800 font-normal'>
 
                                     {/* Checkbox for Selected all */}
                                     <Checkbox
-                                        className='col-span-5'
+                                        className='col-span-5 text-sm text-gray-800 font-normal'
                                         name='allSelect'
                                         onChange={handleChange}
                                         checked={isCheckedAll}
@@ -178,12 +182,13 @@ export default function Checkout() {
                             )}
 
                             {/* User Cart Item */}
+
                             {carts.map((cart: userCartDataProps) => {
                                 const isChecked = cart?.isChecked || false
 
                                 return (
                                     <section className='bg-white p-4 rounded shadow select-none' key={cart.id}>
-                                        <div className='grid grid-cols-12 items-center'>
+                                        <div className='grid grid-cols-12 items-center text-base'>
                                             <Checkbox
                                                 className='col-span-5'
                                                 name={cart.id}
@@ -198,11 +203,11 @@ export default function Checkout() {
                                                     </div>
                                                 </div>
                                             </Checkbox>
-                                            <span className='col-span-2 '>${cart.unitPrice}</span>
+                                            <span className='col-span-2 font-medium text-gray-900'>${cart.unitPrice}</span>
                                             <span className='col-span-2 '>
                                                 <InputNumber min={1} max={cart.maxQuantity} defaultValue={1} size='small' />
                                             </span>
-                                            <span className='col-span-2 '>${cart.totalPrice}</span>
+                                            <span className='col-span-2 font-medium text-rose-500'>${cart.totalPrice}</span>
                                             <button className='col-span-1 '>
                                                 <Trash2 onClick={() => handleDeleteCart(isChecked, cart.id)} size={16} strokeWidth={2} color='' className='stroke-slate-600' />
                                             </button>
@@ -212,9 +217,64 @@ export default function Checkout() {
                             })}
                         </div>
                     </div>
+
+                    {/* Right bar */}
                     <div className='col-span-3'>
-                        <div className='bg-white p-4 rounded h-[300px]'>
-                            summary
+                        <div className='flex flex-col gap-3'>
+                            {/* Address */}
+                            <div className='bg-white rounded h-fit p-4 shadow-sm'>
+                                <div className='flex flex-col gap-2'>
+                                    <div className='flex justify-between font-normal text-base text-gray-500'>
+                                        <h3 className=''>Delivery Address</h3>
+                                        <Link href='/' className='text-sm'>Change</Link>
+                                    </div>
+                                    <div className='flex justify-between text-sm font-semibold text-gray-900'>
+                                        <p className=''>Nguyễn Thanh Trung</p>
+                                        <i className='border border-gray-200 border-solid'></i>
+                                        <p className=''>0919360277</p>
+                                    </div>
+                                    <div className='line-clamp-2'>
+                                        <Tag color="rgb(239, 255, 244)" className='text-[#00ab56] font-medium text-xs rounded-full'>Home</Tag>
+                                        <span className='text-gray-500 font-normal'>
+                                            188/1/44 Nguyễn Văn Cừ, Phường An Hòa, Quận Ninh Kiều, Cần Thơ
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            {/* Voucher */}
+                            <div className='bg-white rounded h-fit p-4 shadow-sm'>
+                                <div className='flex flex-col gap-3'>
+                                    <div className='text-sm font-medium'>Dandelion Voucher</div>
+                                    <div className='flex justify-between'>
+                                        <Input defaultValue="" size='small' allowClear style={{ width: '75%' }} />
+                                        <Button type="primary" size='small' disabled >Apply</Button>
+                                    </div>
+                                </div>
+                            </div>
+                            {/* Total Fee */}
+                            <div className='bg-white rounded h-fit p-4 shadow-sm'>
+                                <div className='flex flex-col gap-2 text-sm text-gray-700 font-medium'>
+                                    <div className='flex justify-between items-center'>
+                                        <div className='font-normal text-gray-500'>Merchandise Subtotal:</div>
+                                        <div className=''>$399</div>
+                                    </div>
+                                    <div className='flex justify-between items-center'>
+                                        <div className='font-normal text-gray-500'>Shipping Total:</div>
+                                        <div>$1.2</div>
+                                    </div>
+                                    <div className='flex justify-between items-center pb-4'>
+                                        <div className='font-normal text-gray-500'>Discount:</div>
+                                        <div>$8</div>
+                                    </div>
+                                    <div className='flex justify-between items-center border-t pt-4'>
+                                        <div className='font-normal text-gray-700'>Estimated Total:</div>
+                                        <div className='text-3xl text-primary-500'>$390.8</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Button submit */}
+                            <Button type='primary' size='middle' className='font-medium'>Place Order</Button>
                         </div>
                     </div>
                 </div>
