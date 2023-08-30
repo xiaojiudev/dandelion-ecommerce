@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Button, Checkbox, Empty, Input, InputNumber, Modal, Spin, Tag, message } from 'antd'
 import { CheckboxChangeEvent } from 'antd/es/checkbox'
 import { Trash2 } from 'lucide-react'
+import { useStoreVoucher } from '@/hooks/use-store-voucher'
 
 
 type userCartDataProps = {
@@ -55,6 +56,11 @@ export default function Checkout() {
     const [loading, setLoading] = useState(true)
     const [openModal, setOpenModal] = useState(false)
     const [messageApi, contextHolder] = message.useMessage()
+    
+    const isDisable = useStoreVoucher((state) => state.isDisable)
+    const setEnableState = useStoreVoucher((state)=> state.setEnable)
+    const setDisableState = useStoreVoucher((state)=> state.setDisable)
+
 
 
     useEffect(() => {
@@ -124,6 +130,12 @@ export default function Checkout() {
                 marginTop: '7vh',
             }
         })
+    }
+
+    const handleVoucher = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = e.target
+        
+        value.length > 0 ? setEnableState() : setDisableState()
     }
 
 
@@ -235,7 +247,7 @@ export default function Checkout() {
                                     </div>
                                     <div className='line-clamp-2'>
                                         <Tag color="rgb(239, 255, 244)" className='text-[#00ab56] font-medium text-xs rounded-full'>Home</Tag>
-                                        <span className='text-gray-500 font-normal'>
+                                        <span className='text-gray-500 font-normal text-justify'>
                                             188/1/44 Nguyễn Văn Cừ, Phường An Hòa, Quận Ninh Kiều, Cần Thơ
                                         </span>
                                     </div>
@@ -246,8 +258,8 @@ export default function Checkout() {
                                 <div className='flex flex-col gap-3'>
                                     <div className='text-sm font-medium'>Dandelion Voucher</div>
                                     <div className='flex justify-between'>
-                                        <Input defaultValue="" size='small' allowClear style={{ width: '75%' }} />
-                                        <Button type="primary" size='small' disabled >Apply</Button>
+                                        <Input defaultValue="" size='small' onChange={handleVoucher} allowClear style={{ width: '75%' }} />
+                                        <Button type="primary" size='small' disabled={isDisable} >Apply</Button>
                                     </div>
                                 </div>
                             </div>
@@ -258,10 +270,10 @@ export default function Checkout() {
                                         <div className='font-normal text-gray-500'>Merchandise Subtotal:</div>
                                         <div className=''>$399</div>
                                     </div>
-                                    <div className='flex justify-between items-center'>
+                                    {/* <div className='flex justify-between items-center'>
                                         <div className='font-normal text-gray-500'>Shipping Total:</div>
                                         <div>$1.2</div>
-                                    </div>
+                                    </div> */}
                                     <div className='flex justify-between items-center pb-4'>
                                         <div className='font-normal text-gray-500'>Discount:</div>
                                         <div>$8</div>
@@ -274,7 +286,7 @@ export default function Checkout() {
                             </div>
 
                             {/* Button submit */}
-                            <Button type='primary' size='middle' className='font-medium'>Place Order</Button>
+                            <Button type='primary' href='/checkout/payment' size='middle' className='font-medium'>Continue</Button>
                         </div>
                     </div>
                 </div>
