@@ -37,14 +37,50 @@ export default function Payment() {
                 {/* Left bar */}
                 <div className="col-span-9">
                     <div className='flex flex-col flex-1 justify-center gap-3'>
-                        <div className='bg-white p-4 rounded shadow-sm h-[1000px]' >
-                            <h3 className='text-lg font-semibold text-gray-800 mb-4'>Choose payment method</h3>
+                        <div className='bg-white p-4 rounded shadow-sm' >
+                            <h3 className='text-xl font-semibold text-gray-800 mb-6'>Choose payment method</h3>
                             <Radio.Group onChange={handlePaymentChange} value={paymentValue}>
-                                <Space direction="vertical">
+                                <Space direction="vertical" size={25}>
                                     <Radio value={1}>
-                                        <div className='flex items-center gap-3 text-base font-normal text-gray-700'>
-                                            <Image src='/assets/img/viettelpay.png' width={32} height={32} alt='COD' className='object-contain'></Image>
-                                            <span className='select-none'>Cash on Delivery</span>
+                                        <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
+                                            <Image src='/assets/img/cod.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
+                                            <span className='select-none'>Cash on Delivery (COD)</span>
+                                        </div>
+                                    </Radio>
+                                    <Radio value={2}>
+                                        <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
+                                            <Image src='/assets/img/viettelpay.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
+                                            <span className='select-none'>Viettel Money</span>
+                                        </div>
+                                    </Radio>
+                                    <Radio value={3}>
+                                        <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
+                                            <Image src='/assets/img/momo.jpg' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
+                                            <span className='select-none'>Momo</span>
+                                        </div>
+                                    </Radio>
+                                    <Radio value={4}>
+                                        <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
+                                            <Image src='/assets/img/zalopay.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
+                                            <span className='select-none'>ZaloPay</span>
+                                        </div>
+                                    </Radio>
+                                    <Radio value={5}>
+                                        <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
+                                            <Image src='/assets/img/vnpay.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
+                                            <span className='select-none'>VNPAY</span>
+                                        </div>
+                                    </Radio>
+                                    <Radio value={6}>
+                                        <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
+                                            <Image src='/assets/img/visa.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
+                                            <span className='select-none'>Credit or Debit Card</span>
+                                        </div>
+                                    </Radio>
+                                    <Radio value={7}>
+                                        <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
+                                            <Image src='/assets/img/atm.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
+                                            <span className='select-none'>ATM (Internet Banking)</span>
                                         </div>
                                     </Radio>
                                 </Space>
@@ -162,7 +198,7 @@ export default function Payment() {
                         </div>
 
                         {/* Button submit */}
-                        <Button type='primary' size='middle' className='font-medium'>Order</Button>
+                        <Button type='primary' href='/checkout/payment/success?order_code=759723694' size='middle' className='font-medium'>Order</Button>
                     </div>
                 </div>
             </div>
