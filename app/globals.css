@@ -25,6 +25,7 @@ html {
 
 body {
     text-rendering: optimizeSpeed;
+    height: 100%;
 }
 
 
