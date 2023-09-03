@@ -39,7 +39,7 @@ export default function page() {
                                             </div>
                                             <p className='text-xs text-end'>(Including VAT if any)</p>
                                         </div>
-                                        <Button type='default' block>Return to Home</Button>
+                                        <Button type='default' href='/' block>Return to Home</Button>
                                     </div>
                                 </div>
                             </div>
