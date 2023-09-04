@@ -1,9 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Button, Checkbox, Col, Form, Input } from 'antd'
-
-import LogoSVG from '@/components/global/LogoSVG'
+import Link from 'next/link'
+import { Button, Checkbox, Form, Input } from 'antd'
 
 type FieldType = {
     email?: string;
@@ -39,7 +38,7 @@ export default function Signin() {
             </section>
             <section className='flex-1'>
                 <main className="flex items-center justify-center h-full w-full m-0 p-0 bg-white">
-                    <div className='w-full max-w-[416px] h-[500px]'>
+                    <div className='w-full max-w-[416px] max-h-[550px]'>
                         <h2 className='text-2xl font-bold mb-8'>Sign in to Dandelion</h2>
                         <div className='flex flex-row flex-wrap gap-3'>
                             <button className='flex items-center justify-center py-4 flex-1 border hover:border-[#dbdbde] rounded-full text-sm font-medium' tabIndex={1}>
@@ -86,18 +85,18 @@ export default function Signin() {
                                     label={<span className='font-semibold text-[15px]'>Email</span>}
                                     name="email"
                                 >
-                                    <Input tabIndex={3}/>
+                                    <Input tabIndex={3} />
                                 </Form.Item>
                                 <div className='flex justify-between pb-2'>
                                     <div className='font-semibold text-[15px]'>Password</div>
-                                    <a className="underline text-sm" href="">
+                                    <Link className="underline text-sm" href="/forgot">
                                         Forgot?
-                                    </a>
+                                    </Link>
                                 </div>
                                 <Form.Item<FieldType>
                                     name="password"
                                 >
-                                    <Input.Password tabIndex={4}/>
+                                    <Input.Password tabIndex={4} />
                                 </Form.Item>
                                 <Form.Item
                                     wrapperCol={{ span: 24, offset: 0 }}
@@ -122,6 +121,10 @@ export default function Signin() {
                             </Form>
 
                         </div>
+                        <p className='text-sm text-center text-[#3d3d4e]'>
+                            Don't have an account?&nbsp;
+                            <Link href="/session/signup" className='underline'>Sign up</Link>
+                        </p>
                     </div>
                 </main>
             </section>
