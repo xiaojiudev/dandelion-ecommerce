@@ -1,67 +1,129 @@
-import LogoSVG from '@/components/global/LogoSVG'
+'use client'
+
 import React from 'react'
+import { Button, Checkbox, Col, Form, Input } from 'antd'
+
+import LogoSVG from '@/components/global/LogoSVG'
+
+type FieldType = {
+    email?: string;
+    password?: string;
+    remember?: string;
+}
 
 export default function Signin() {
+
+    const onFinish = (values: any) => {
+        console.log('Success:', values);
+    }
+
+    const onFinishFailed = (errorInfo: any) => {
+        console.log('Failed:', errorInfo);
+    }
+
+
     return (
-        <div className='flex flex-row items- h-full bg-white'>
+        <div className='flex flex-row items-stretch h-screen bg-white'>
             <section className='w-[450px]'>
                 <div className='flex flex-col h-full text-white'>
                     <a href="/" className='absolute z-10 top-10 left-10'>
                         <span className="self-center text-2xl font-dancing-script font-bold whitespace-nowrap tracking-wide">Dandelion</span>
                     </a>
-                    {/* <video playsInline className="flex w-full h-full object-cover" autoPlay loop muted src="https://cdn.dribbble.com/uploads/48226/original/b8bd4e4273cceae2889d9d259b04f732.mp4?1689028949">
-                    </video> */}
                     <video playsInline className="flex w-full h-full object-cover" autoPlay loop muted src="/signin.mp4">
                     </video>
-                    {/* <img src="https://cdn.dribbble.com/users/4835348/screenshots/17800300/media/083a731a314fde97c890a8f026173661.png" alt="" className='w-full h-full object-cover' /> */}
-                    
+
                     <a className="absolute bottom-10 left-10 z-10" href="https://www.facebook.com/pugongying999">
                         @xiaojiu
                     </a>
                 </div>
             </section>
             <section className='flex-1'>
-                <div className="bg-gray-50 dark:bg-gray-900">
-                    <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                        <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-                            <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo" />
-                            Flowbite
-                        </a>
-                        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                                <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                                    Create and account
-                                </h1>
-                                <form className="space-y-4 md:space-y-6" action="#">
-                                    <div>
-                                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                        <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                        <input type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-                                        <input type="confirm-password" name="confirm-password" id="confirm-password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                                    </div>
-                                    <div className="flex items-start">
-                                        <div className="flex items-center h-5">
-                                            <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
-                                        </div>
-                                        <div className="ml-3 text-sm">
-                                            <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">I accept the <a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
-                                        </div>
-                                    </div>
-                                    <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create an account</button>
-                                    <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                        Already have an account? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
-                                    </p>
-                                </form>
-                            </div>
+                <main className="flex items-center justify-center h-full w-full m-0 p-0 bg-white">
+                    <div className='w-full max-w-[416px] h-[500px]'>
+                        <h2 className='text-2xl font-bold mb-8'>Sign in to Dandelion</h2>
+                        <div className='flex flex-row flex-wrap gap-3'>
+                            <button className='flex items-center justify-center py-4 flex-1 border hover:border-[#dbdbde] rounded-full text-sm font-medium' tabIndex={1}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 18 18" fill="none" role="img" className="mr-2">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M17.64 9.20419C17.64 8.56601 17.5827 7.95237 17.4764 7.36328H9V10.8446H13.8436C13.635 11.9696 13.0009 12.9228 12.0477 13.561V15.8192H14.9564C16.6582 14.2524 17.64 11.9451 17.64 9.20419Z" fill="#4285F4"></path>
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M8.99976 18C11.4298 18 13.467 17.1941 14.9561 15.8195L12.0475 13.5613C11.2416 14.1013 10.2107 14.4204 8.99976 14.4204C6.65567 14.4204 4.67158 12.8372 3.96385 10.71H0.957031V13.0418C2.43794 15.9831 5.48158 18 8.99976 18Z" fill="#34A853"></path>
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M3.96409 10.7098C3.78409 10.1698 3.68182 9.59301 3.68182 8.99983C3.68182 8.40664 3.78409 7.82983 3.96409 7.28983V4.95801H0.957273C0.347727 6.17301 0 7.54755 0 8.99983C0 10.4521 0.347727 11.8266 0.957273 13.0416L3.96409 10.7098Z" fill="#FBBC05"></path>
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M8.99976 3.57955C10.3211 3.57955 11.5075 4.03364 12.4402 4.92545L15.0216 2.34409C13.4629 0.891818 11.4257 0 8.99976 0C5.48158 0 2.43794 2.01682 0.957031 4.95818L3.96385 7.29C4.67158 5.16273 6.65567 3.57955 8.99976 3.57955Z" fill="#EA4335"></path>
+                                </svg>
+                                <span>
+                                    Sign in with Google
+                                </span>
+                            </button>
+                            <button className='flex items-center justify-center py-4 flex-1 border hover:border-[#dbdbde] rounded-full text-sm font-medium' tabIndex={2}>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0,0,256,256" role="img" className='mr-2'>
+                                    <g fill="none" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}>
+                                        <g transform="scale(5.33333,5.33333)">
+                                            <path d="M24,5c-10.49341,0 -19,8.50659 -19,19c0,10.49341 8.50659,19 19,19c10.49341,0 19,-8.50659 19,-19c0,-10.49341 -8.50659,-19 -19,-19z" fill="#039BE5" />
+                                            <path d="M26.572,29.036h4.917l0.772,-4.995h-5.69v-2.73c0,-2.075 0.678,-3.915 2.619,-3.915h3.119v-4.359c-0.548,-0.074 -1.707,-0.236 -3.897,-0.236c-4.573,0 -7.254,2.415 -7.254,7.917v3.323h-4.701v4.995h4.701v13.729c0.931,0.14 1.874,0.235 2.842,0.235c0.875,0 1.729,-0.08 2.572,-0.194z" fill="#ffffff" />
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span>
+                                    Sign in with Facebook
+                                </span>
+                            </button>
+
+                        </div>
+                        <hr className='h-[1px] my-8 p-0 overflow-visible border-none bg-[#e7e7e9] text-[#6e6d7a] text-center after:content-["or_sign_in_with_email"] after:inline-block after:relative after:-top-[14px] after:px-4 after:bg-white after:text-sm'></hr>
+                        <div className=''>
+                            <Form
+                                name="login"
+                                className="login-form"
+                                labelCol={{ span: 12 }}
+                                wrapperCol={{ span: 24 }}
+                                style={{ maxWidth: 600 }}
+                                initialValues={{ remember: true }}
+                                onFinish={onFinish}
+                                onFinishFailed={onFinishFailed}
+                                autoComplete="off"
+                                layout='vertical'
+                            >
+                                <Form.Item<FieldType>
+                                    label={<span className='font-semibold text-[15px]'>Email</span>}
+                                    name="email"
+                                >
+                                    <Input tabIndex={3}/>
+                                </Form.Item>
+                                <div className='flex justify-between pb-2'>
+                                    <div className='font-semibold text-[15px]'>Password</div>
+                                    <a className="underline text-sm" href="">
+                                        Forgot?
+                                    </a>
+                                </div>
+                                <Form.Item<FieldType>
+                                    name="password"
+                                >
+                                    <Input.Password tabIndex={4}/>
+                                </Form.Item>
+                                <Form.Item
+                                    wrapperCol={{ span: 24, offset: 0 }}
+                                >
+                                    <Form.Item
+                                        name="remember"
+                                        valuePropName="checked"
+                                        noStyle
+                                        wrapperCol={{ span: 12, offset: 10 }}
+                                    >
+                                        <Checkbox tabIndex={5} className='select-none'>Remember me</Checkbox>
+                                    </Form.Item>
+
+
+                                </Form.Item>
+
+                                <Form.Item>
+                                    <Button type="primary" block shape='round' htmlType="submit" tabIndex={6}>
+                                        Submit
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+
                         </div>
                     </div>
-                </div>
+                </main>
             </section>
         </div>
     )
