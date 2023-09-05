@@ -16,7 +16,8 @@ const theme: ThemeConfig = {
         Checkbox: {
             controlHeight: 32,
             algorithm: true,
-        }
+        },
+
     }
 };
 
