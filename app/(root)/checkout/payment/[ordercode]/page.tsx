@@ -59,15 +59,15 @@ export default function page() {
                                 <div className='flex flex-col gap-3'>
                                     <div className='flex items-center gap-2'>
                                         <Image src={`https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg`} alt='Card' sizes="100vw" width={48} height={48} className='h-12 w-12 rounded-sm object-cover' />
-                                        <span className='text-sm text-gray-600 line-clamp-2'>Men's Sports Shoes with Air Cushion for Comfortable, Breathable Foot Support</span>
+                                        <span className='text-sm text-gray-600 line-clamp-2'>Men&apos;s Sports Shoes with Air Cushion for Comfortable, Breathable Foot Support</span>
                                     </div>
                                     <div className='flex items-center gap-2'>
                                         <Image src={`https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg`} alt='Card' sizes="100vw" width={48} height={48} className='h-12 w-12 rounded-sm object-cover' />
-                                        <span className='text-sm text-gray-600 line-clamp-2'>Men's Sports Shoes with Air Cushion for Comfortable, Breathable Foot Support</span>
+                                        <span className='text-sm text-gray-600 line-clamp-2'>Men&apos;s Sports Shoes with Air Cushion for Comfortable, Breathable Foot Support</span>
                                     </div>
                                     <div className='flex items-center gap-2'>
                                         <Image src={`https://pixahive.com/wp-content/uploads/2020/10/Gym-shoes-153180-pixahive.jpg`} alt='Card' sizes="100vw" width={48} height={48} className='h-12 w-12 rounded-sm object-cover' />
-                                        <span className='text-sm text-gray-600 line-clamp-2'>Men's Sports Shoes with Air Cushion for Comfortable, Breathable Foot Support</span>
+                                        <span className='text-sm text-gray-600 line-clamp-2'>Men&apos;s Sports Shoes with Air Cushion for Comfortable, Breathable Foot Support</span>
                                     </div>
                                 </div>
                             </div>

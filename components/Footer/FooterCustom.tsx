@@ -44,7 +44,7 @@ export default function FooterCustom() {
                 </div>
                 <hr className=" border-gray-200 sm:mx-auto dark:border-gray-700 " />
                 <p className="text-xs text-gray-500 text-center">
-                    &copy; 2023. Dandelion. All rights reserved by "xiaojiu".
+                    &copy; 2023. Dandelion. All rights reserved by &quot;xiaojiu&quot;.
                 </p>
             </div>
 

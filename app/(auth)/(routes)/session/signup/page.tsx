@@ -114,7 +114,7 @@ export default function Signup() {
                                 noStyle
                             >
                                 <Checkbox tabIndex={5} className='select-none text-sm text-gray-800'>
-                                    I agree with Dandelion's <a href="">Terms of Service</a>, <a href="">Privacy Policy</a>, and default <a href="">Notification Settings</a>.
+                                    I agree with Dandelion&apos;s <a href="">Terms of Service</a>, <a href="">Privacy Policy</a>, and default <a href="">Notification Settings</a>.
                                 </Checkbox>
                             </Form.Item>
                         </Form.Item>

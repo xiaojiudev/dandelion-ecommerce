@@ -1,5 +1,6 @@
 'use client'
 import React from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import { Carousel } from 'antd'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -32,10 +33,10 @@ export default function CarouselWrapper() {
         <div className='relative'>
             <Carousel {...settings}>
                 {carouselItems?.map((item, index) => (
-                    <a href={item?.href} key={index}>
+                    <Link href={item?.href} key={index} prefetch>
                         {/* <img src={item?.img} alt={item?.alt} className='object-cover max-h-60 w-full' /> */}
                         <Image src={item?.img} alt={item?.alt} sizes="100vw" priority quality={100} width={500} height={300} className='object-cover max-h-60 w-full'/>
-                    </a>
+                    </Link>
                 ))}
             </Carousel>
         </div>

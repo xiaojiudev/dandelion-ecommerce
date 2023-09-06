@@ -32,7 +32,7 @@ export default function ButtonCustom(
 
     return (
         <>
-            <Link href={href}>
+            <Link href={href} prefetch>
                 <Button type={type} size={size} className={`flex items-center rounded-md ${className}`} icon={icon}>
                     {text}
                 </Button>

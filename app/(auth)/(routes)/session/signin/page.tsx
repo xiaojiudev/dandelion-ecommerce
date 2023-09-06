@@ -212,8 +212,8 @@ export default function Signin() {
 
                 </div>
                 <p className='text-sm text-center text-[#3d3d4e]'>
-                    Don't have an account?&nbsp;
-                    <Link href="/session/signup" className='underline text-primary-400'>Sign Up</Link>
+                    Don&apos;t have an account?&nbsp;
+                    <Link href="/session/signup" prefetch className='underline text-primary-400'>Sign Up</Link>
                 </p>
                 <p className='text-[#9e9ea7] text-[11px] mt-5'>
                     This site is protected by reCAPTCHA and the Google <a href="" className='text-[#0d0c22]'>Privacy Policy</a> and <a href="" className='text-[#0d0c22]'>Terms of Service</a> apply.
