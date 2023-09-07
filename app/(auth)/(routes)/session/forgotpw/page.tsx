@@ -2,7 +2,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button, Form, Input } from 'antd'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, Regex } from 'lucide-react'
+
+import { regexEmail } from '@/constants'
 
 
 type ForgotType = {
@@ -47,8 +49,10 @@ export default function ForgetPW() {
                         <Form.Item<ForgotType>
                             label={<span className='font-semibold text-[15px]'>Email Address</span>}
                             name="email"
+                            hasFeedback
+                            rules={[{ required: true, type: "email", message: 'Email invalid!', pattern: new RegExp(regexEmail) }]}
                         >
-                            <Input tabIndex={1} />
+                            <Input tabIndex={1} allowClear/>
                         </Form.Item>
 
                         {/* Submit */}

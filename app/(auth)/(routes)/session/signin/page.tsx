@@ -4,7 +4,9 @@ import React from 'react'
 import Link from 'next/link'
 import { Button, Checkbox, Form, Input } from 'antd'
 
-type SignUpType = {
+import { regexEmail } from '@/constants'
+
+type SignInType = {
     email?: string;
     password?: string;
     remember?: boolean;
@@ -66,11 +68,13 @@ export default function Signin() {
                         autoComplete="off"
                         layout='vertical'
                     >
-                        <Form.Item<SignUpType>
+                        <Form.Item<SignInType>
                             label={<span className='font-semibold text-[15px]'>Email</span>}
                             name="email"
+                            hasFeedback
+                            rules={[{ required: true, type: "email", message: 'Email invalid!', pattern: new RegExp(regexEmail) }]}
                         >
-                            <Input tabIndex={3} />
+                            <Input tabIndex={3} allowClear/>
                         </Form.Item>
                         <div className='flex justify-between pb-2'>
                             <div className='font-semibold text-[15px]'>Password</div>
@@ -78,10 +82,12 @@ export default function Signin() {
                                 Forgot?
                             </Link>
                         </div>
-                        <Form.Item<SignUpType>
+                        <Form.Item<SignInType>
                             name="password"
+                            hasFeedback
+                            rules={[{ required: true, type: "string", message: 'Password invalid!', min: 8 }]}
                         >
-                            <Input.Password tabIndex={4} />
+                            <Input.Password tabIndex={4} allowClear/>
                         </Form.Item>
                         <Form.Item
                             wrapperCol={{ span: 24, offset: 0 }}
@@ -98,7 +104,7 @@ export default function Signin() {
 
                         <Form.Item>
                             <Button type="primary" block shape='round' htmlType="submit" tabIndex={6}>
-                                Submit
+                                Sign In
                             </Button>
                         </Form.Item>
                     </Form>

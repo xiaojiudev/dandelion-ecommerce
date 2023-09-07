@@ -4,7 +4,9 @@ import Link from 'next/link'
 import { Button, Checkbox, Form, Input } from 'antd'
 import { ChevronLeft } from 'lucide-react'
 
-type SignInType = {
+import { regexName, regexEmail, regexPhone, regexPW } from '@/constants'
+
+type SignUpType = {
     email?: string;
     fullname?: string;
     phone?: number;
@@ -13,6 +15,8 @@ type SignInType = {
 }
 
 export default function Signup() {
+
+
 
 
     const onFinish = (values: any) => {
@@ -71,37 +75,45 @@ export default function Signup() {
                         {/* FirstName & LastName */}
                         <Form.Item>
                             <div className='flex gap-3'>
-                                <Form.Item<SignInType>
+                                <Form.Item<SignUpType>
                                     label={<span className='font-semibold text-[15px]'>Your Email</span>}
                                     name="email"
                                     className='flex-1 mb-0'
+                                    hasFeedback
+                                    rules={[{ required: true, type: "email", message: 'Email invalid!', pattern: new RegExp(regexEmail) }]}
                                 >
-                                    <Input tabIndex={3} placeholder='bonnie@domain.com' />
+                                    <Input tabIndex={3} placeholder='bonnie@domain.com' allowClear />
                                 </Form.Item>
-                                <Form.Item<SignInType>
+                                <Form.Item<SignUpType>
                                     label={<span className='font-semibold text-[15px]'>Full Name</span>}
                                     name="fullname"
                                     className='flex-1 mb-0'
+                                    hasFeedback
+                                    rules={[{ required: true, type: "string", message: "Name invalid!", pattern: new RegExp(regexName) }]}
                                 >
-                                    <Input tabIndex={3} placeholder='e.g. Bonnie Green' />
+                                    <Input tabIndex={3} placeholder='e.g. Bonnie Green' allowClear />
                                 </Form.Item>
                             </div>
                         </Form.Item>
 
                         {/* Email */}
-                        <Form.Item<SignInType>
+                        <Form.Item<SignUpType>
                             label={<span className='font-semibold text-[15px]'>Phone</span>}
                             name="phone"
+                            hasFeedback
+                            rules={[{ required: true, type: "string", message: "Phone invalid!", pattern: new RegExp(regexPhone) }]}
                         >
-                            <Input addonBefore={"+84"} tabIndex={3} placeholder='111222333' />
+                            <Input addonBefore={"+84"} tabIndex={3} placeholder='0111222333' maxLength={10} allowClear />
                         </Form.Item>
 
                         {/* Password */}
-                        <Form.Item<SignInType>
+                        <Form.Item<SignUpType>
                             label={<span className='font-semibold text-[15px]'>Password</span>}
                             name="password"
+                            hasFeedback
+                            rules={[{ required: true, message: "8+ characters, at least 1 uppercase, 1 lowercase, 1 number and 1 special character required!", pattern: new RegExp(regexPW) }]}
                         >
-                            <Input.Password tabIndex={4} placeholder='6+ characters' />
+                            <Input.Password tabIndex={4} placeholder='6+ characters' maxLength={20} allowClear />
                         </Form.Item>
 
 
@@ -113,6 +125,12 @@ export default function Signup() {
                                 name="agree"
                                 valuePropName="checked"
                                 noStyle
+                                rules={[
+                                    {
+                                        validator: (_, value) =>
+                                            value ? Promise.resolve() : Promise.reject(new Error('Should accept agreement')),
+                                    },
+                                ]}
                             >
                                 <Checkbox tabIndex={5} className='select-none text-sm text-gray-800'>
                                     I agree with Dandelion&apos;s <a href="">Terms of Service</a>, <a href="">Privacy Policy</a>, and default <a href="">Notification Settings</a>.
