@@ -22,7 +22,7 @@ export default function RootLayout({
                 <StyledComponentsRegistry >
                     <ConfigProvider theme={theme}>
                         <div className='flex flex-row items-stretch h-screen bg-white'>
-                            <section className='w-2/6 '>
+                            <section className='w-2/6'>
                                 <div className='flex flex-col h-full text-white'>
                                     <Link href="/" prefetch className='absolute z-10 top-10 left-10'>
                                         <span className="self-center text-2xl font-dancing-script font-bold whitespace-nowrap tracking-wide">Dandelion</span>
@@ -36,7 +36,7 @@ export default function RootLayout({
                                 </div>
                             </section>
                             <section className='flex-1'>
-                                <main className="flex items-center justify-center h-full w-full m-0 p-0 bg-white">
+                                <main className="flex items-center justify-center relative h-full w-full m-0 p-0 bg-white">
                                     {children}
                                 </main>
                             </section>
