@@ -2,8 +2,9 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button, Checkbox, Form, Input } from 'antd'
+import { ChevronLeft } from 'lucide-react'
 
-type FieldType = {
+type SignInType = {
     email?: string;
     fullname?: string;
     phone?: number;
@@ -70,14 +71,14 @@ export default function Signup() {
                         {/* FirstName & LastName */}
                         <Form.Item>
                             <div className='flex gap-3'>
-                                <Form.Item<FieldType>
+                                <Form.Item<SignInType>
                                     label={<span className='font-semibold text-[15px]'>Your Email</span>}
                                     name="email"
                                     className='flex-1 mb-0'
                                 >
                                     <Input tabIndex={3} placeholder='bonnie@domain.com' />
                                 </Form.Item>
-                                <Form.Item<FieldType>
+                                <Form.Item<SignInType>
                                     label={<span className='font-semibold text-[15px]'>Full Name</span>}
                                     name="fullname"
                                     className='flex-1 mb-0'
@@ -88,7 +89,7 @@ export default function Signup() {
                         </Form.Item>
 
                         {/* Email */}
-                        <Form.Item<FieldType>
+                        <Form.Item<SignInType>
                             label={<span className='font-semibold text-[15px]'>Phone</span>}
                             name="phone"
                         >
@@ -96,7 +97,7 @@ export default function Signup() {
                         </Form.Item>
 
                         {/* Password */}
-                        <Form.Item<FieldType>
+                        <Form.Item<SignInType>
                             label={<span className='font-semibold text-[15px]'>Password</span>}
                             name="password"
                         >
@@ -132,6 +133,11 @@ export default function Signup() {
                     <Link href="/session/signin" className='underline text-primary-400'>Sign In</Link>
                 </p>
             </div>
+            <Link href="/session/signin">
+                <button className='absolute top-10 left-10 w-10 h-10 border hover:border-[#dbdbde] rounded-full flex justify-center items-center'>
+                    <ChevronLeft size={18} />
+                </button>
+            </Link>
         </>
     )
 }
