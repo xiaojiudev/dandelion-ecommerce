@@ -58,7 +58,6 @@ export default function Signin() {
                 <div className=''>
                     <Form
                         name="login"
-                        className="login-form"
                         labelCol={{ span: 12 }}
                         wrapperCol={{ span: 24 }}
                         style={{ maxWidth: 600 }}
@@ -67,12 +66,15 @@ export default function Signin() {
                         onFinishFailed={onFinishFailed}
                         autoComplete="off"
                         layout='vertical'
+                        
                     >
                         <Form.Item<SignInType>
                             label={<span className='font-semibold text-[15px]'>Email</span>}
                             name="email"
+                            required
                             hasFeedback
                             rules={[{ required: true, type: "email", message: 'Email invalid!', pattern: new RegExp(regexEmail) }]}
+                            
                         >
                             <Input tabIndex={3} allowClear/>
                         </Form.Item>
@@ -84,6 +86,7 @@ export default function Signin() {
                         </div>
                         <Form.Item<SignInType>
                             name="password"
+                            required
                             hasFeedback
                             rules={[{ required: true, type: "string", message: 'Password invalid!', min: 8 }]}
                         >

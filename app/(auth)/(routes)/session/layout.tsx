@@ -20,7 +20,15 @@ export default function RootLayout({
         <html lang="en">
             <body className=''>
                 <StyledComponentsRegistry >
-                    <ConfigProvider theme={theme}>
+                    <ConfigProvider theme={{
+                        ...theme,
+                        components: {
+                            Input: {
+                                colorPrimary: '#fce7ef',
+                                algorithm: true,
+                            },
+                        },
+                    }}>
                         <div className='flex flex-row items-stretch h-screen bg-white'>
                             <section className='w-2/6'>
                                 <div className='flex flex-col h-full text-white'>

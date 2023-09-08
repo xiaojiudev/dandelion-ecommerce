@@ -49,7 +49,9 @@ export default function ForgetPW() {
                         <Form.Item<ForgotType>
                             label={<span className='font-semibold text-[15px]'>Email Address</span>}
                             name="email"
+                            required
                             hasFeedback
+                            validateDebounce={1000}
                             rules={[{ required: true, type: "email", message: 'Email invalid!', pattern: new RegExp(regexEmail) }]}
                         >
                             <Input tabIndex={1} allowClear/>

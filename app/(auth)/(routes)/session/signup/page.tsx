@@ -62,7 +62,6 @@ export default function Signup() {
                 <div className=''>
                     <Form
                         name="register"
-                        className="register-form"
                         labelCol={{ span: 12 }}
                         wrapperCol={{ span: 24 }}
                         style={{ maxWidth: 600 }}
@@ -73,23 +72,27 @@ export default function Signup() {
                         layout='vertical'
                     >
                         {/* FirstName & LastName */}
-                        <Form.Item>
-                            <div className='flex gap-3'>
+                        <Form.Item className='mb-0'>
+                            <div className='flex gap-3 mb-0'>
                                 <Form.Item<SignUpType>
-                                    label={<span className='font-semibold text-[15px]'>Your Email</span>}
                                     name="email"
-                                    className='flex-1 mb-0'
+                                    label={<span className='font-semibold text-[15px]'>Your Email</span>}
+                                    required
+                                    validateDebounce={500}
                                     hasFeedback
                                     rules={[{ required: true, type: "email", message: 'Email invalid!', pattern: new RegExp(regexEmail) }]}
+                                    className='flex-1'
                                 >
                                     <Input tabIndex={3} placeholder='bonnie@domain.com' allowClear />
                                 </Form.Item>
                                 <Form.Item<SignUpType>
-                                    label={<span className='font-semibold text-[15px]'>Full Name</span>}
                                     name="fullname"
-                                    className='flex-1 mb-0'
+                                    label={<span className='font-semibold text-[15px]'>Full Name</span>}
+                                    required
+                                    validateDebounce={500}
                                     hasFeedback
                                     rules={[{ required: true, type: "string", message: "Name invalid!", pattern: new RegExp(regexName) }]}
+                                    className='flex-1'
                                 >
                                     <Input tabIndex={3} placeholder='e.g. Bonnie Green' allowClear />
                                 </Form.Item>
@@ -98,8 +101,10 @@ export default function Signup() {
 
                         {/* Email */}
                         <Form.Item<SignUpType>
-                            label={<span className='font-semibold text-[15px]'>Phone</span>}
                             name="phone"
+                            label={<span className='font-semibold text-[15px]'>Phone</span>}
+                            required
+                            validateDebounce={500}
                             hasFeedback
                             rules={[{ required: true, type: "string", message: "Phone invalid!", pattern: new RegExp(regexPhone) }]}
                         >
@@ -110,10 +115,12 @@ export default function Signup() {
                         <Form.Item<SignUpType>
                             label={<span className='font-semibold text-[15px]'>Password</span>}
                             name="password"
+                            required
                             hasFeedback
-                            rules={[{ required: true, message: "8+ characters, at least 1 uppercase, 1 lowercase, 1 number and 1 special character required!", pattern: new RegExp(regexPW) }]}
+                            validateDebounce={500}
+                            rules={[{ required: true, message: "Sample password 12346aB@", pattern: new RegExp(regexPW) }]}
                         >
-                            <Input.Password tabIndex={4} placeholder='6+ characters' maxLength={20} allowClear />
+                            <Input.Password tabIndex={4} placeholder='8+ characters' maxLength={20} allowClear />
                         </Form.Item>
 
 
@@ -125,6 +132,7 @@ export default function Signup() {
                                 name="agree"
                                 valuePropName="checked"
                                 noStyle
+                                required
                                 rules={[
                                     {
                                         validator: (_, value) =>
