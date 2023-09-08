@@ -28,7 +28,7 @@ export default function Signin() {
             <div className='w-full max-w-[416px]'>
                 <h2 className='text-2xl font-bold mb-8'>Sign in to Dandelion</h2>
                 <div className='flex flex-row flex-wrap gap-3'>
-                    <button className='flex items-center justify-center py-4 flex-1 border hover:border-[#dbdbde] rounded-full text-sm font-medium' tabIndex={1}>
+                    <button className='flex items-center justify-center py-3 flex-1 border hover:border-[#dbdbde] rounded-lg text-sm font-medium' tabIndex={1}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 18 18" fill="none" role="img" className="mr-2">
                             <path fillRule="evenodd" clipRule="evenodd" d="M17.64 9.20419C17.64 8.56601 17.5827 7.95237 17.4764 7.36328H9V10.8446H13.8436C13.635 11.9696 13.0009 12.9228 12.0477 13.561V15.8192H14.9564C16.6582 14.2524 17.64 11.9451 17.64 9.20419Z" fill="#4285F4"></path>
                             <path fillRule="evenodd" clipRule="evenodd" d="M8.99976 18C11.4298 18 13.467 17.1941 14.9561 15.8195L12.0475 13.5613C11.2416 14.1013 10.2107 14.4204 8.99976 14.4204C6.65567 14.4204 4.67158 12.8372 3.96385 10.71H0.957031V13.0418C2.43794 15.9831 5.48158 18 8.99976 18Z" fill="#34A853"></path>
@@ -39,7 +39,7 @@ export default function Signin() {
                             Sign in with Google
                         </span>
                     </button>
-                    <button className='flex items-center justify-center py-4 flex-1 border hover:border-[#dbdbde] rounded-full text-sm font-medium' tabIndex={2}>
+                    <button className='flex items-center justify-center py-3 flex-1 border hover:border-[#dbdbde] rounded-lg text-sm font-medium' tabIndex={2}>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0,0,256,256" role="img" className='mr-2'>
                             <g fill="none" fillRule="nonzero" stroke="none" strokeWidth={1} strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit={10} strokeDashoffset={0} fontFamily="none" fontWeight="none" fontSize="none" textAnchor="none" style={{ mixBlendMode: 'normal' }}>
                                 <g transform="scale(5.33333,5.33333)">
@@ -79,7 +79,7 @@ export default function Signin() {
                             <Input tabIndex={3} allowClear/>
                         </Form.Item>
                         <div className='flex justify-between pb-2'>
-                            <div className='font-semibold text-[15px]'>Password</div>
+                            <div className="font-semibold text-[15px] before:inline-block before:me-1 before:text-[#ff4d4f] before:text-sm before:leading-none before:content-['*'] before:font-[SimSun,sans-serif] before:font-medium">Password</div>
                             <Link className="underline text-sm" href="/session/forgotpw">
                                 Forgot?
                             </Link>
