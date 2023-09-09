@@ -75,7 +75,7 @@ export const avatarDropdownItems: MenuProps['items'] = [
     {
         key: '1',
         label: (
-            <div className='flex justify-center items-center text-sm'>
+            <div className='flex justify-center items-center text-sm select-none'>
                 <h6>Hi! <span className='font-semibold text-gray-900'>XiaoJiu</span></h6>
             </div>
         ),
@@ -86,9 +86,9 @@ export const avatarDropdownItems: MenuProps['items'] = [
     {
         key: '2',
         label: (
-            <a target="_blank" rel="noopener noreferrer" href="" className=' text-sm text-primary-500 font-normal'>
-                <span>My likes</span>
-            </a>
+            <Link rel="noopener noreferrer" href="/user/wishlist" className=' text-sm text-primary-500 font-normal'>
+                <span>My Wishlist</span>
+            </Link>
         ),
         icon: <span className='text-primary-500'><Heart size={16} color='currentColor' fill='currentColor' /></span>,
     },
@@ -116,9 +116,9 @@ export const avatarDropdownItems: MenuProps['items'] = [
     {
         key: '5',
         label: (
-            <a target="_blank" rel="noopener noreferrer" href="" className='text-sm text-gray-500 font-normal'>
+            <Link rel="noopener noreferrer" href="/user/account/profile" className='text-sm text-gray-500 font-normal'>
                 Account settings
-            </a>
+            </Link>
         ),
         icon: <span className='text-gray-500'><Settings size={16} color='currentColor' fill='currentColor' /></span>
     },
