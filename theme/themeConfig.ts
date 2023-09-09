@@ -17,7 +17,7 @@ const theme: ThemeConfig = {
             controlHeight: 32,
             algorithm: true,
         },
-
+       
     }
 };
 

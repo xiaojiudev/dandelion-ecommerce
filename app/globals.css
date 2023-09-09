@@ -74,12 +74,12 @@ ul.ant-skeleton-paragraph {
 }
 
 /* Navbar */
-ul.ant-menu li.ant-menu-item a,
+/* ul.ant-menu li.ant-menu-item a,
 ul.ant-menu li span {
     font-size: 1rem;
     line-height: 1.5rem;
 
-}
+} */
 
 .ant-anchor-wrapper-horizontal::before {
     display: none;
