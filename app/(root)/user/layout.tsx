@@ -1,7 +1,8 @@
 'use client'
+import Link from 'next/link'
 import type { MenuProps } from 'antd'
 import { ConfigProvider, Menu } from 'antd'
-import { Apple, Mail, Settings } from 'lucide-react'
+import { Bell, CreditCard, FileHeart, MapPin, Settings, ShieldCheck, ShoppingBag, Star, Ticket, User2 } from 'lucide-react'
 
 import theme from '@/theme/themeConfig'
 
@@ -23,8 +24,6 @@ function getItem(
     } as MenuItem;
 }
 
-
-
 const menuConfig = {
     fontSize: 14,
     itemHeight: 32,
@@ -37,58 +36,51 @@ const menuConfig = {
 const { iconSize } = menuConfig
 
 const items: MenuProps['items'] = [
-    getItem('Navigation One', 'sub1', <Mail size={iconSize} />, [
-        getItem('Item 1', 'g1', null, [getItem('Option 1', '1'), getItem('Option 2', '2')], 'group'),
-        getItem('Item 2', 'g2', null, [getItem('Option 3', '3'), getItem('Option 4', '4')], 'group'),
+    getItem('Account', 'sub1', <Settings size={iconSize} />, [
+        getItem(<Link href="/user/account/profile" prefetch>Profile</Link>, '1', <User2 size={iconSize} />),
+        getItem(<Link href="/user/account/paymentcard" prefetch>Bank & Cards</Link>, '2', <CreditCard size={iconSize} />),
+        getItem('Addresses', '3', <MapPin size={iconSize} />),
+        getItem('Change Password', '4', <ShieldCheck size={iconSize} />),
+        getItem('Notification Settings', '5', <Bell size={iconSize} />),
     ]),
 
-    getItem('Navigation Two', 'sub2', <Apple size={iconSize} />, [
-        getItem('Option 5', '5'),
-        getItem('Option 6', '6'),
-        getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
-    ]),
+    getItem('Purchase', 'sub2', <ShoppingBag size={iconSize} />),
 
-    { type: 'divider' },
+    getItem('Rating', 'sub3', <Star size={iconSize} />),
 
-    getItem('Navigation Three', 'sub4', <Settings size={iconSize} />, [
-        getItem('Option 9', '9'),
-        getItem('Option 10', '10'),
-        getItem('Option 11', '11'),
-        getItem('Option 12', '12'),
-    ]),
+    getItem(<Link href="/user/wishlist" prefetch>Wishlist</Link>, 'sub4', <FileHeart size={iconSize} />),
 
-    getItem('Group', 'grp', null, [getItem('Option 13', '13'), getItem('Option 14', '14')], 'group'),
+    getItem('Vouchers', 'sub5', <Ticket size={iconSize} />),
 ]
 
-export default function UserLayout({
-    children,
-}: {
-    children: React.ReactNode
-}) {
+export default function UserLayout({ children, }: { children: React.ReactNode }) {
+    
     const onClick: MenuProps['onClick'] = (e) => {
         console.log('click ', e)
     }
 
     return (
-        <div className="flex">
-            <ConfigProvider theme={{
-                ...theme,
-                components: {
-                    Menu: menuConfig,
-                },
-            }}>
-                <Menu
-                    onClick={onClick}
-                    style={{ width: 256 }}
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    mode="inline"
-                    items={items}
-                    className=''
+        <div className="flex flex-row gap-5 min-h-[80vh]">
+            <section className='w-[256px]'>
+                <ConfigProvider theme={{
+                    ...theme,
+                    components: {
+                        Menu: menuConfig,
+                    },
+                }}>
+                    <Menu
+                        onClick={onClick}
+                        style={{ width: '100%' }}
+                        defaultSelectedKeys={['1']}
+                        defaultOpenKeys={['sub1']}
+                        mode="inline"
+                        items={items}
+                        className='rounded-xl select-none'
 
-                />
-            </ConfigProvider>
-            <section>{children}</section>
+                    />
+                </ConfigProvider>
+            </section>
+            <section className='flex-1 bg-white p-8 rounded-xl shadow-sm'>{children}</section>
         </div>
     )
 }
