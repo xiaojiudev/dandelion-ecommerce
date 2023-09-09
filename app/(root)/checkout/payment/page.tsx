@@ -1,9 +1,11 @@
 'use client'
 import { useStoreVoucher } from '@/hooks/use-store-voucher'
-import { Button, Input, RadioChangeEvent, Tag, Radio, Space, ConfigProvider, Tooltip } from 'antd'
+import { Button, Input, RadioChangeEvent, Tag, Radio, Space, Tooltip } from 'antd'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
+
+
 
 export default function Payment() {
 
@@ -32,7 +34,7 @@ export default function Payment() {
     };
 
     return (
-        <div className='my-10'>
+        <>
             <div className='grid grid-cols-12 gap-5'>
                 {/* Left bar */}
                 <div className="col-span-9">
@@ -120,7 +122,7 @@ export default function Payment() {
                                 <Radio.Group onChange={handleShippingChange} value={shipValue} className=''>
                                     <Space direction="vertical" size={12}>
                                         <div className=''>
-                                            <Tooltip placement="right" title={'Receive by 4 Th09 - 7 Th09'}>
+                                            <Tooltip placement="right" title={'Received by 4 Sep - 7 Sep'}>
                                                 <div className='p-2 bg-primary-50/50 border border-primary-300/60 border-dashed rounded-lg'>
                                                     <Radio value={1} className=''>
                                                         <div className='flex flex-1 justify-between items-center gap-2 select-none text-sm'>
@@ -132,7 +134,7 @@ export default function Payment() {
                                             </Tooltip>
                                         </div>
                                         <div className=''>
-                                            <Tooltip placement="right" title={'Receive by 8 Th09 - 12 Th09'}>
+                                            <Tooltip placement="right" title={'Received by 8 Sep - 12 Sep'}>
                                                 <div className='p-2 bg-primary-50/50 border border-primary-300/60 border-dashed rounded-lg'>
                                                     <Radio value={2} className=''>
                                                         <div className='flex flex-1 justify-between items-center gap-2 select-none text-sm'>
@@ -144,7 +146,7 @@ export default function Payment() {
                                             </Tooltip>
                                         </div>
                                         <div className=''>
-                                            <Tooltip placement="right" title={'Receive by 9 Th09 - 15 Th09'}>
+                                            <Tooltip placement="right" title={'Received by 9 Sep - 15 Sep'}>
                                                 <div className='p-2 bg-primary-50/50 border border-primary-300/60 border-dashed rounded-lg'>
                                                     <Radio value={3} className=''>
                                                         <div className='flex flex-1 justify-between items-center gap-2 select-none text-sm'>
@@ -202,6 +204,6 @@ export default function Payment() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

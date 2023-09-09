@@ -15,9 +15,9 @@ export default function Home() {
 
 
     return (
-        <div className="my-8" >
-            <div className=''>
-                <div className='grid grid-cols-3 grid-rows-2 gap-1 mb-4 max-h-60 w-full'>
+        <>
+            <div className='flex flex-col gap-4'>
+                <div className='grid grid-cols-3 grid-rows-2 gap-1 max-h-60 w-full'>
                     <div className='col-span-2 row-span-2 rounded-sm overflow-hidden'>
                         <CarouselWrapper />
                     </div>
@@ -33,14 +33,14 @@ export default function Home() {
 
                 {/* Slider Popular Product */}
                 <div id='popular'>
-                    <div className='p-4 py-10 shadow-none mb-4 flex flex-col justify-center'>
+                    <div className='p-4 py-10 shadow-none flex flex-col justify-center'>
                         <TitleTypography headingText='Seller Spotlight' descText='Unveiling Premier Selections from Trusted Partners' />
                         <SliderCustom />
                     </div>
                 </div>
 
                 {/* Main product */}
-                <div id='product' className='p-4 py-10 w-full bg-white shadow-none rounded mb-4 flex flex-col justify-center'>
+                <div id='product' className='p-4 py-10 w-full bg-white shadow-none rounded flex flex-col justify-center'>
                     <TitleTypography classWrapper='mb-4' headingText='Featured Finds' descText='Curated Selections for Your Shopping Delight' />
                     <div className='flex items-center justify-end mb-8'>
                         <FilterSortByGroup />
@@ -58,6 +58,6 @@ export default function Home() {
 
                 </div>
             </div>
-        </div>
+        </>
     )
 }

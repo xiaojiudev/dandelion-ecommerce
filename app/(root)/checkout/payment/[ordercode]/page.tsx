@@ -11,7 +11,7 @@ export default function page() {
     )
 
     return (
-        <div className='my-10'>
+        <>
             <div className='flex flex-wrap gap-4 min-h-[calc(100vh-260px)] max-w-5xl m-auto'>
                 <div className='basis-8/12'>
                     <div className='flex relative min-h-[500px] bg-white p-10 rounded-lg overflow-hidden z-0'>
@@ -75,6 +75,6 @@ export default function page() {
                     </div>
                 </div>
             </div>
-        </div >
+        </>
     )
 }

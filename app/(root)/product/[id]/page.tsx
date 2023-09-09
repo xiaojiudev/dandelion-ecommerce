@@ -30,9 +30,9 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 
     return (
-        <div className='pb-10'>
+        <div className='flex flex-col gap-10'>
             {/* Product section */}
-            <div className='bg-white rounded shadow my-10 p-4'>
+            <div className='bg-white rounded shadow p-4'>
                 <div className='flex flex-col gap-y-8'>
                     <div className='grid gap-4 grid-cols-12'>
                         <div className='col-span-5'>

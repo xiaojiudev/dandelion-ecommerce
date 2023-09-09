@@ -56,10 +56,10 @@ export default function Checkout() {
     const [loading, setLoading] = useState(true)
     const [openModal, setOpenModal] = useState(false)
     const [messageApi, contextHolder] = message.useMessage()
-    
+
     const isDisable = useStoreVoucher((state) => state.isDisable)
-    const setEnableState = useStoreVoucher((state)=> state.setEnable)
-    const setDisableState = useStoreVoucher((state)=> state.setDisable)
+    const setEnableState = useStoreVoucher((state) => state.setEnable)
+    const setDisableState = useStoreVoucher((state) => state.setDisable)
 
 
 
@@ -134,7 +134,7 @@ export default function Checkout() {
 
     const handleVoucher = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target
-        
+
         value.length > 0 ? setEnableState() : setDisableState()
     }
 
@@ -142,7 +142,7 @@ export default function Checkout() {
 
 
     return (
-        <div className='my-10'>
+        <>
             <div className=''>
                 <div className='grid grid-cols-12 gap-5'>
 
@@ -306,6 +306,6 @@ export default function Checkout() {
 
             {/* Message notify */}
             {contextHolder}
-        </div>
+        </>
     )
 }
