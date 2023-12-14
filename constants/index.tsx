@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { type MenuProps } from 'antd'
 import { GalleryVerticalEnd, Heart, LogOut, Settings, User, } from 'lucide-react'
 
-export const regexPW = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+export const regexPW = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
 
 export const regexPhone = /(84|0[3|5|7|8|9])+([0-9]{8})\b/
 
@@ -70,6 +70,8 @@ export const navbarItems: MenuProps['items'] = [
         key: 'alipay',
     },
 ]
+
+export const ratingDescArr = ['terrible', 'bad', 'normal', 'good', 'wonderful']
 
 export const avatarDropdownItems: MenuProps['items'] = [
     {

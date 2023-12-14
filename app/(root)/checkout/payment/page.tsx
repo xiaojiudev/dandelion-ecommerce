@@ -43,7 +43,7 @@ export default function Payment() {
                             <h3 className='text-xl font-semibold text-gray-800 mb-6'>Choose payment method</h3>
                             <Radio.Group onChange={handlePaymentChange} value={paymentValue}>
                                 <Space direction="vertical" size={25}>
-                                    <Radio value={1}>
+                                    <Radio value={1} defaultChecked>
                                         <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
                                             <Image src='/assets/img/cod.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
                                             <span className='select-none'>Cash on Delivery (COD)</span>
@@ -51,35 +51,41 @@ export default function Payment() {
                                     </Radio>
                                     <Radio value={2}>
                                         <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
+                                            <Image src='/assets/img/stripe.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
+                                            <span className='select-none'>Stripe</span>
+                                        </div>
+                                    </Radio>
+                                    <Radio value={3} disabled>
+                                        <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
                                             <Image src='/assets/img/viettelpay.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
                                             <span className='select-none'>Viettel Money</span>
                                         </div>
                                     </Radio>
-                                    <Radio value={3}>
+                                    <Radio value={4} disabled>
                                         <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
                                             <Image src='/assets/img/momo.jpg' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
                                             <span className='select-none'>Momo</span>
                                         </div>
                                     </Radio>
-                                    <Radio value={4}>
+                                    <Radio value={5} disabled>
                                         <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
                                             <Image src='/assets/img/zalopay.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
                                             <span className='select-none'>ZaloPay</span>
                                         </div>
                                     </Radio>
-                                    <Radio value={5}>
+                                    <Radio value={6} disabled>
                                         <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
                                             <Image src='/assets/img/vnpay.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
                                             <span className='select-none'>VNPAY</span>
                                         </div>
                                     </Radio>
-                                    <Radio value={6}>
+                                    <Radio value={7} disabled>
                                         <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
                                             <Image src='/assets/img/visa.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
                                             <span className='select-none'>Credit or Debit Card</span>
                                         </div>
                                     </Radio>
-                                    <Radio value={7}>
+                                    <Radio value={8} disabled>
                                         <div className='flex items-center gap-2 text-base font-normal text-gray-700'>
                                             <Image src='/assets/img/atm.png' sizes='100vw' width={32} height={32} quality={100} alt='COD' className='object-cover'></Image>
                                             <span className='select-none'>ATM (Internet Banking)</span>

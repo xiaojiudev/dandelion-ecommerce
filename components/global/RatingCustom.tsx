@@ -2,9 +2,9 @@
 import React, { useState } from 'react'
 import { Rate } from 'antd'
 
-const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful']
+import { ratingDescArr } from '@/constants'
 
-interface RatingProps {
+type RatingProps = {
     className?: string,
     allowHalf?: boolean,
     disabled?: boolean,
@@ -18,7 +18,7 @@ export default function RatingCustom({ value, className, allowHalf, disabled }: 
     return (
         <>
             <span>
-                <Rate tooltips={desc} allowHalf={allowHalf} disabled={disabled} onChange={setInitValue} value={initValue} className={` ${className}`} />
+                <Rate tooltips={ratingDescArr} allowHalf={allowHalf} disabled={disabled} onChange={setInitValue} value={initValue} className={` ${className}`} />
             </span>
         </>
     )

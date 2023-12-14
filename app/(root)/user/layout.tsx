@@ -46,7 +46,7 @@ const items: MenuProps['items'] = [
 
     getItem('Purchase', 'sub2', <ShoppingBag size={iconSize} />),
 
-    getItem('Rating', 'sub3', <Star size={iconSize} />),
+    getItem(<Link href="/user/review" prefetch>Reviews</Link>, 'sub3', <Star size={iconSize} />),
 
     getItem(<Link href="/user/wishlist" prefetch>Wishlist</Link>, 'sub4', <FileHeart size={iconSize} />),
 
