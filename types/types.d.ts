@@ -1,5 +1,22 @@
 import { type } from "os";
 
+export type Category = {
+    id: number;
+    name: string;
+}
+
+export type Product = {
+    id: number;
+    name: string;
+    weight: number;
+    quantity: number;
+    price: number;
+    description: string;
+    information: string;
+    tag: string;
+    category: string;
+    media_url: string;
+}
 
 type Products = {
     content: ProductDetails[],
@@ -9,20 +26,6 @@ type Products = {
     totalElements: number,
     totalPages: number,
 }
-
-type ProductDetails = {
-    id: number
-    name: string,
-    weight: number,
-    quantity: number,
-    price: number,
-    description: string,
-    information: string,
-    tag: string,
-    category: string,
-    media_url: string,
-}
-
 
 type Wards = {
     name: string,
