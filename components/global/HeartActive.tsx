@@ -1,29 +1,28 @@
-'use  client'
+'use client'
 import React, { useState } from 'react'
 
-interface HeartProps {
+type HeartProps = {
+    id: number | string;
     className?: string,
-
 }
 
-export default function HeartActive({ className }: HeartProps) {
+export default function HeartActive({ id, className }: HeartProps) {
 
     const [color, setColor] = useState({ active: false, fill: 'rgba(0, 0, 0, 0.5)', stroke: '#fff' })
 
-    const handleClick = (e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
+    const handleAddToFavorite = (e: React.MouseEvent<HTMLParagraphElement, MouseEvent>, id: number | string) => {
         e.preventDefault()
+        console.log("Add product to favorites with id: " + id);
+        
         if (!color.active) {
             setColor({ active: true, fill: '#ff385c', stroke: '#fff' });
-            console.log(color);
-
         } else {
             setColor({ active: false, fill: 'rgba(0, 0, 0, 0.5)', stroke: '#fff' })
-            console.log(color);
         }
     }
 
     return (
-        <p className={`p-2 cursor-pointer ${className}`} onClick={handleClick}>
+        <p className={`p-2 cursor-pointer ${className}`} onClick={e => handleAddToFavorite(e, id)}>
             <svg
                 fill={color.fill}
                 stroke={color.stroke}
