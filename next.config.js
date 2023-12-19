@@ -7,7 +7,7 @@ const nextConfig = {
     env: {
         NEXT_PUBLIC_API_URI: process.env.NEXT_PUBLIC_API_URI,
         BACKEND_PUBLIC_API_URI: process.env.BACKEND_PUBLIC_API_URI,
-    }
+    },
 
 }
 
