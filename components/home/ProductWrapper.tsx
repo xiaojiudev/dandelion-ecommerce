@@ -7,12 +7,18 @@ import { fetchProducts } from '@/lib/data';
 import HeartActive from '@/components/global/HeartActive';
 import ProductCart from '../global/ProductCart';
 
-export default async function ProductWrapper() {
+export default async function ProductWrapper({ page, size = 10, category }: { page: number, size?: number, category: string }) {
 
-    const res = await fetchProducts();
+    const options = {
+        page,
+        size,
+        sortBy: undefined,
+        sortDir: undefined,
+        category,
+    }
+
+    const res = await fetchProducts({ ...options });
     const { content } = res;
-    console.log(content);
-
 
     return res && (
         <ProductCard data={content} />

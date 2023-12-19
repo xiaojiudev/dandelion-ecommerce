@@ -2,7 +2,7 @@
 import { useCreateQueryString } from '@/hooks/useCreateQueryString';
 import { Category } from '@/types/types';
 import { ChevronRight } from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 
 
@@ -10,14 +10,21 @@ export default function Categories({ data }: { data: Category[] }) {
 
     const [activeId, setActiveId] = useState<number>(0);
 
-    const router = useRouter();
+    const searchParams = useSearchParams();
     const pathname = usePathname();
-    const createQueryString = useCreateQueryString();
+    const { replace } = useRouter();
 
 
     const handleClick = (id: number, name: string) => {
         setActiveId(id)
-        router.push(pathname + '?' + createQueryString('category', name, true), { scroll: false })
+        const params = new URLSearchParams(searchParams);
+        params.set('page', '0');
+        if (name) {
+            params.set('category', name);
+        } else {
+            params.delete('category');
+        }
+        replace(`${pathname}?${params.toString()}`, { scroll: false });
     }
 
     return data && data?.map(category => (

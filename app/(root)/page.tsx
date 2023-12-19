@@ -5,14 +5,15 @@ import CarouselWrapper from '@/components/home/CarouselWrapper'
 import TitleTypography from '@/components/global/TitleTypography'
 import FilterSortByGroup from '@/components/home/FilterSortByGroup'
 import { List } from 'lucide-react'
-import { CategoriesSkelton } from '@/components/skeletons'
+import { CategoriesSkelton, ProductsCardSkeleton } from '@/components/skeletons'
 import CategoryBar from '@/components/home/CategoryBar'
 import ProductWrapper from '@/components/home/ProductWrapper'
 
 
 export default async function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
     const { page = 0, size = 10, sortBy = '', sortDir = '', category = '' } = searchParams;
-
+    console.log(page, category);
+    
 
     return (
         <>
@@ -59,9 +60,8 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                             {/* <Products/> */}
                             <div className='flex flex-col items-center'>
                                 <div className='w-full h-full mb-10 grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 sm:gap-y-8 md:gap-7 lg:gap-6 xl:gap-x-4 xl:gap-y-6 justify-items-center'>
-                                    {/* <ProductCard data={content} /> */}
-                                    <Suspense fallback={<div>Loading...</div>}>
-                                        <ProductWrapper/>
+                                    <Suspense fallback={<ProductsCardSkeleton/>}>
+                                        <ProductWrapper page={Number(page)} category={category.toString()}/>
                                     </Suspense>
                                 </div>
                             </div>

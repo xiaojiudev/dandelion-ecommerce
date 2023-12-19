@@ -1,6 +1,6 @@
 
-export async function fetchProducts(page = 0, size = 10, sortBy = '', sortDir = '', category = 'All') {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+export async function fetchProducts({page = 0, size = 10, sortBy = '', sortDir = '', category = 'All'}) {
+    await new Promise((resolve) => setTimeout(resolve, 10000));
     const res = await fetch(`${process.env.BACKEND_PUBLIC_API_URI}/products?page=${page}&size=${size}&sortBy=${sortBy}&sortDir=${sortDir}&category=${category}`, {
         next: {
             revalidate: 0,
