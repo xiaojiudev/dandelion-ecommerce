@@ -26,6 +26,8 @@ export default function Categories({ data }: { data: Category[] }) {
         const params = new URLSearchParams(searchParams);
 
         params.set('page', '0');
+        params.delete('sortBy');
+        params.delete('sortDir');
         if (name) {
             params.set('category', name);
         } else {

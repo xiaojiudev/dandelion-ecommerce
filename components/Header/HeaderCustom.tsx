@@ -4,7 +4,7 @@ import UserDropdown from './UserDropdown'
 import ButtonCustom from './ButtonCustom'
 import NavbarMenu from './NavbarMenu'
 import LogoSVG from '../global/LogoSVG'
-import SearchInput from './SearchInput'
+import SearchInput from './SearchProduct'
 import Notify from './Notify'
 import Cart from './Cart'
 
