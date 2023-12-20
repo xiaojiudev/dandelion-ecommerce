@@ -208,7 +208,7 @@ export default function Checkout() {
                                                 checked={isChecked}
                                             >
                                                 <div className='flex items-center gap-3'>
-                                                    <Image src={cart.imgSrc} alt='item' sizes="100vw" priority quality={100} width={500} height={300} className='w-20 h-20 object-cover rounded-sm' />
+                                                    <Image src={cart.imgSrc} alt='item' sizes="100vw" quality={70} width={500} height={300} className='w-20 h-20 object-cover rounded-sm' />
                                                     <div className='flex flex-col items-start gap-2'>
                                                         <h1 className='text-base font-medium text-gray-800 line-clamp-1'>{cart.title}</h1>
                                                         <p className='text-sm font-normal text-gray-600 line-clamp-1'>{cart.type}</p>

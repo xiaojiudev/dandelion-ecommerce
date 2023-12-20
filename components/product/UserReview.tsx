@@ -13,7 +13,7 @@ export default function UserReview() {
                 <div className='flex flex-row'>
                     <div className='basis-1/6'>
                         <div className='flex flex-col justify-center items-center gap-3'>
-                            <Avatar src={<Image src="/avatar.jpg" alt="avatar" sizes="100vw" priority quality={100} width={50} height={50}/>} size={46} />
+                            <Avatar src={<Image src="/avatar.jpg" alt="avatar" sizes="100vw" quality={70} width={50} height={50}/>} size={46} />
                             <div className='font-medium text-gray-800'>Tessa Jacob</div>
                         </div>
                     </div>

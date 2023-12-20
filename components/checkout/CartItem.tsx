@@ -39,7 +39,7 @@ export default function CartItem({ id, image, name, type, unitPrice, maxQuantity
             <div className='grid grid-cols-12 items-center'>
                 <Checkbox onChange={handleCheckboxChange} className='col-span-5' name={id}>
                     <div className='flex items-center gap-3'>
-                        <Image src={image} alt='item' sizes="100vw" priority quality={100} width={500} height={300} className='w-20 h-20 object-cover rounded-sm' />
+                        <Image src={image} alt='item' sizes="100vw" quality={100} width={500} height={300} className='w-20 h-20 object-cover rounded-sm' />
                         <div className='flex flex-col items-start gap-2'>
                             <h1 className='text-base font-medium text-gray-800 line-clamp-1'>{name}</h1>
                             <p className='text-sm font-normal text-gray-600 line-clamp-1'>{type}</p>

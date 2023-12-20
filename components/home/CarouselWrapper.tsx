@@ -35,7 +35,7 @@ export default function CarouselWrapper() {
                 {carouselItems?.map((item, index) => (
                     <Link href={item?.href} key={index} prefetch>
                         {/* <img src={item?.img} alt={item?.alt} className='object-cover max-h-60 w-full' /> */}
-                        <Image src={item?.img} alt={item?.alt} sizes="100vw" priority quality={100} width={500} height={300} className='object-cover max-h-60 w-full'/>
+                        <Image src={item?.img} alt={item?.alt} sizes="100vw" quality={70} width={500} height={300} className='object-cover max-h-60 w-full'/>
                     </Link>
                 ))}
             </Carousel>
