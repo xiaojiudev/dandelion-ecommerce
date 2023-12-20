@@ -1,7 +1,9 @@
 'use client'
-import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { Select, Space } from 'antd'
-import { getProvincesAPI } from '@/lib/getProvince'
+import { Select, Space } from 'antd';
+import React, { useEffect, useState } from 'react';
+
+import { Provinces } from '@/types/types';
+import { getProvincesAPI } from '@/lib/getProvince';
 
 const provinceData: string[] = []
 const districtData: { [province: string]: string[] } = {}

@@ -1,12 +1,12 @@
 'use client'
-import React from 'react'
-import { InputNumber } from 'antd'
-import { Plus, ShoppingCart } from 'lucide-react'
+import React from 'react';
+import { InputNumber } from 'antd';
+import { Plus, ShoppingCart } from 'lucide-react';
 
-import RatingCustom from '../global/RatingCustom'
-import HeartActive from '../global/HeartActive'
-import ProvinceCoordinate from './ProvinceCoordinate'
-import ButtonCustom from '../header/ButtonCustom'
+import RatingCustom from '@/components/global/RatingCustom';
+import ProvinceCoordinate from './ProvinceCoordinate';
+import ButtonCustom from '@/components/header/ButtonCustom';
+import HeartFavorite from '@/components/global/HeartFavorite';
 
 
 
@@ -26,7 +26,7 @@ export default function ProductDetailInfo() {
                     <span className='px-4 '>145 Reviews</span>
                     <span className='px-4 '>289 Sold</span>
                 </div>
-                <div className='pl-0'><HeartActive /></div>
+                <div className='pl-0'><HeartFavorite id={1} /></div>
             </div>
             <div className='flex items-start gap-3'>
                 <h2 className='font-semibold text-base'>Describe:</h2>

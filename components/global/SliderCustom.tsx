@@ -1,10 +1,9 @@
 'use client'
-import React, { useState } from 'react'
-import { useKeenSlider } from "keen-slider/react"
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import React, { useState } from 'react';
+import { useKeenSlider } from "keen-slider/react";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-import "keen-slider/keen-slider.min.css"
-import CardCustom from './CardCustom'
+import "keen-slider/keen-slider.min.css";
 
 
 export default function SliderCustom() {
@@ -51,21 +50,21 @@ export default function SliderCustom() {
         <>
             <div className="navigation-wrapper relative ml-3">
                 <div className={`${loaded ? 'hidden' : ''} flex justify-between items-center`}>
+                    {/* <CardCustom loading />
                     <CardCustom loading />
                     <CardCustom loading />
                     <CardCustom loading />
-                    <CardCustom loading />
-                    <CardCustom loading />
+                    <CardCustom loading /> */}
                 </div>
                 <div ref={sliderRef} className={`keen-slider ${loaded ? "" : "invisible h-0"} `}>
+                    {/* <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
                     <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
                     <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
                     <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
                     <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
                     <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
                     <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
-                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
-                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div>
+                    <div className={`keen-slider__slide flex items-center justify-center h-[330px] `}><CardCustom /></div> */}
                 </div>
                 {loaded && instanceRef.current && (
                     <>
