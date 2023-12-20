@@ -130,9 +130,9 @@ export const avatarDropdownItems: MenuProps['items'] = [
     {
         key: '6',
         label: (
-            <a target="_blank" rel="noopener noreferrer" href="" className='text-center text-gray-700 font-medium'>
+            <Link rel="noopener noreferrer" href="/" className='text-center text-gray-700 font-medium'>
                 <span className=''>Sign out</span>
-            </a>
+            </Link>
         ),
         icon: <span className='text-gray-700'><LogOut size={16} color='currentColor' /></span>
     },
