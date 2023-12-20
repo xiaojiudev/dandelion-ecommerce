@@ -1,7 +1,19 @@
 
-export async function fetchProducts({page = 0, size = 10, sortBy = '', sortDir = '', category = 'All'}) {
+export async function fetchProducts({page = 0, size = 10, sortBy = '', sortDir = '', category = 'All', search = ''}) {
     // await new Promise((resolve) => setTimeout(resolve, 3000));
-    const res = await fetch(`${process.env.BACKEND_PUBLIC_API_URI}/products?page=${page}&size=${size}&sortBy=${sortBy}&sortDir=${sortDir}&category=${category}`, {
+
+    let inputUrl = new URL(`${process.env.BACKEND_PUBLIC_API_URI}/products`);
+    
+    inputUrl.searchParams.set('page', page.toString());
+    inputUrl.searchParams.set('size', size.toString());
+    inputUrl.searchParams.set('sortBy', sortBy);
+    inputUrl.searchParams.set('sortDir', sortDir);
+    inputUrl.searchParams.set('category', category);
+    inputUrl.searchParams.set('search', search);
+    
+    const url = inputUrl.href.replace(/[^=&]+=(&|$)/g,"").replace(/&$/,"");
+
+    const res = await fetch(url, {
         next: {
             revalidate: 0,
         }
