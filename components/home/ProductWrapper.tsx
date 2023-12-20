@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { Empty } from 'antd';
 import Image from 'next/image';
 
 import { Product } from '@/types/types';
@@ -13,12 +14,14 @@ export default async function ProductWrapper({
     sortBy = '',
     sortDir = '',
     category = '',
+    search = '',
 }: {
     page: number,
     size?: number,
     sortBy?: string,
     sortDir?: string,
     category?: string,
+    search?: string,
 }) {
 
     const options = {
@@ -27,25 +30,25 @@ export default async function ProductWrapper({
         sortBy,
         sortDir,
         category,
+        search,
     }
 
     const res = await fetchProducts({ ...options });
 
     const { content } = res;
     let contentSort: Product[] = content;
-    
+
     if (sortBy && sortDir) {
         if (sortBy === 'name') {
             if (sortDir === 'asc') {
                 contentSort = content.sort((a: Product, b: Product) => a.name.localeCompare(b.name));
-            } else if(sortDir === 'desc') {
+            } else if (sortDir === 'desc') {
                 contentSort = content.sort((a: Product, b: Product) => b.name.localeCompare(a.name));
             }
-        }
-        if (sortBy === 'price') {
+        } else if (sortBy === 'price') {
             if (sortDir === 'asc') {
                 contentSort = content.sort((a: Product, b: Product) => Number(a.price) - Number(b.price));
-            } else if(sortDir === 'desc') {
+            } else if (sortDir === 'desc') {
                 contentSort = content.sort((a: Product, b: Product) => Number(b.price) - Number(a.price));
             }
         }
@@ -59,7 +62,7 @@ export default async function ProductWrapper({
 
 export function ProductCard({ data }: { data: Product[] }) {
 
-    return data && data?.map(product => (
+    const renderProduct = data?.length > 0 && data?.map(product => (
         <Link
             href={`/products/${product?.id}`}
             key={`${product?.id}`}
@@ -81,6 +84,15 @@ export function ProductCard({ data }: { data: Product[] }) {
             </div>
             <ProductCart id={product?.id} />
         </Link>
+    ));
 
-    ))
+    return renderProduct ? (
+        <div className='w-full h-full mb-10 grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 sm:gap-y-8 md:gap-7 lg:gap-6 xl:gap-x-4 xl:gap-y-6 justify-items-center'>
+            {renderProduct}
+        </div>
+    ) : (
+        <div className='flex justify-center items-center h-[350px]'>
+            <Empty description={<>We couldn't find any products matching your search</>} />
+        </div>
+    );
 }
