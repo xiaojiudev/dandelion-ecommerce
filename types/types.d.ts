@@ -18,7 +18,7 @@ export type Product = {
     media_url: string;
 }
 
-type Products = {
+export type Products = {
     content: ProductDetails[],
     lastPage: boolean,
     pageNumber: number,
@@ -27,7 +27,7 @@ type Products = {
     totalPages: number,
 }
 
-type Wards = {
+export type Wards = {
     name: string,
     code: number,
     codename: string,
@@ -35,7 +35,7 @@ type Wards = {
     short_codename: string,
 }
 
-type Districts = {
+export type Districts = {
     name: string,
     code: number,
     codename: string,
@@ -44,7 +44,7 @@ type Districts = {
     wards: Wards[],
 }
 
-type Provinces = {
+export type Provinces = {
     name: string,
     code: number,
     division_type: string,
