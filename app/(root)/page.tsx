@@ -8,12 +8,14 @@ import { List } from 'lucide-react'
 import { CategoriesSkelton, ProductsCardSkeleton } from '@/components/skeletons'
 import CategoryBar from '@/components/home/CategoryBar'
 import ProductWrapper from '@/components/home/ProductWrapper'
+import PaginationWrapper from '@/components/global/PaginationWrapper'
+import { fetchProducts } from '@/lib/data'
 
 
 export default async function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
     const { page = 0, size = 10, sortBy = '', sortDir = '', category = '' } = searchParams;
-    console.log(page, category);
-    
+
+    const { pageNumber, totalElements } = await fetchProducts({...searchParams});
 
     return (
         <>
@@ -23,10 +25,10 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                         <CarouselWrapper />
                     </div>
                     <div className='col-span-1 row-span-1 rounded-sm overflow-hidden'>
-                        <Image src={"/avatar.jpg"} alt="avatar" sizes="100vw" priority quality={100} width={500} height={300} className='object-cover h-full w-full' />
+                        <Image src={"/avatar.jpg"} alt="avatar" sizes="100vw" quality={70} width={500} height={300} className='object-cover h-full w-full' />
                     </div>
                     <div className='col-span-1 row-span-1 rounded-sm overflow-hidden'>
-                        <Image src={"/avatar.jpg"} alt="avatar" sizes="100vw" priority quality={100} width={500} height={300} className='object-cover h-full w-full' />
+                        <Image src={"/avatar.jpg"} alt="avatar" sizes="100vw" quality={70} width={500} height={300} className='object-cover h-full w-full' />
                     </div>
                 </div>
 
@@ -51,8 +53,8 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                                     <List size={16} />
                                     Category
                                 </div>
-                                <Suspense fallback={<CategoriesSkelton/>}>
-                                    <CategoryBar/>
+                                <Suspense fallback={<CategoriesSkelton />}>
+                                    <CategoryBar />
                                 </Suspense>
                             </div>
                         </div>
@@ -60,8 +62,8 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                             {/* <Products/> */}
                             <div className='flex flex-col items-center'>
                                 <div className='w-full h-full mb-10 grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 sm:gap-y-8 md:gap-7 lg:gap-6 xl:gap-x-4 xl:gap-y-6 justify-items-center'>
-                                    <Suspense fallback={<ProductsCardSkeleton/>}>
-                                        <ProductWrapper page={Number(page)} category={category.toString()}/>
+                                    <Suspense fallback={<ProductsCardSkeleton />}>
+                                        <ProductWrapper page={Number(page)} category={category.toString()} />
                                     </Suspense>
                                 </div>
                             </div>
@@ -69,7 +71,7 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
                         <div className='col-span-1'></div>
                         <div className='col-span-5'>
                             <div className='flex justify-center'>
-                                {/* <MyPagination pageNumber={pageNumber + 1} totalElements={totalElements} /> */}
+                                <PaginationWrapper pageNumber={Number(pageNumber)} totalElements={Number(totalElements)} />
                             </div>
                         </div>
                     </div>
