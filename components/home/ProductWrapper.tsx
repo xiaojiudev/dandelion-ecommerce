@@ -32,22 +32,41 @@ export default async function ProductWrapper({
     const res = await fetchProducts({ ...options });
 
     const { content } = res;
+    let contentSort: Product[] = content;
+    
+    if (sortBy && sortDir) {
+        if (sortBy === 'name') {
+            if (sortDir === 'asc') {
+                contentSort = content.sort((a: Product, b: Product) => a.name.localeCompare(b.name));
+            } else if(sortDir === 'desc') {
+                contentSort = content.sort((a: Product, b: Product) => b.name.localeCompare(a.name));
+            }
+        }
+        if (sortBy === 'price') {
+            if (sortDir === 'asc') {
+                contentSort = content.sort((a: Product, b: Product) => Number(a.price) - Number(b.price));
+            } else if(sortDir === 'desc') {
+                contentSort = content.sort((a: Product, b: Product) => Number(b.price) - Number(a.price));
+            }
+        }
+    }
 
     return res && (
-        <ProductCard data={content} />
+        <ProductCard data={contentSort} />
     )
 
 }
 
 export function ProductCard({ data }: { data: Product[] }) {
+
     return data && data?.map(product => (
         <Link
             href={`/products/${product?.id}`}
             key={`${product?.id}`}
             target=''
             className="relative min-w-[180px] max-w-[200px] h-[285px] block bg-white text-gray-900 shadow-md rounded-2xl p-2 cursor-pointer hover:-translate-y-1 transition-all select-none">
-            <div className="rounded-md relative overflow-hidden">
-                <span className="absolute left-2 top-2 mt-2 z-10 rounded-full bg-primary-700 px-2 text-center text-sm font-medium text-white select-none">-39%</span>
+            <div className="rounded-md relative overflow-hidden mt-2">
+                <span className="absolute left-2 top-2 z-10 rounded-full bg-primary-700 px-2 text-center text-sm font-medium text-white select-none">-39%</span>
                 <Image src={`${product?.media_url}`} alt={`${product?.name}`} quality={70} sizes="100vw" width={500} height={300} className='h-44 rounded-sm w-full object-cover hover:scale-105 transition duration-500' />
                 <HeartFavorite id={product?.id} className='absolute right-2 top-2' />
             </div>
