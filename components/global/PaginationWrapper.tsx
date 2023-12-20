@@ -22,8 +22,14 @@ export default function PaginationWrapper({ pageNumber, totalElements }: { pageN
     };
 
     const currentPageNumber = pageNumber >= 0 ? (pageNumber + 1) : 1;
-    
+
     return (
-        <Pagination defaultCurrent={1} current={currentPageNumber} total={totalElements} onChange={onChange} />
+        <Pagination
+            defaultCurrent={1}
+            current={currentPageNumber}
+            total={totalElements}
+            onChange={onChange}
+            disabled={totalElements === 0}
+        />
     )
 }
