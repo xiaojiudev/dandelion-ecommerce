@@ -1,9 +1,8 @@
 'use client'
-import { useCreateQueryString } from '@/hooks/useCreateQueryString';
 import { Category } from '@/types/types';
 import { ChevronRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
 
 
 export default function Categories({ data }: { data: Category[] }) {
@@ -14,10 +13,18 @@ export default function Categories({ data }: { data: Category[] }) {
     const pathname = usePathname();
     const { replace } = useRouter();
 
+    useEffect(() => {
+        const categorySearch = searchParams.get('category');
+        const category = data.find(item => item.name === categorySearch);
+        if (category) {
+            setActiveId(category.id);
+        }
+    }, [searchParams]);
 
     const handleClick = (id: number, name: string) => {
         setActiveId(id)
         const params = new URLSearchParams(searchParams);
+
         params.set('page', '0');
         if (name) {
             params.set('category', name);
@@ -29,7 +36,7 @@ export default function Categories({ data }: { data: Category[] }) {
 
     return data && data?.map(category => (
         <button
-            onClick={(e) => handleClick(category.id, category.name)}
+            onClick={() => handleClick(category.id, category.name)}
             key={category.id}
             className={`inline-flex items-center gap-x-3.5 py-3 px-4 text-sm font-normal -mt-px ${activeId === category.id ? 'text-primary-500' : 'text-gray-800'} first:mt-0 focus:z-10 focus:outline-none`}
         >
