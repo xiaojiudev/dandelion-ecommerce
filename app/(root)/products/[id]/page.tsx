@@ -1,33 +1,25 @@
-import { Metadata } from 'next'
+import { Pagination } from 'antd';
+
+import { Product } from '@/types/types';
+import { fetchProductById } from '@/lib/data';
+
+import TagGroup from '@/components/product/TagGroup';
+import PromoCard from '@/components/product/PromoCard';
+import UserReview from '@/components/product/UserReview';
+import FilterBlock from '@/components/product/FilterBlock';
+import ProgressRating from '@/components/product/ProgressRating';
+import ProductDetailSlider from '@/components/product/ProductDetailSlider';
+import ProductRating from '@/components/product/ProductRating';
+import HeartFavorite from '@/components/global/HeartFavorite';
+import AddProductToCart from '@/components/product/AddProductToCart';
+import ProvinceCoordinate from '@/components/product/ProvinceCoordinate';
 
 
-import ProductDetailInfo from '@/components/product/ProductDetailInfo'
-import ProductDetailSlider from '@/components/product/ProductDetailSlider'
-import TagGroup from '@/components/product/TagGroup'
-import PromoCard from '@/components/product/PromoCard'
-import ProgressRating from '@/components/product/ProgressRating'
-import UserReview from '@/components/product/UserReview'
-import FilterBlock from '@/components/product/FilterBlock'
-import { Pagination } from 'antd'
+export default async function Page({ params: { id } }: { params: { id: string } }) {
 
+    const [product]: [Product] = await Promise.all([fetchProductById(id)]);
 
-
-
-type ProductPropps = {
-    params: { id: string }
-}
-
-export async function generateMetadata({ params }: ProductPropps) {
-    return {
-        title: `Product ${params.id}`,
-    }
-}
-
-
-
-
-export default async function Page({ params }: { params: { id: string } }) {
-
+    const mediaList = [...product.media_url];
 
     return (
         <div className='flex flex-col gap-10'>
@@ -36,10 +28,35 @@ export default async function Page({ params }: { params: { id: string } }) {
                 <div className='flex flex-col gap-y-8'>
                     <div className='grid gap-4 grid-cols-12'>
                         <div className='col-span-5'>
-                            <ProductDetailSlider />
+                            <ProductDetailSlider data={mediaList} alt={product?.name} />
                         </div>
                         <div className='col-span-7'>
-                            <ProductDetailInfo />
+                            <div className='flex flex-col px-5 gap-5 text-gray-900 text-base'>
+                                <h1 className='text-3xl font-semibold '>{product?.name}</h1>
+                                <div className='flex justify-between items-center text-sm text-slate-800 select-none'>
+                                    <div className='divide-x'>
+                                        <ProductRating value={4.6} disabled allowHalf className='text-sm pr-4' />
+                                        <span className='px-4 '>145 Reviews</span>
+                                        <span className='px-4 '>289 Sold</span>
+                                    </div>
+                                    <div className='pl-0'>
+                                        <HeartFavorite id={product?.id} />
+                                    </div>
+                                </div>
+                                <div className='flex items-start gap-3'>
+                                    <h2 className='font-semibold text-base'>Describe:</h2>
+                                    <p className='text-justify text-base text-gray-800'>{product?.description}</p>
+                                </div>
+                                <div className='flex items-center gap-9'>
+                                    <h2 className='font-semibold text-base'>Price:</h2>
+                                    <strong className='text-4xl font-bold text-red-700'>${product?.price}<span className='text-sm text-gray-800 line-through'>${(product?.price * 1.3).toFixed(2)}</span></strong>
+                                </div>
+                                <div className='flex items-center gap-3'>
+                                    <h2 className='font-semibold text-base'>Shipping:</h2>
+                                    <ProvinceCoordinate />
+                                </div>
+                                <AddProductToCart id={product?.id!} availableQuantity={product?.quantity} />
+                            </div>
                         </div>
                     </div>
 
@@ -56,14 +73,13 @@ export default async function Page({ params }: { params: { id: string } }) {
                         {/* Product Description */}
                         <div className='bg-white p-4 rounded'>
                             <div className='text-slate-800'>
-                                <h1 className='bg-slate-100 p-3 rounded-sm text-lg font-medium'>Product Description</h1>
+                                <h1 className='bg-slate-100 p-3 rounded-sm text-lg font-medium'>Product Information</h1>
                                 <div className='flex flex-col gap-4 p-4'>
+
                                     <p className='text-justify'>
-                                        - Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus nobis dicta aut nulla vero perferendis, ipsam labore dolorum veritatis, sed nam excepturi corrupti aliquam enim. Dolorum quam quos est amet.
-                                        • Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, ab optio beatae, vero illum pariatur necessitatibus, omnis nisi neque id voluptates adipisci sit voluptate. Incidunt eaque expedita aspernatur alias excepturi!
-                                        • Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatibus modi, reiciendis officiis, in tenetur fugit nostrum reprehenderit voluptatem inventore quos commodi suscipit exercitationem nesciunt numquam dolore atque totam porro error.
-                                        • Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam deserunt vel praesentium error omnis. Veritatis ab, voluptatum eveniet veniam minima ratione, quas, dignissimos mollitia commodi nostrum neque eum repellat quidem!
+                                        {product?.information}
                                     </p>
+
                                     <div className='select-none'>
                                         <TagGroup />
                                     </div>
@@ -135,8 +151,6 @@ export default async function Page({ params }: { params: { id: string } }) {
                     {/* Another section here */}
 
                 </div>
-
-
             </div>
         </div>
     )
