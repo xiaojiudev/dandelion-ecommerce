@@ -1,9 +1,10 @@
 'use client'
-import React, { MutableRefObject, useState } from "react"
-import { useKeenSlider, KeenSliderPlugin, KeenSliderInstance, } from "keen-slider/react"
-import { Skeleton, Image } from "antd"
+import { Skeleton, Image } from "antd";
+import React, { MutableRefObject, useState } from "react";
+import { useKeenSlider, KeenSliderPlugin, KeenSliderInstance, } from "keen-slider/react";
 
-import "keen-slider/keen-slider.min.css"
+import "keen-slider/keen-slider.min.css";
+import { defaultImageUrl } from "@/constants";
 
 function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): KeenSliderPlugin {
 
@@ -39,20 +40,22 @@ function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): 
     }
 }
 
-export default function ProductDetailSlider() {
+export default function ProductDetailSlider({ data, alt }: { data: string[], alt: string }) {
+    // Sort the data list so that the mp4 file is always at the end of the array.
+    const dataList = data.sort((a, b) => a.localeCompare(b))
 
     const [loaded, setLoaded] = useState(false)
 
     const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-        initial: 1,
+        initial: 0,
         slides: {
             perView: 1,
             spacing: 0,
         },
         created() {
-            setLoaded(true)            
+            setLoaded(true)
         },
-        loop: true,
+        loop: data.length > 1,
         renderMode: 'performance',
 
     }, [
@@ -95,56 +98,80 @@ export default function ProductDetailSlider() {
             },
         },
         [ThumbnailPlugin(instanceRef)],
-       
+
     )
 
-        
+    const renderSlideImage = dataList.length > 0 && !dataList.includes('') ? dataList?.map((item, index) => {
+        const fileExtension = item.substring(item.lastIndexOf('.') + 1, item.length) || item;
+
+        if (fileExtension === 'jpg' || fileExtension === 'png') {
+            return (
+                <div className="keen-slider__slide" key={item}>
+                    <Image src={item} alt={`${alt}_${index}`} width={480} height={400} className="rounded object-cover" />
+                </div>
+            )
+        } else if (fileExtension === 'mp4') {
+            return (
+                <div className="keen-slider__slide" key={item}>
+                    <video
+                        controls
+                        muted
+                        autoPlay
+                        className='object-contain rounded'
+                        height={400}
+                        width={480}
+                    >
+                        <source src={item} type="video/mp4" />
+                    </video>
+                </div>
+            )
+        }
+    }) : (
+        <div className="keen-slider__slide">
+            <Image src={defaultImageUrl} alt={`${alt}`} width={480} height={400} className="rounded object-cover" />
+        </div>
+    );
+
+    const renderThumbnailImage = dataList.length > 0 && !dataList.includes('') ? dataList?.map((item, index) => {
+        const fileExtension = item.substring(item.lastIndexOf('.') + 1, item.length) || item;
+
+        if (fileExtension === 'jpg' || fileExtension === 'png') {
+            return (
+                <div className="keen-slider__slide" key={item}>
+                    <Image src={item} alt={`${alt}_${index}`} width={100} height={100} className="rounded object-cover" />
+                </div>
+            )
+        } else if (fileExtension === 'mp4') {
+            return (
+                <div className="keen-slider__slide" key={item}>
+                    <video
+                        controls
+                        muted
+                        autoPlay
+                        className='object-contain rounded'
+                        width={100} 
+                        height={100}
+                    >
+                        <source src={item} type="video/mp4" />
+                    </video>
+                </div>
+            )
+        }
+    }) : (
+        <div className="keen-slider__slide">
+            <Image src={defaultImageUrl} alt={`${alt}`} width={'auto'} height={'auto'} className="rounded object-cover" />
+        </div>
+    );
+
     return (
-        <> 
-            <Skeleton.Image active className={`${loaded ? 'hidden' : ''} w-full h-[400px] object-cover rounded`} />                                                                      
-
+        <>
+            <Skeleton.Image active className={`${loaded ? 'hidden' : ''} w-full h-[400px] object-cover rounded`} />
             <div ref={sliderRef} className={`${loaded ? "" : "invisible"} keen-slider mb-3 rounded`}>
-                <div className="keen-slider__slide ">
-                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
-                </div>
-                <div className="keen-slider__slide ">
-                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
-                </div>
-                <div className="keen-slider__slide ">
-                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
-                </div>
-                <div className="keen-slider__slide ">
-                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
-                </div>
-                <div className="keen-slider__slide ">
-                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
-                </div>
-                <div className="keen-slider__slide ">
-                    <Image src="/avatar.jpg" alt="product" width={480} height={400} className="rounded object-cover" />
-                </div>
+                {renderSlideImage}
             </div>
-
             <div ref={thumbnailRef} className="keen-slider thumbnail">
-                <div className="keen-slider__slide">
-                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
-                </div>
-                <div className="keen-slider__slide">
-                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
-                </div>
-                <div className="keen-slider__slide">
-                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
-                </div>
-                <div className="keen-slider__slide">
-                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
-                </div>
-                <div className="keen-slider__slide">
-                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
-                </div>
-                <div className="keen-slider__slide">
-                    <Image src="/avatar.jpg" alt="product" width='auto' height='auto' className="rounded object-cover" />
-                </div>
+                {renderThumbnailImage}
             </div>
-
         </>
     )
 }
