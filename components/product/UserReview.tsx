@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Avatar } from 'antd'
 import { ThumbsDown, ThumbsUp } from 'lucide-react'
 
-import RatingCustom from '../global/RatingCustom'
+import RatingCustom from './ProductRating'
 import MultiImagePreview from './MultiImagePreview'
 
 export default function UserReview() {

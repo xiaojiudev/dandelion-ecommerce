@@ -6,7 +6,7 @@ export type Category = {
 }
 
 export type Product = {
-    id: number;
+    id: string;
     name: string;
     weight: number;
     quantity: number;
@@ -15,7 +15,7 @@ export type Product = {
     information: string;
     tag: string;
     category: string;
-    media_url: string;
+    media_url: string[];
 }
 
 export type Products = {

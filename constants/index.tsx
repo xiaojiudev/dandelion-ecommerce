@@ -1,6 +1,8 @@
-import Link from 'next/link'
-import { type MenuProps } from 'antd'
-import { GalleryVerticalEnd, Heart, LogOut, Settings, User, } from 'lucide-react'
+import Link from 'next/link';
+import { type MenuProps } from 'antd';
+import { GalleryVerticalEnd, Heart, LogOut, Settings, User, } from 'lucide-react';
+
+export const defaultImageUrl = 'https://res.cloudinary.com/de8xbko8y/image/upload/v1703173779/uploads/9214769_dgwtc4.jpg';        
 
 export const regexPW = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
 
@@ -71,7 +73,7 @@ export const navbarItems: MenuProps['items'] = [
     },
 ]
 
-export const ratingDescArr = ['terrible', 'bad', 'normal', 'good', 'wonderful']
+export const ratingStatus = ['terrible', 'bad', 'normal', 'good', 'wonderful']
 
 export const avatarDropdownItems: MenuProps['items'] = [
     {
