@@ -6,8 +6,7 @@ import type { GetServerSidePropsContext, NextApiRequest, NextApiResponse } from 
 
 import { SIGNIN_URI } from "./constants/baseURL";
 
-// You'll need to import and pass this
-// to `NextAuth` in `app/api/auth/[...nextauth]/route.ts`
+// You'll need to import and pass this to `NextAuth` in `app/api/auth/[...nextauth]/route.ts`
 export const config = {
     pages: {
         signIn: SIGNIN_URI,
