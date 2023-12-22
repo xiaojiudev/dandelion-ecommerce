@@ -1,10 +1,22 @@
 'use client'
-import Link from 'next/link'
-import type { MenuProps } from 'antd'
-import { ConfigProvider, Menu } from 'antd'
-import { Bell, CreditCard, FileHeart, MapPin, Settings, ShieldCheck, ShoppingBag, Star, Ticket, User2 } from 'lucide-react'
+import Link from 'next/link';
+import type { MenuProps } from 'antd';
+import { ConfigProvider, Menu } from 'antd';
+import {
+    Bell,
+    CreditCard,
+    FileHeart,
+    MapPin,
+    Settings,
+    ShieldCheck,
+    ShoppingBag,
+    Star,
+    Ticket,
+    User2
+} from 'lucide-react';
 
-import theme from '@/theme/themeConfig'
+import theme from '@/theme/themeConfig';
+import { USER_PAYMENT_URI, USER_PROFILE_URI, USER_REVIEW_URI, USER_WISHLIST_URI } from '@/constants/baseURL';
 
 type MenuItem = Required<MenuProps>['items'][number]
 
@@ -37,8 +49,8 @@ const { iconSize } = menuConfig
 
 const items: MenuProps['items'] = [
     getItem('Account', 'sub1', <Settings size={iconSize} />, [
-        getItem(<Link href="/user/account/profile" prefetch>Profile</Link>, '1', <User2 size={iconSize} />),
-        getItem(<Link href="/user/account/paymentcard" prefetch>Bank & Cards</Link>, '2', <CreditCard size={iconSize} />),
+        getItem(<Link href={USER_PROFILE_URI} prefetch>Profile</Link>, '1', <User2 size={iconSize} />),
+        getItem(<Link href={USER_PAYMENT_URI} prefetch>Bank & Cards</Link>, '2', <CreditCard size={iconSize} />),
         getItem('Addresses', '3', <MapPin size={iconSize} />),
         getItem('Change Password', '4', <ShieldCheck size={iconSize} />),
         getItem('Notification Settings', '5', <Bell size={iconSize} />),
@@ -46,15 +58,15 @@ const items: MenuProps['items'] = [
 
     getItem('Purchase', 'sub2', <ShoppingBag size={iconSize} />),
 
-    getItem(<Link href="/user/review" prefetch>Reviews</Link>, 'sub3', <Star size={iconSize} />),
+    getItem(<Link href={USER_REVIEW_URI} prefetch>Reviews</Link>, 'sub3', <Star size={iconSize} />),
 
-    getItem(<Link href="/user/wishlist" prefetch>Wishlist</Link>, 'sub4', <FileHeart size={iconSize} />),
+    getItem(<Link href={USER_WISHLIST_URI} prefetch>Wishlist</Link>, 'sub4', <FileHeart size={iconSize} />),
 
     getItem('Vouchers', 'sub5', <Ticket size={iconSize} />),
 ]
 
 export default function UserLayout({ children, }: { children: React.ReactNode }) {
-    
+
     const onClick: MenuProps['onClick'] = (e) => {
         console.log('click ', e)
     }

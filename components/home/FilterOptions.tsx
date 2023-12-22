@@ -8,6 +8,7 @@ const { Search } = Input;
 
 export default function FilterOptions() {
 
+
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();

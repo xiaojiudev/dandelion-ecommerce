@@ -1,15 +1,16 @@
-import Image from 'next/image'
-import React, { Suspense } from 'react'
+import Image from 'next/image';
+import React, { Suspense } from 'react';
+import { List } from 'lucide-react';
 
-import CarouselWrapper from '@/components/home/CarouselWrapper'
-import TitleTypography from '@/components/global/TitleTypography'
-import FilterOptions from '@/components/home/FilterOptions'
-import { List } from 'lucide-react'
-import { CategoriesSkelton, ProductsCardSkeleton } from '@/components/skeletons'
-import CategoryBar from '@/components/home/CategoryBar'
-import ProductWrapper from '@/components/home/ProductWrapper'
-import PaginationWrapper from '@/components/global/PaginationWrapper'
-import { fetchProducts } from '@/lib/data'
+import { fetchProducts } from '@/lib/data';
+
+import CarouselWrapper from '@/components/home/CarouselWrapper';
+import TitleTypography from '@/components/global/TitleTypography';
+import FilterOptions from '@/components/home/FilterOptions';
+import { CategoriesSkelton, ProductsCardSkeleton } from '@/components/skeletons';
+import CategoryBar from '@/components/home/CategoryBar';
+import ProductWrapper from '@/components/home/ProductWrapper';
+import PaginationWrapper from '@/components/global/PaginationWrapper';
 
 
 export default async function Home({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {

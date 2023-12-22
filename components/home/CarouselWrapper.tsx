@@ -1,11 +1,11 @@
 'use client'
-import React from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { Carousel } from 'antd'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Carousel } from 'antd';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-import { carouselItems } from '@/constants'
+import { carouselItems } from '@/constants';
 
 interface AntdArrowProps {
     currentSlide?: number
@@ -13,6 +13,7 @@ interface AntdArrowProps {
 }
 
 export default function CarouselWrapper() {
+
 
     const LeftButtonFix = ({ currentSlide, slideCount, ...props }: AntdArrowProps) => (
         <ChevronLeft {...props} size={32} strokeWidth={3} />

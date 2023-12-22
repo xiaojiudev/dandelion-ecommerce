@@ -7,7 +7,7 @@ import { Product } from '@/types/types';
 import { fetchProducts } from '@/lib/data';
 import HeartFavorite from '@/components/global/HeartFavorite';
 import ProductCart from '../global/ProductCart';
-import { defaultImageUrl } from '@/constants';
+import { DEFAULT_IMG_URL } from '@/constants/baseURL';
 
 export default async function ProductWrapper({
     page = 0,
@@ -65,7 +65,7 @@ export function ProductCard({ data }: { data: Product[] }) {
 
     const renderProduct = data?.length > 0 && data?.map(product => {
     
-        const imageUrl = !product?.media_url.includes('') ? product?.media_url[0] : defaultImageUrl;
+        const imageUrl = !product?.media_url.includes('') ? product?.media_url[0] : DEFAULT_IMG_URL;
 
         return (
             <Link

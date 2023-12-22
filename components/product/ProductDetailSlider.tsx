@@ -4,7 +4,7 @@ import React, { MutableRefObject, useState } from "react";
 import { useKeenSlider, KeenSliderPlugin, KeenSliderInstance, } from "keen-slider/react";
 
 import "keen-slider/keen-slider.min.css";
-import { defaultImageUrl } from "@/constants";
+import { DEFAULT_IMG_URL } from "@/constants/baseURL";
 
 function ThumbnailPlugin(mainRef: MutableRefObject<KeenSliderInstance | null>): KeenSliderPlugin {
 
@@ -128,7 +128,7 @@ export default function ProductDetailSlider({ data, alt }: { data: string[], alt
         }
     }) : (
         <div className="keen-slider__slide">
-            <Image src={defaultImageUrl} alt={`${alt}`} width={480} height={400} className="rounded object-cover" />
+            <Image src={DEFAULT_IMG_URL} alt={`${alt}`} width={480} height={400} className="rounded object-cover" />
         </div>
     );
 
@@ -159,7 +159,7 @@ export default function ProductDetailSlider({ data, alt }: { data: string[], alt
         }
     }) : (
         <div className="keen-slider__slide">
-            <Image src={defaultImageUrl} alt={`${alt}`} width={'auto'} height={'auto'} className="rounded object-cover" />
+            <Image src={DEFAULT_IMG_URL} alt={`${alt}`} width={'auto'} height={'auto'} className="rounded object-cover" />
         </div>
     );
 

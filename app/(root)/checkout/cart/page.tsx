@@ -188,7 +188,7 @@ export default function Checkout() {
                                             <span className='text-base'>There are no products in your shopping cart.</span>
                                         }
                                     >
-                                        <Button type='primary' size='middle' href='/product'>Continue Shopping</Button>
+                                        <Button type='primary' size='middle' href='/'>Continue Shopping</Button>
                                     </Empty>
                                 </div>
                             )}

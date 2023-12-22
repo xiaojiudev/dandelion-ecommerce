@@ -1,10 +1,10 @@
 'use client'
 
-import React from 'react'
-import { Button, Form, Input, Rate, Upload } from 'antd'
+import React from 'react';
+import { Button, Form, Input, Rate, Upload } from 'antd';
+import { UploadCloud } from 'lucide-react';
 
-import { ratingDescArr } from '@/constants'
-import { UploadCloud } from 'lucide-react'
+import { ratingStatus } from '@/constants';
 
 type ProductReview = {
     rate: number;
@@ -56,7 +56,7 @@ export default function Review() {
                         required
                         labelCol={{ offset: 0 }}
                     >
-                        <Rate tooltips={ratingDescArr} />
+                        <Rate tooltips={ratingStatus} />
                     </Form.Item>
 
                     {/* Image, Video Block */}
