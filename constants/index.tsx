@@ -1,21 +1,12 @@
 import Link from 'next/link';
 import { type MenuProps } from 'antd';
-import { GalleryVerticalEnd, Heart, LogOut, Settings, User, } from 'lucide-react';
 
-export const defaultImageUrl = 'https://res.cloudinary.com/de8xbko8y/image/upload/v1703173779/uploads/9214769_dgwtc4.jpg';        
-
-export const regexPW = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
-
-export const regexPhone = /(84|0[3|5|7|8|9])+([0-9]{8})\b/
-
-export const regexEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/
-
-export const regexName = /^(?:[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*|[a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+(?:[ ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]+)*)$/
+import { HOME_URI } from './baseURL';
 
 export const navbarItems: MenuProps['items'] = [
     {
         label: (
-            <Link href="/">Home</Link>
+            <Link href={HOME_URI}>Home</Link>
         ),
         key: 'home',
         icon: '',
@@ -75,71 +66,6 @@ export const navbarItems: MenuProps['items'] = [
 
 export const ratingStatus = ['terrible', 'bad', 'normal', 'good', 'wonderful']
 
-export const avatarDropdownItems: MenuProps['items'] = [
-    {
-        key: '1',
-        label: (
-            <div className='flex justify-center items-center text-sm select-none'>
-                <h6>Hi! <span className='font-semibold text-gray-900'>XiaoJiu</span></h6>
-            </div>
-        ),
-    },
-    {
-        type: 'divider'
-    },
-    {
-        key: '2',
-        label: (
-            <Link rel="noopener noreferrer" href="/user/wishlist" className=' text-sm text-primary-500 font-normal'>
-                <span>My Wishlist</span>
-            </Link>
-        ),
-        icon: <span className='text-primary-500'><Heart size={16} color='currentColor' fill='currentColor' /></span>,
-    },
-    {
-        key: '3',
-        label: (
-            <a target="_blank" rel="noopener noreferrer" href="" className='text-sm text-primary-500 font-normal'>
-                <span>My purchase</span>
-            </a>
-        ),
-        icon: <span className='text-primary-500'><GalleryVerticalEnd size={16} color='currentColor' fill='currentColor' /></span>,
-    },
-    {
-        type: 'divider',
-    },
-    {
-        key: '4',
-        label: (
-            <a target="_blank" rel="noopener noreferrer" className='text-sm text-gray-500 font-normal' href="">
-                My profile
-            </a>
-        ),
-        icon: <span className='text-gray-500'><User size={16} color='currentColor' fill='currentColor' /></span>
-    },
-    {
-        key: '5',
-        label: (
-            <Link rel="noopener noreferrer" href="/user/account/profile" className='text-sm text-gray-500 font-normal'>
-                Account settings
-            </Link>
-        ),
-        icon: <span className='text-gray-500'><Settings size={16} color='currentColor' fill='currentColor' /></span>
-    },
-    {
-        type: 'divider'
-    },
-    {
-        key: '6',
-        label: (
-            <Link rel="noopener noreferrer" href="/" className='text-center text-gray-700 font-medium'>
-                <span className=''>Sign out</span>
-            </Link>
-        ),
-        icon: <span className='text-gray-700'><LogOut size={16} color='currentColor' /></span>
-    },
-]
-
 export const footerDescription = [
     {
         desc: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse non
@@ -178,7 +104,7 @@ export const socialItems = [
     {
         link: (
             <a
-                href="/"
+                href={HOME_URI}
                 rel="noreferrer"
                 target="_blank"
                 className="text-gray-700 transition hover:opacity-75"
@@ -203,7 +129,7 @@ export const socialItems = [
     {
         link: (
             <a
-                href="/"
+                href={HOME_URI}
                 rel="noreferrer"
                 target="_blank"
                 className="text-gray-700 transition hover:opacity-75"
