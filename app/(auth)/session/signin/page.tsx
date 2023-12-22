@@ -17,42 +17,39 @@ type SignInType = {
 
 export default function Signin() {
 
-    // const router = useRouter();
-    // const { data: session, status } = useSession();
+    const router = useRouter();
+    const [messageApi, contextHolder] = message.useMessage();
 
-
-    const onFinish = async (values: any) => {
+    const handleSignInSuccess = async (values: any) => {
         console.log('Success:', values);
 
-        // try {
-        //     const res = await signIn("credentials", {
-        //         redirect: false,
-        //         email: values.email,
-        //         password: values.password,
-        //     }).then(({ ok, error }: any) => {
-        //         console.log(ok, error);
-                
-        //         if (ok && session!.roles!.includes("ADMIN")) {
-        //             router.push("/");
-        //         } else {
-        //             console.log(error)
-        //             message.error('Login failed. Please check your email and password!')
-        //         }
-        //     })
+        try {
+            await signIn("credentials", {
+                redirect: false,
+                email: values.email,
+                password: values.password,
+            }).then(({ ok, error }: any) => {
+                if (ok) {
+                    router.push("/");
+                } else {
+                    messageApi.error('Login failed. Please check your email and password!')
+                }
+            })
 
-        //     console.log(res);
-        // } catch (error) {
-        //     console.error('Something when wrong happened', error);
-        //     message.error('Something went wrong happened');
-        // }
+        } catch (error) {
+            console.log(error);
+
+            messageApi.error('Something went wrong happened');
+        }
     }
 
-    const onFinishFailed = (errorInfo: any) => {
+    const handleSignInFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
     }
 
     return (
         <>
+            {contextHolder}
             <div className='w-full max-w-[416px]'>
                 <h2 className='text-2xl font-bold mb-8'>Sign in to Dandelion</h2>
                 <div className='flex flex-row flex-wrap gap-3'>
@@ -90,8 +87,8 @@ export default function Signin() {
                         wrapperCol={{ span: 24 }}
                         style={{ maxWidth: 600 }}
                         initialValues={{ remember: true }}
-                        onFinish={onFinish}
-                        onFinishFailed={onFinishFailed}
+                        onFinish={handleSignInSuccess}
+                        onFinishFailed={handleSignInFailed}
                         autoComplete="off"
                         layout='vertical'
 
