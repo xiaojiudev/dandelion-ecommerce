@@ -1,19 +1,21 @@
 
+import { SIGNIN_URI } from '@/constants/baseURL';
 
-import UserDropdown from './UserDropdown'
-import ButtonCustom from './ButtonCustom'
-import NavbarMenu from './NavbarMenu'
-import LogoSVG from '../global/LogoSVG'
-import SearchInput from './SearchProduct'
-import Notify from './Notify'
-import Cart from './Cart'
+import Cart from './Cart';
+import Notify from './Notify';
+import NavbarMenu from './NavbarMenu';
+import LogoSVG from '../global/LogoSVG';
+import UserDropdown from './UserDropdown';
+import ButtonCustom from './ButtonCustom';
+import { auth } from '@/auth';
 
 
-export default function HeaderCustom() {
 
-    //isLogin
-    const isLogin = false;
+export default async function HeaderCustom() {
 
+    const session = await auth();
+    const isLogin = !!session ? true : false;
+    const userInfo = session?.user;
 
     return (
         <header className='sticky top-0 z-50'>
@@ -28,17 +30,14 @@ export default function HeaderCustom() {
                     </div>
 
                     <div className="flex items-center justify-between h-12">
-                        {/* Search Input */}
-                        {/* <SearchInput className='mr-6' /> */}
-
                         {/* Notify */}
-                        <Notify className='mr-6'/>
+                        <Notify className='mr-6' />
 
                         {/* Cart */}
-                        <Cart className='mr-6'/>
+                        <Cart className='mr-6' />
 
                         {/* Login */}
-                        {isLogin ? <UserDropdown /> : <ButtonCustom href='/session/signin' text='Get started' size='middle' className='text-base font-medium' />}
+                        {isLogin ? <UserDropdown data={userInfo}/> : <ButtonCustom href={SIGNIN_URI} text='Get started' size='middle' className='text-base font-medium' />}
                     </div>
                 </div>
             </nav>
