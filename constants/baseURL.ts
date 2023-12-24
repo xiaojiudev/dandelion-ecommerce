@@ -4,6 +4,8 @@ export const HOME_URI = "/";
 export const SIGNIN_URI = "/session/signin";
 export const SIGNUP_URI = "/session/signup";
 
+export const PRODUCT_URI = "/products/";
+
 export const USER_PROFILE_URI = "/user/account/profile";
 export const USER_PAYMENT_URI = "/user/account/paymentcard";
 export const USER_REVIEW_URI = "/user/account/review";

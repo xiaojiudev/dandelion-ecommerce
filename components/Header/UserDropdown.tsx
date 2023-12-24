@@ -1,11 +1,12 @@
 'use client'
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { signOut } from 'next-auth/react';
 import { Avatar, Dropdown, MenuProps, message } from 'antd';
 import { GalleryVerticalEnd, Heart, LogOut, Settings, User } from 'lucide-react';
 
 import { DEFAULT_IMG_URL, HOME_URI, USER_PROFILE_URI, USER_WISHLIST_URI } from '@/constants/baseURL';
+import Image from 'next/image';
 
 
 export default function UserDropdown(props: any) {
@@ -14,7 +15,7 @@ export default function UserDropdown(props: any) {
     const [messageApi, contextHolder] = message.useMessage();
 
     useEffect(() => {
-        messageApi.success(`Welcome back! ${name}`);
+        messageApi.success(`Welcome back! ${name}`, 2);
     }, [])
 
     const avatarDropdownItems: MenuProps['items'] = [
@@ -92,7 +93,15 @@ export default function UserDropdown(props: any) {
             {contextHolder}
             <Dropdown menu={{ items: avatarDropdownItems }} placement='bottomRight' className='flex justify-center items-center' >
                 <a onClick={(e) => e.preventDefault()}>
-                    <Avatar src={image ?? DEFAULT_IMG_URL} />
+                    {/* <Avatar src={image ?? DEFAULT_IMG_URL} /> */}
+                    <Image
+                        src={image ?? DEFAULT_IMG_URL}
+                        priority
+                        height={40}
+                        width={40}
+                        alt={name}
+                        className='w-10 h-10 rounded-full object-cover'
+                    />
                 </a>
             </Dropdown>
         </>

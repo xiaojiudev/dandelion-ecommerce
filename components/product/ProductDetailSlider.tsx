@@ -170,7 +170,20 @@ export default function ProductDetailSlider({ data, alt }: { data: string[], alt
                 {renderSlideImage}
             </div>
             <div ref={thumbnailRef} className="keen-slider thumbnail">
+                <Image.PreviewGroup
+                    preview={{
+                        onChange: (current, prev) => console.log(`current index: ${current}, prev index: ${prev}`),
+                        imageRender: (originalNode, info) => {
+                            // console.log(info.current)
+                            // return (previewList[info.current])
+                            return null;
+                        },
+                        toolbarRender: () => (null),
+                        destroyOnClose: true,
+                    }}
+                >
                 {renderThumbnailImage}
+                </Image.PreviewGroup>
             </div>
         </>
     )

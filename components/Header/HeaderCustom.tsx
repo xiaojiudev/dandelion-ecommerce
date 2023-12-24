@@ -1,21 +1,26 @@
 
+import { auth } from '@/authOptions';
 import { SIGNIN_URI } from '@/constants/baseURL';
 
 import Cart from './Cart';
 import Notify from './Notify';
 import NavbarMenu from './NavbarMenu';
-import LogoSVG from '../global/LogoSVG';
 import UserDropdown from './UserDropdown';
 import ButtonCustom from './ButtonCustom';
-import { auth } from '@/auth';
-
-
+import LogoSVG from '@/components/global/LogoSVG';
+import { fetchUserCart } from '@/lib/data';
 
 export default async function HeaderCustom() {
 
     const session = await auth();
-    const isLogin = !!session ? true : false;
+    const isLogin = !!session?.user ? true : false;
     const userInfo = session?.user;
+
+    let userCartData = null;
+
+    if (isLogin) {
+        userCartData = await fetchUserCart();
+    }
 
     return (
         <header className='sticky top-0 z-50'>
@@ -34,10 +39,10 @@ export default async function HeaderCustom() {
                         <Notify className='mr-6' />
 
                         {/* Cart */}
-                        <Cart className='mr-6' />
+                        <Cart data={userCartData} className='mr-6' />
 
                         {/* Login */}
-                        {isLogin ? <UserDropdown data={userInfo}/> : <ButtonCustom href={SIGNIN_URI} text='Get started' size='middle' className='text-base font-medium' />}
+                        {isLogin ? <UserDropdown data={userInfo} /> : <ButtonCustom href={SIGNIN_URI} text='Get started' size='middle' className='text-base font-medium' />}
                     </div>
                 </div>
             </nav>

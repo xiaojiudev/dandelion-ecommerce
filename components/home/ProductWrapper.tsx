@@ -98,7 +98,7 @@ export function ProductCard({ data }: { data: Product[] }) {
         </div>
     ) : (
         <div className='flex justify-center items-center h-[350px]'>
-            <Empty description={<>We couldn't find any products matching your search</>} />
+            <Empty description={<>We couldn&apos;t find any products matching your search</>} />
         </div>
     );
 }

@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Avatar, Badge, Button, Divider, List, Popover, Skeleton } from 'antd'
+import { Badge, Button, Divider, List, Popover, Skeleton } from 'antd'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { Bell } from 'lucide-react'
 

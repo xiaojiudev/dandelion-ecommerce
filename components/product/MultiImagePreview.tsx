@@ -91,24 +91,6 @@ export default function MultiImagePreview() {
                     destroyOnClose: true,
                 }}
             >
-                {/* <ImgAntd
-                    width={70}
-                    height={70}
-                    src="/avatar.jpg"
-                    className='object-cover rounded-sm'
-                />
-                <ImgAntd
-                    width={70}
-                    height={70}
-                    src="/avatar1.jpg"
-                    className='object-cover rounded-sm'
-                />
-                <ImgAntd
-                    width={70}
-                    height={70}
-                    src="/thumbnail.png"
-                    className='object-cover rounded-sm'
-                /> */}
                 {thumbList}
             </ImgAntd.PreviewGroup>
         </div>
