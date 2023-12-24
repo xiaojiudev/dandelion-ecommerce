@@ -1,3 +1,25 @@
+import { auth } from "@/authOptions";
+
+export async function fetchUserCart() {
+    const session = await auth();
+    const token = session?.accessToken;
+    let url = new URL(`${process.env.BACKEND_PUBLIC_API_URI}/carts`);
+
+    const res = await fetch(url, {
+        next: {
+            revalidate: 0,
+        },
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+
+    if (!res.ok) {
+        return null;
+    }
+
+    return res.json();
+}
 
 export async function fetchProducts({ page = 0, size = 10, sortBy = '', sortDir = '', category = 'All', search = '' }) {
     // await new Promise((resolve) => setTimeout(resolve, 3000));
