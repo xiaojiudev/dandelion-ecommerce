@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ShoppingCart, Trash2 } from 'lucide-react';
 import { Avatar, Badge, Button, List, Popover } from 'antd';
 
-import { PRODUCT_URI } from '@/constants/baseURL';
+import { CHECKOUT_URI, PRODUCT_URI } from '@/constants/baseURL';
 
 type CartType = {
     key: string;
@@ -17,12 +17,11 @@ type CartType = {
 
 export default function Cart({ data, className }: { data: any, className: string }) {
     console.log(data);
-
-    let quantity = 0;
+    const quantity = data?.items.length ?? 0;
 
     //fetch and return data here!
     const dataCart = data?.items.map((item: any) => {
-        quantity += item.quantity;
+
         return {
             key: item.product_id,
             name: item.name,
@@ -67,7 +66,7 @@ export default function Cart({ data, className }: { data: any, className: string
             >
             </List>
             <div className='flex items-center justify-center py-3'>
-                <Button type="primary" href='/checkout/cart' className='w-4/5' size='large'>Checkout</Button>
+                <Button type="primary" href={CHECKOUT_URI} className='w-4/5' size='large'>Checkout</Button>
             </div>
         </>
 
@@ -77,7 +76,9 @@ export default function Cart({ data, className }: { data: any, className: string
         <>
             <Popover content={content} placement='bottomRight' title={<div className='text-center select-none'>Your cart</div>} className={`text-center ${className}`}>
                 <Badge count={quantity} className='flex items-center justify-center'>
-                    <Button type="link" href='' className='bg-transparent' icon={<ShoppingCart size={24} strokeWidth={2} color='#9ca3af' />} size='small' ></Button>
+                    <Link href={CHECKOUT_URI} className='bg-transparent'>
+                        <ShoppingCart size={24} strokeWidth={2} color='#9ca3af' />
+                    </Link>
                 </Badge>
             </Popover>
         </>
