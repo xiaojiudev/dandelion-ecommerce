@@ -1,14 +1,14 @@
 
 import { auth } from '@/authOptions';
+import { fetchUserCart } from '@/lib/data';
 import { SIGNIN_URI } from '@/constants/baseURL';
 
-import Cart from './Cart';
-import Notify from './Notify';
-import NavbarMenu from './NavbarMenu';
-import UserDropdown from './UserDropdown';
-import ButtonCustom from './ButtonCustom';
+import Cart from '@/components/header/Cart';
+import Notify from '@/components/header/Notify';
+import NavbarMenu from '@/components/header/NavbarMenu';
+import UserDropdown from '@/components/header/UserDropdown';
+import ButtonCustom from '@/components/header/ButtonCustom';
 import LogoSVG from '@/components/global/LogoSVG';
-import { fetchUserCart } from '@/lib/data';
 
 export default async function HeaderCustom() {
 
@@ -47,5 +47,5 @@ export default async function HeaderCustom() {
                 </div>
             </nav>
         </header>
-    )
+    );
 }
