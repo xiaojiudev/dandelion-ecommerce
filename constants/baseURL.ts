@@ -6,6 +6,8 @@ export const SIGNUP_URI = "/session/signup";
 
 export const PRODUCT_URI = "/products/";
 
+export const CHECKOUT_URI = "/checkout/cart";
+
 export const USER_PROFILE_URI = "/user/account/profile";
 export const USER_PAYMENT_URI = "/user/account/paymentcard";
 export const USER_REVIEW_URI = "/user/account/review";
