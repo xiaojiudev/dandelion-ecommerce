@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { type MenuProps } from 'antd';
+import type { MenuProps } from 'antd';
 
 import { HOME_URI } from './baseURL';
 
