@@ -1,6 +1,62 @@
+'use server'
 import { auth } from "@/authOptions";
+import { revalidatePath } from "next/cache";
+
+
+export async function addProductTocart(data: { productId: string, quantity: number }) {
+    const { productId, quantity } = data;
+
+    const session = await auth();
+    const token = session?.accessToken;
+
+    let url = new URL(`${process.env.BACKEND_PUBLIC_API_URI}/carts`);
+
+    const res = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+            product_id: productId,
+            quantity: quantity ?? 1,
+        }),
+    })
+
+    if (!res.ok) {
+        return null;
+    }
+    revalidatePath("/");
+    return res.json();
+}
+
+export async function deleteProductFromCart(id: string) {
+    const session = await auth();
+    const token = session?.accessToken;
+
+    let url = new URL(`${process.env.BACKEND_PUBLIC_API_URI}/carts`);
+
+    const res = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+            product_id: id,
+            // quantity: quantity ?? 1,
+        }),
+    })
+
+    if (!res.ok) {
+        return null;
+    }
+    revalidatePath("/");
+    return res.json();
+}
 
 export async function fetchUserCart() {
+
     const session = await auth();
     const token = session?.accessToken;
     let url = new URL(`${process.env.BACKEND_PUBLIC_API_URI}/carts`);
@@ -10,7 +66,7 @@ export async function fetchUserCart() {
             revalidate: 0,
         },
         headers: {
-            'Authorization': `Bearer ${token}`
+            "Authorization": `Bearer ${token}`
         }
     });
 
