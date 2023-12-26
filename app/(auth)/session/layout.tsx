@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ConfigProvider } from 'antd';
+import { redirect } from 'next/navigation';
 
 import '@/app/globals.css';
 import { auth } from '@/authOptions';
 import theme from '@/theme/themeConfig';
-import { HOME_URI, SIGNIN_URI } from '@/constants/baseURL';
+import { HOME_URI } from '@/constants/baseURL';
 import StyledComponentsRegistry from '@/lib/AntdRegistry';
 
 import { Providers } from '@/components/Providers';
-import { redirect } from 'next/navigation';
 
 
 export const metadata: Metadata = {

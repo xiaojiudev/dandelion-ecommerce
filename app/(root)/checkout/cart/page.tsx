@@ -2,144 +2,140 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button, Checkbox, Empty, Input, InputNumber, Modal, Spin, Tag, message } from 'antd'
-import { CheckboxChangeEvent } from 'antd/es/checkbox'
+import { Button, Input, InputNumber, Tag, Tooltip, message } from 'antd'
 import { Trash2 } from 'lucide-react'
-import { useStoreVoucher } from '@/hooks/use-store-voucher'
+import { deleteProductsFromCart, fetchUserCart } from '@/lib/data'
+import Table, { ColumnsType } from 'antd/es/table'
+import { CartItem, UserCart } from '@/types/types'
+import { DEFAULT_IMG_URL } from '@/constants/baseURL'
 
 
-type userCartDataProps = {
-    id: string,
-    imgSrc: string,
-    title: string,
-    type: string,
-    unitPrice: number,
-    maxQuantity: number,
-    totalPrice: number,
-    isChecked?: boolean
-}
+type DataType = {
+    key: React.Key;
+} & CartItem;
 
-const userCartData = [
-    {
-        id: '1',
-        imgSrc: '/avatar.jpg',
-        title: 'Iphone 11 Pro',
-        type: '256 Gb, Space Grey',
-        unitPrice: 932,
-        maxQuantity: 10,
-        totalPrice: 932,
-    },
-    {
-        id: '2',
-        imgSrc: '/avatar1.jpg',
-        title: 'Apple Watch 7 series',
-        type: '32 Gb, Black',
-        unitPrice: 399,
-        maxQuantity: 15,
-        totalPrice: 399,
-    },
-    {
-        id: '3',
-        imgSrc: '/thumbnail.png',
-        title: 'Apple Pen',
-        type: '32 Gb, Black',
-        unitPrice: 199,
-        maxQuantity: 132,
-        totalPrice: 199,
-    },
-]
 
 
 export default function Checkout() {
 
-    const [carts, setCarts] = useState<userCartDataProps[]>([])
-    const [loading, setLoading] = useState(true)
-    const [openModal, setOpenModal] = useState(false)
-    const [messageApi, contextHolder] = message.useMessage()
 
-    const isDisable = useStoreVoucher((state) => state.isDisable)
-    const setEnableState = useStoreVoucher((state) => state.setEnable)
-    const setDisableState = useStoreVoucher((state) => state.setDisable)
-
-
+    const [messageApi, contextHolder] = message.useMessage();
+    const [userCartData, setUserCartData] = useState<UserCart>();
+    const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
-        setCarts(userCartData)
-        setLoading(false)
+        const handleGetUserCart = async () => {
+            const userCartData = await fetchUserCart();
+            const cartItems = userCartData?.items?.map((item: CartItem) => {
+                return {
+                    key: item.product_id,
+                    product_id: item.product_id,
+                    name: item.name,
+                    quantity: item.quantity,
+                    available_quantity: item.available_quantity,
+                    unit_price: item.unit_price,
+                    description: item.description,
+                    information: item.information,
+                    media_url: item.media_url,
+                    item_sub_total: item.item_sub_total,
+                };
+            })
+
+            setUserCartData(userCartData);
+            setCartItems(cartItems);
+
+        }
+
+        handleGetUserCart();
     }, [])
 
-    const isCheckedAll = !loading && carts.length > 0 && carts.filter(cart => cart?.isChecked === true).length === carts.length
+    const columns: ColumnsType<DataType> = [
+        {
+            title: `All products (${cartItems?.length ?? 0} products)`,
+            dataIndex: 'name',
+            width: '40%',
+            render: (name: string, record: any) => {
 
-    const handleChange = (e: CheckboxChangeEvent) => {
-        const { name, checked } = e.target
-
-        if (name === 'allSelect') {
-            let temCart = carts.map(cart => { return { ...cart, isChecked: checked } })
-            setCarts(temCart)
-        } else {
-            let tempCart = carts.map(cart => cart.id === name ? { ...cart, isChecked: checked } : cart)
-            setCarts(tempCart)
-        }
-    }
-
-
-    const handleDeleteCart = (isChecked: boolean, id: string) => {
-        if (isChecked) {
-            let temCart = carts.filter(cart => cart.id !== id)
-            setCarts(temCart)
-        } else {
-            warning()
-        }
-    }
-
-
-    const handleDelteCartAll = (isCheckedAll: boolean) => {
-
-        let tempCart = carts.filter(cart => cart.isChecked !== true)
-
-        if (tempCart.length === carts.length && !isCheckedAll) {
-            warning()
-        } else {
-            setCarts(tempCart)
-        }
-
-    }
-
-
-    const showModal = () => {
-        setOpenModal(true)
-    }
-
-    const handleOk = () => {
-        setOpenModal(false)
-    }
-
-    const handleCancel = () => {
-        setOpenModal(false)
-    }
-
-
-
-    const warning = () => {
-
-        messageApi.open({
-            key: 'warning',
-            type: 'warning',
-            content: 'Please select the product to delete',
-            style: {
-                marginTop: '7vh',
+                return (
+                    <div className='flex items-center gap-3'>
+                        <Image src={record?.media_url.length > 0 ? record?.media_url : DEFAULT_IMG_URL} alt='item' sizes="100vw" quality={70} width={500} height={300} className='w-16 h-16 object-cover rounded-sm' />
+                        <div className='flex flex-col items-start gap-2'>
+                            <h1 className='text-base font-medium text-gray-800 line-clamp-1'>{name}</h1>
+                            <p className='text-sm font-normal text-gray-600 line-clamp-1'>{record?.description}</p>
+                        </div>
+                    </div>);
+            },
+        },
+        {
+            title: 'Unit price',
+            dataIndex: 'unit_price',
+            render: (unit_price: number) => {
+                return (
+                    <span className='col-span-2 font-medium text-gray-900'>${unit_price}</span>
+                );
             }
-        })
+        },
+        {
+            title: 'Quantity',
+            dataIndex: 'quantity',
+            render: (quantity: number, record: any) => {
+                return (
+                    <Tooltip title={`${record?.available_quantity} products available`}>
+                        <div>
+                            <InputNumber
+                                // onChange={}
+                                min={1}
+                                max={record?.available_quantity}
+                                defaultValue={quantity ?? 1}
+                                size='small'
+                            />
+                        </div>
+                    </Tooltip>
+                );
+            }
+        },
+        {
+            title: 'Total price',
+            dataIndex: 'item_sub_total',
+            render: (total_price: number) => {
+                return (
+                    <span className='col-span-2 font-medium text-rose-500'>${total_price}</span>
+                );
+            }
+        },
+        {
+            title: 'Action',
+            dataIndex: 'action',
+            render: (text: string, record: any) => {
+                return (
+                    <div className='flex items-center justify-center cursor-pointer' onClick={() => handleDeleteProduct(record?.product_id)}>
+                        <Trash2 size={16} strokeWidth={2} color='' className='stroke-slate-600' />
+                    </div>
+                );
+            }
+        },
+    ];
+
+
+
+    const rowSelection = {
+        onChange: async (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
+            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+            // await deleteProductsFromCart([selectedRowKeys.toString()]);
+            // const newData = cartItems.filter((item: any) => ![selectedRowKeys].includes(item.product_id));
+            // setCartItems(newData);
+        },
+        getCheckboxProps: (record: DataType) => ({
+            disabled: record.name === 'Disabled User', // Column configuration not to be checked
+            name: record.name,
+        }),
+    };
+
+    const handleDeleteProduct = async (productId: string) => {
+        await deleteProductsFromCart([productId]);
+        const newData = cartItems.filter((item: any) => item.product_id !== productId);
+        setCartItems(newData);
     }
-
-    const handleVoucher = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target
-
-        value.length > 0 ? setEnableState() : setDisableState()
-    }
-
-
-
 
     return (
         <>
@@ -147,87 +143,17 @@ export default function Checkout() {
                 <div className='grid grid-cols-12 gap-5'>
 
                     {/* Left bar */}
-                    <div className="col-span-9">
-                        <div className='flex flex-col flex-1 justify-center gap-3'>
-                            <div className='bg-white p-4 rounded shadow-sm' >
-                                <div className='grid grid-cols-12 select-none text-sm text-gray-800 font-normal'>
-
-                                    {/* Checkbox for Selected all */}
-                                    <Checkbox
-                                        className='col-span-5 text-sm text-gray-800 font-normal'
-                                        name='allSelect'
-                                        onChange={handleChange}
-                                        checked={isCheckedAll}
-                                        disabled={carts.length === 0}
-                                    >
-                                        Alll Product ({carts.length} products)
-                                    </Checkbox>
-                                    <span className='col-span-2'>Unit Price</span>
-                                    <span className='col-span-2'>Quantity</span>
-                                    <span className='col-span-2'>Total Price</span>
-                                    <button className='col-span-1 flex items-center'>
-                                        <Trash2 onClick={() => handleDelteCartAll(isCheckedAll)} size={16} strokeWidth={2} color='' className='stroke-slate-600' />
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/*Cart Skeleton */}
-                            {loading && (<>
-                                <section className='bg-white p-4 rounded shadow-sm select-none'>
-                                    <div className='flex flex-row flex-1 justify-center items-center gap-3 h-[242px]'>
-                                        <Spin />
-                                    </div>
-                                </section>
-                            </>)}
-
-                            {/* User Cart = 0 */}
-                            {(!loading && carts.length === 0) && (
-                                <div className='flex flex-1 items-center justify-center p-4 bg-white shadow'>
-                                    <Empty
-                                        description={
-                                            <span className='text-base'>There are no products in your shopping cart.</span>
-                                        }
-                                    >
-                                        <Button type='primary' size='middle' href='/'>Continue Shopping</Button>
-                                    </Empty>
-                                </div>
-                            )}
-
-                            {/* User Cart Item */}
-
-                            {carts.map((cart: userCartDataProps) => {
-                                const isChecked = cart?.isChecked || false
-
-                                return (
-                                    <section className='bg-white p-4 rounded shadow select-none' key={cart.id}>
-                                        <div className='grid grid-cols-12 items-center text-base'>
-                                            <Checkbox
-                                                className='col-span-5'
-                                                name={cart.id}
-                                                onChange={handleChange}
-                                                checked={isChecked}
-                                            >
-                                                <div className='flex items-center gap-3'>
-                                                    <Image src={cart.imgSrc} alt='item' sizes="100vw" quality={70} width={500} height={300} className='w-20 h-20 object-cover rounded-sm' />
-                                                    <div className='flex flex-col items-start gap-2'>
-                                                        <h1 className='text-base font-medium text-gray-800 line-clamp-1'>{cart.title}</h1>
-                                                        <p className='text-sm font-normal text-gray-600 line-clamp-1'>{cart.type}</p>
-                                                    </div>
-                                                </div>
-                                            </Checkbox>
-                                            <span className='col-span-2 font-medium text-gray-900'>${cart.unitPrice}</span>
-                                            <span className='col-span-2 '>
-                                                <InputNumber min={1} max={cart.maxQuantity} defaultValue={1} size='small' />
-                                            </span>
-                                            <span className='col-span-2 font-medium text-rose-500'>${cart.totalPrice}</span>
-                                            <button className='col-span-1 '>
-                                                <Trash2 onClick={() => handleDeleteCart(isChecked, cart.id)} size={16} strokeWidth={2} color='' className='stroke-slate-600' />
-                                            </button>
-                                        </div>
-                                    </section>
-                                )
-                            })}
-                        </div>
+                    <div className='col-span-9'>
+                        <Table
+                            rowSelection={{
+                                type: 'checkbox',
+                                ...rowSelection,
+                            }}
+                            columns={columns}
+                            dataSource={[...cartItems]}
+                            loading={userCartData ? false : true}
+                            pagination={false}
+                        />
                     </div>
 
                     {/* Right bar */}
@@ -258,8 +184,8 @@ export default function Checkout() {
                                 <div className='flex flex-col gap-3'>
                                     <div className='text-sm font-medium'>Dandelion Voucher</div>
                                     <div className='flex justify-between'>
-                                        <Input defaultValue="" size='small' onChange={handleVoucher} allowClear style={{ width: '75%' }} />
-                                        <Button type="primary" size='small' disabled={isDisable} >Apply</Button>
+                                        <Input defaultValue="" size='small' onChange={() => { }} allowClear style={{ width: '75%' }} />
+                                        <Button type="primary" size='small' disabled={false} >Apply</Button>
                                     </div>
                                 </div>
                             </div>
@@ -292,16 +218,6 @@ export default function Checkout() {
                 </div>
             </div>
             {/* Modal */}
-            <Modal
-                title="Title"
-                centered
-                open={openModal}
-                onOk={handleOk}
-                onCancel={handleCancel}
-
-            >
-                <p>{'modalText'}</p>
-            </Modal>
 
 
             {/* Message notify */}

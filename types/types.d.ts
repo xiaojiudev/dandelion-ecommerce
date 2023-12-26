@@ -1,3 +1,21 @@
+export type CartItem = {
+    product_id: string;
+    name: string;
+    quantity: number;
+    available_quantity: number;
+    unit_price: number;
+    description: string;
+    information: string;
+    media_url: string;
+    item_sub_total: number;
+}
+
+export type UserCart = {
+    items: CartItem[];
+    merchandise_total: number;
+    shippingFee: number | null;
+}
+
 
 export type Category = {
     id: number;

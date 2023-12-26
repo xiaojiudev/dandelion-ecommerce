@@ -6,28 +6,21 @@ import { Avatar, Badge, Button, List, Popover } from 'antd';
 
 import { CHECKOUT_URI, PRODUCT_URI } from '@/constants/baseURL';
 import { deleteProductsFromCart } from '@/lib/data';
+import { CartItem } from '@/types/types';
 
-type CartType = {
-    key: string;
-    name: string;
-    description: string;
-    price: number;
-    quantity: number;
-    media_url: string;
-}
 
 export default function Cart({ data, className }: { data: any, className: string }) {
 
     const quantity = data?.items.length ?? 0;
 
     //fetch and return data here!
-    const dataCart = data?.items.map((item: any) => {
+    const dataCart = data?.items.map((item: CartItem) => {
 
         return {
-            key: item.product_id,
+            product_id: item.product_id,
             name: item.name,
             description: item.description,
-            price: item.price,
+            unit_price: item.unit_price,
             quantity: item.quantity,
             media_url: item.media_url,
         }
@@ -45,24 +38,24 @@ export default function Cart({ data, className }: { data: any, className: string
                 className='h-[223px] w-[400px] overflow-y-scroll'
                 itemLayout="horizontal"
                 dataSource={dataCart}
-                renderItem={(item: CartType, index: number) => (
+                renderItem={(item: CartItem, index: number) => (
                     <List.Item
 
-                        key={item.key}
+                        key={item.product_id}
                         actions={
                             [
-                                (<div className='text-dark font-bold text-primary-400 ' key={item.key}>
-                                    <span className='text-base font-medium'>{item.price}</span>
+                                (<div className='text-dark font-bold text-primary-400 ' key={item.product_id}>
+                                    <span className='text-base font-medium'>{item.unit_price}</span>
                                     <sup className='text-xs'>$</sup>
                                 </div>),
                                 (<div className='w-8'>x{item.quantity}</div>),
-                                (<Button key={item.key} type="link" onClick={(e) => handeDeleteProductFromCart(e, item.key)} className='bg-transparent' icon={<Trash2 size={16} strokeWidth={2} color='' className='stroke-slate-600' />} size='small' ></Button>),
+                                (<Button key={item.product_id} type="link" onClick={(e) => handeDeleteProductFromCart(e, item.product_id)} className='bg-transparent' icon={<Trash2 size={16} strokeWidth={2} color='' className='stroke-slate-600' />} size='small' ></Button>),
                             ]}
                         className='flex items-center'
                     >
                         <List.Item.Meta
                             avatar={<Avatar src={`${item.media_url}`} shape='square' />}
-                            title={<Link href={`${PRODUCT_URI}/${item.key}`} className='line-clamp-1'>{item.name}</Link>}
+                            title={<Link href={`${PRODUCT_URI}/${item.product_id}`} className='line-clamp-1'>{item.name}</Link>}
                             description={<span className='line-clamp-1'>{item.description}</span>}
                             className='items-center hello123 flex-1'
                         />

@@ -1,6 +1,6 @@
 'use server'
 import { auth } from "@/authOptions";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 
 export async function addProductTocart(data: { productId: string, quantity: number }) {

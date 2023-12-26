@@ -18,6 +18,8 @@ import ProvinceCoordinate from '@/components/product/ProvinceCoordinate';
 export default async function Page({ params: { id } }: { params: { id: string } }) {
 
     const [product]: [Product] = await Promise.all([fetchProductById(id)]);
+    // console.log(product);
+    
 
     const mediaList = [...product.media_url];
 
