@@ -5,6 +5,7 @@ import { ShoppingCart, Trash2 } from 'lucide-react';
 import { Avatar, Badge, Button, List, Popover } from 'antd';
 
 import { CHECKOUT_URI, PRODUCT_URI } from '@/constants/baseURL';
+import { deleteProductsFromCart } from '@/lib/data';
 
 type CartType = {
     key: string;
@@ -16,7 +17,7 @@ type CartType = {
 }
 
 export default function Cart({ data, className }: { data: any, className: string }) {
-    console.log(data);
+
     const quantity = data?.items.length ?? 0;
 
     //fetch and return data here!
@@ -31,6 +32,11 @@ export default function Cart({ data, className }: { data: any, className: string
             media_url: item.media_url,
         }
     })
+
+    const handeDeleteProductFromCart = async (e: React.MouseEvent<HTMLElement, MouseEvent>, id: string) => {
+        e.preventDefault();
+        await deleteProductsFromCart([id]);
+    }
 
     //get data and return product items in cart
     const content = (
@@ -50,7 +56,7 @@ export default function Cart({ data, className }: { data: any, className: string
                                     <sup className='text-xs'>$</sup>
                                 </div>),
                                 (<div className='w-8'>x{item.quantity}</div>),
-                                (<Button key={item.key} type="link" href='' className='bg-transparent' icon={<Trash2 size={16} strokeWidth={2} color='' className='stroke-slate-600' />} size='small' ></Button>),
+                                (<Button key={item.key} type="link" onClick={(e) => handeDeleteProductFromCart(e, item.key)} className='bg-transparent' icon={<Trash2 size={16} strokeWidth={2} color='' className='stroke-slate-600' />} size='small' ></Button>),
                             ]}
                         className='flex items-center'
                     >
