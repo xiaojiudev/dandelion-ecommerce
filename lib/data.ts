@@ -30,27 +30,27 @@ export async function addProductTocart(data: { productId: string, quantity: numb
     return res.json();
 }
 
-export async function deleteProductFromCart(id: string) {
+export async function deleteProductsFromCart(id: string[]) {
     const session = await auth();
     const token = session?.accessToken;
 
     let url = new URL(`${process.env.BACKEND_PUBLIC_API_URI}/carts`);
 
     const res = await fetch(url, {
-        method: "POST",
+        method: "DELETE",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
-            product_id: id,
-            // quantity: quantity ?? 1,
+            product_ids: [...id],
         }),
     })
 
     if (!res.ok) {
         return null;
     }
+
     revalidatePath("/");
     return res.json();
 }
