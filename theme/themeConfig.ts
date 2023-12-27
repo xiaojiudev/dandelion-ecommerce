@@ -17,6 +17,10 @@ const theme: ThemeConfig = {
             controlHeight: 32,
             algorithm: true,
         },
+        Spin: {
+            colorPrimary: '#1677ff',
+            algorithm: true,
+        }
        
     }
 };

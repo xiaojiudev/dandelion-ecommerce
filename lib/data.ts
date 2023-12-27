@@ -1,6 +1,6 @@
 'use server'
 import { auth } from "@/authOptions";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 
 export async function addProductTocart(data: { productId: string, quantity: number }) {
@@ -19,7 +19,7 @@ export async function addProductTocart(data: { productId: string, quantity: numb
         },
         body: JSON.stringify({
             product_id: productId,
-            quantity: quantity ?? 1,
+            quantity: quantity,
         }),
     })
 
@@ -52,6 +52,7 @@ export async function deleteProductsFromCart(id: string[]) {
     }
 
     revalidatePath("/");
+
     return res.json();
 }
 

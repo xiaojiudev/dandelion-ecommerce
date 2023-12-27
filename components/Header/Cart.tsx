@@ -7,6 +7,8 @@ import { Avatar, Badge, Button, List, Popover } from 'antd';
 import { CHECKOUT_URI, PRODUCT_URI } from '@/constants/baseURL';
 import { deleteProductsFromCart } from '@/lib/data';
 import { CartItem } from '@/types/types';
+import { useRouter } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 
 export default function Cart({ data, className }: { data: any, className: string }) {
@@ -29,6 +31,7 @@ export default function Cart({ data, className }: { data: any, className: string
     const handeDeleteProductFromCart = async (e: React.MouseEvent<HTMLElement, MouseEvent>, id: string) => {
         e.preventDefault();
         await deleteProductsFromCart([id]);
+       
     }
 
     //get data and return product items in cart
@@ -48,7 +51,7 @@ export default function Cart({ data, className }: { data: any, className: string
                                     <span className='text-base font-medium'>{item.unit_price}</span>
                                     <sup className='text-xs'>$</sup>
                                 </div>),
-                                (<div className='w-8'>x{item.quantity}</div>),
+                                (<div key={item.product_id} className='w-8'>x{item.quantity}</div>),
                                 (<Button key={item.product_id} type="link" onClick={(e) => handeDeleteProductFromCart(e, item.product_id)} className='bg-transparent' icon={<Trash2 size={16} strokeWidth={2} color='' className='stroke-slate-600' />} size='small' ></Button>),
                             ]}
                         className='flex items-center'
@@ -65,7 +68,7 @@ export default function Cart({ data, className }: { data: any, className: string
             >
             </List>
             <div className='flex items-center justify-center py-3'>
-                <Button type="primary" href={CHECKOUT_URI} className='w-4/5' size='large'>Checkout</Button>
+                <Button type="primary" href={CHECKOUT_URI} className='w-4/5' size='large'>View My Shopping Cart</Button>
             </div>
         </>
 

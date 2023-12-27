@@ -1,19 +1,20 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button, Input, InputNumber, Tag, Tooltip, message } from 'antd'
-import { Trash2 } from 'lucide-react'
-import { deleteProductsFromCart, fetchUserCart } from '@/lib/data'
-import Table, { ColumnsType } from 'antd/es/table'
-import { CartItem, UserCart } from '@/types/types'
-import { DEFAULT_IMG_URL } from '@/constants/baseURL'
+import Link from 'next/link';
+import Image from 'next/image';
+import { Trash2 } from 'lucide-react';
+import React, { useCallback, useEffect, useState } from 'react';
+import Table, { ColumnsType } from 'antd/es/table';
+import { Button, Input, InputNumber, Popconfirm, Tag, Tooltip, message } from 'antd';
+
+import { CartItem, UserCart } from '@/types/types';
+import { DEFAULT_IMG_URL } from '@/constants/baseURL';
+import { addProductTocart, deleteProductsFromCart, fetchUserCart } from '@/lib/data';
+import { revalidatePath } from 'next/cache';
 
 
 type DataType = {
     key: React.Key;
 } & CartItem;
-
 
 
 export default function Checkout() {
@@ -22,32 +23,32 @@ export default function Checkout() {
     const [messageApi, contextHolder] = message.useMessage();
     const [userCartData, setUserCartData] = useState<UserCart>();
     const [cartItems, setCartItems] = useState([]);
+    const [selectedRowIds, setSelectedRowIds] = useState<string[]>([]);
+
+    const fetchAndUpdateCart = async () => {
+        const updatedUserCartData = await fetchUserCart();
+        setUserCartData(updatedUserCartData);
+        const updatedCartItems = updatedUserCartData?.items?.map((item: CartItem) => {
+            return {
+                key: item.product_id,
+                product_id: item.product_id,
+                name: item.name,
+                quantity: item.quantity,
+                available_quantity: item.available_quantity,
+                unit_price: item.unit_price,
+                description: item.description,
+                information: item.information,
+                media_url: item.media_url,
+                item_sub_total: item.item_sub_total,
+            };
+        });
+        setCartItems(updatedCartItems);
+    };
 
     useEffect(() => {
-        const handleGetUserCart = async () => {
-            const userCartData = await fetchUserCart();
-            const cartItems = userCartData?.items?.map((item: CartItem) => {
-                return {
-                    key: item.product_id,
-                    product_id: item.product_id,
-                    name: item.name,
-                    quantity: item.quantity,
-                    available_quantity: item.available_quantity,
-                    unit_price: item.unit_price,
-                    description: item.description,
-                    information: item.information,
-                    media_url: item.media_url,
-                    item_sub_total: item.item_sub_total,
-                };
-            })
-
-            setUserCartData(userCartData);
-            setCartItems(cartItems);
-
-        }
-
-        handleGetUserCart();
-    }, [])
+        console.log('component rendered');
+        fetchAndUpdateCart();
+    }, []);
 
     const columns: ColumnsType<DataType> = [
         {
@@ -83,7 +84,7 @@ export default function Checkout() {
                     <Tooltip title={`${record?.available_quantity} products available`}>
                         <div>
                             <InputNumber
-                                // onChange={}
+                                onChange={(valueChange) => updateProductQuantityInCart(valueChange, record?.available_quantity, record?.product_id)}
                                 min={1}
                                 max={record?.available_quantity}
                                 defaultValue={quantity ?? 1}
@@ -106,11 +107,13 @@ export default function Checkout() {
         {
             title: 'Action',
             dataIndex: 'action',
-            render: (text: string, record: any) => {
+            render: (text: string, record: { product_id: string }) => {
                 return (
-                    <div className='flex items-center justify-center cursor-pointer' onClick={() => handleDeleteProduct(record?.product_id)}>
-                        <Trash2 size={16} strokeWidth={2} color='' className='stroke-slate-600' />
-                    </div>
+                    <Popconfirm title="Sure to delete?" onConfirm={() => handleDeleteProduct(record?.product_id)}>
+                        <div className='flex items-center justify-center cursor-pointer' >
+                            <Trash2 size={16} strokeWidth={2} color='' className='stroke-slate-600' />
+                        </div>
+                    </Popconfirm>
                 );
             }
         },
@@ -119,26 +122,56 @@ export default function Checkout() {
 
 
     const rowSelection = {
+        selectedRowIds,
         onChange: async (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-            // await deleteProductsFromCart([selectedRowKeys.toString()]);
-            // const newData = cartItems.filter((item: any) => ![selectedRowKeys].includes(item.product_id));
-            // setCartItems(newData);
+            setSelectedRowIds(selectedRowKeys as string[]);
         },
+        selections: [
+            {
+                key: 'delete_all',
+                text: 'Delete all products',
+                onSelect: async () => {
+                    if (selectedRowIds.length > 0 && selectedRowIds.length === cartItems.length) {
+                        const newData = cartItems.filter((item: any) => !selectedRowIds.includes(item.key));
+                        setCartItems(newData);
+                        await deleteProductsFromCart(selectedRowIds);
+                    }
+                },
+            },
+        ],
         getCheckboxProps: (record: DataType) => ({
             disabled: record.name === 'Disabled User', // Column configuration not to be checked
             name: record.name,
         }),
     };
 
+    const updateProductQuantityInCart = useCallback(async (valueChange: number, maxQuantity: number, productId: string) => {
+        if (valueChange <= maxQuantity) {
+            await addProductTocart({ productId, quantity: valueChange ?? 1 });
+            fetchAndUpdateCart();
+        }
+    }, [])
+
     const handleDeleteProduct = async (productId: string) => {
-        await deleteProductsFromCart([productId]);
-        const newData = cartItems.filter((item: any) => item.product_id !== productId);
-        setCartItems(newData);
+        if (selectedRowIds.includes(productId)) {
+            await deleteProductsFromCart([productId]);
+            const newData = cartItems.filter((item: any) => item.product_id !== productId);
+            setCartItems(newData);
+        } else {
+            messageApi.open({
+                key: productId,
+                type: 'warning',
+                content: 'Please select the product to delete',
+                duration: 1.5,
+            });
+        };
     }
 
     return (
         <>
+            {/* Message notify */}
+            {contextHolder}
+
             <div className=''>
                 <div className='grid grid-cols-12 gap-5'>
 
@@ -194,34 +227,41 @@ export default function Checkout() {
                                 <div className='flex flex-col gap-2 text-sm text-gray-700 font-medium'>
                                     <div className='flex justify-between items-center'>
                                         <div className='font-normal text-gray-500'>Merchandise Subtotal:</div>
-                                        <div className=''>$399</div>
+                                        <div className=''>${userCartData?.merchandise_total}</div>
                                     </div>
-                                    {/* <div className='flex justify-between items-center'>
+                                    <div className='flex justify-between items-center'>
                                         <div className='font-normal text-gray-500'>Shipping Total:</div>
-                                        <div>$1.2</div>
-                                    </div> */}
+                                        <div>${userCartData?.shippingFee}</div>
+                                    </div>
                                     <div className='flex justify-between items-center pb-4'>
                                         <div className='font-normal text-gray-500'>Discount:</div>
-                                        <div>$8</div>
+                                        <div>$0</div>
                                     </div>
                                     <div className='flex justify-between items-center border-t pt-4'>
                                         <div className='font-normal text-gray-700'>Estimated Total:</div>
-                                        <div className='text-3xl text-primary-500'>$390.8</div>
+                                        <div className='text-3xl text-primary-500'>${userCartData?.total}</div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Button submit */}
-                            <Button type='primary' href='/checkout/payment' size='middle' className='font-medium'>Continue</Button>
+                            <Link href='/checkout/payment'>
+                                <Button
+                                    type='primary'
+                                    size='middle'
+                                    className='font-medium w-full'
+                                    disabled={cartItems?.length > 0 ? false : true}
+                                >
+                                    Continue
+                                </Button>
+                            </Link>
+
                         </div>
                     </div>
                 </div>
             </div>
             {/* Modal */}
 
-
-            {/* Message notify */}
-            {contextHolder}
         </>
     )
 }

@@ -14,7 +14,7 @@ export default function ProductCart({ id }: { id: string }) {
         try {
             const data = {
                 productId,
-                quantity: 1,
+                quantity: 0,
             }
             await addProductTocart(data);
         } catch (error) {

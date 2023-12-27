@@ -14,6 +14,10 @@ export type UserCart = {
     items: CartItem[];
     merchandise_total: number;
     shippingFee: number | null;
+    total: number;
+    status: boolean;
+    cart_id: string;
+    user_id: string;
 }
 
 
