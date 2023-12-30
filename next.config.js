@@ -1,7 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['randomuser.me', 'pixahive.com', 'res.cloudinary.com'],
+        remotePatterns: [
+            {
+                hostname: 'res.cloudinary.com',
+            },
+            {
+                hostname: 'randomuser.me',
+            },
+        ]
     },
     reactStrictMode: false,
     env: {
